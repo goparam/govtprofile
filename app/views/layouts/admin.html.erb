@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>GOVT</title>
+  	<%= stylesheet_link_tag    "admin/admin" %>
+	<%= javascript_include_tag  "admin/admin" %>
+	<%= csrf_meta_tags %>
+</head>
+<body class="blog">
+	<%= render 'admin/header' %>
+	<div class="container">
+		<br><br>
+		<div class="row">
+			<div class="span12"><h1><%= @title %></h1></div>
+			<div class="span6"><p><%= @desc %></p></div>
+		</div>
+		<% flash.each do |key, value| %>
+			<br>
+			<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>
+				<a class="close" data-dismiss="alert" href="#">&times;</a>
+			</div>
+		<% end %>
+		<%= yield %>
+	</div>
+</body>
+<style type="text/css">
+	header .menu{
+	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
+	}
+	header .menu:hover{
+	    background-color: #E0E0DF;
+	}   
+	.padding10{
+	    padding: 10px;      
+	}
+	.padding15{
+	    padding: 15px;      
+	}
+	.padding5{
+	    padding: 5px;
+	}
+	.height35{
+	    height: 35px;
+	}
+	.lineheight25{
+	    line-height: 25px;
+	}
+</style>
+</html>

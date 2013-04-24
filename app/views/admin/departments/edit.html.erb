@@ -1,0 +1,10 @@
+		<%= form_for @department, :url => admin_department_path(@department) do |c|%>
+
+			<%= c.label :name %>
+			<%= c.text_field :name, :autofocus => true, :class => "height35 padding5 span5" %>
+
+			<br>
+			<input type="button" value="Save" class="padding10" onclick="document.forms[0].submit();">
+			<input type="button" value="Cancle" class="padding10" onclick="window.location.href='/admin/departments'">
+
+		<% end %>

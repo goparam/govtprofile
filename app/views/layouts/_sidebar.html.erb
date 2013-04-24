@@ -1,0 +1,31 @@
+<aside id="sidebar">
+	<div id="exultic_post_formats_widget-4" class="widget exultic_post_formats_widget">
+    <div style="margin: 20px;">
+        <!-- Place this code where you want the badge to render. -->
+        <a href="//plus.google.com/112029319737475280450?prsrc=3" rel="publisher" style="text-decoration:none;display:inline-block;color:#333;text-align:center; font:13px/16px arial,sans-serif;white-space:nowrap;">
+        <span style="display:inline-block;font-weight:bold;vertical-align:top;margin-right:5px; margin-top:8px;">Easyrails</span><span style="display:inline-block;vertical-align:top;margin-right:15px; margin-top:8px;">on</span>
+        <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;"/></a>
+    </div>
+	<h3 class="widget-title">Post Categories</h3>
+	<ul>
+		<% Category.all.each do |category| %>
+		<li class="post-format-item"><a href="#" title="View all Aside posts"><%= category.name %></a></li>
+		<% end %>
+	</ul>
+	</div>
+	<div id="exultic_social_widget-3" class="widget exultic_social_widget">
+		<h3 class="widget-title">My Social Profiles</h3>
+		<div class="social-wrapper">
+			<a class="twitter-button social-button" title="Twitter" target="_blank" href="http://twitter.com/vajapravin"></a>
+			<a class="facebook-button social-button" title="Facebook" target="_blank" href="http://facebook.com/vajapravin"></a>
+			<a class="googleplus-button social-button" title="Google Plus" target="_blank" href="https://plus.google.com/112029319737475280450"></a>
+			<a class="linkedin-button social-button" title="LinkedIn" target="_blank" href="http://in.linkedin.com/in/vajapravin"></a>
+			<a class="vimeo-button social-button" title="Vimeo" target="_blank" href="http://vimeo.com/vajapravin"></a>
+			<a class="youtube-button social-button" title="YouTube" target="_blank" href="http://www.youtube.com/user/vajapravin23"></a>
+			<a class="mail-button social-button" title="Email" target="_blank" href="mailto:vajapravin23@gmail.com"></a>
+			<a class="rss-button social-button" title="RSS Feed" target="_blank" href=""></a>
+			<div class="clear">
+			</div>
+		</div>
+	</div>	
+</aside>

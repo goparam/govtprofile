@@ -1,0 +1,63 @@
+.login {
+	font-size: 1.2rem;
+	line-height: 1.5em;
+	left:40%;
+	top:20%;
+	margin:-100px 0 0 -100px;
+	position:absolute;
+}
+
+.login form .input {
+    -moz-box-sizing: border-box;
+    -moz-font-feature-settings: inherit;
+    -moz-font-language-override: inherit;
+    background-color: rgba(255, 212, 0, 0.05);
+    border: 2px solid #3DA4FF;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 1px 2px 1px rgba(255, 255, 255, 0.6), 0 1px 3px 1px rgba(153, 127, 0, 0.1) inset;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.5em;
+    font-size-adjust: inherit;
+    font-stretch: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding: 13px 22px;
+    resize: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+    width: 70%;
+    margin: 10px;
+}
+
+.login form .submit {
+    -moz-box-sizing: border-box;
+    -moz-font-feature-settings: inherit;
+    -moz-font-language-override: inherit;
+    -moz-transition: background-color 0.2s ease-out 0s;
+    background: rgba(164, 186, 245, 0.2);
+    border: 2px solid #3DA4FF;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 1px 2px 1px rgba(255, 255, 255, 0.6), 0 1px 3px 1px rgba(153, 127, 0, 0.1) inset;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.5em;
+    font-size-adjust: inherit;
+    font-stretch: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding: 13px 22px;
+    resize: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+    width: 70%;
+    margin: 10px;
+}
+.login form .submit:hover {
+   	box-shadow: 0 -1px 2px #000000 inset;	
+}
+

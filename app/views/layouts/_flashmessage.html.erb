@@ -1,0 +1,9 @@
+<% if flash!=nil %>
+	<% flash.each do |key, value| %>
+		<% if key.to_s == "error" || key.to_s == "alert" %>
+			<div style="color:red; margin: 20px;"><%= value %></div>
+		<% else %>
+			<div style="color:green; margin: 20px;"><%= value %></div>
+		<% end %>		
+	<% end %>
+<% end %>

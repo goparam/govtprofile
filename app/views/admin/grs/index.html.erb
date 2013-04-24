@@ -1,0 +1,32 @@
+
+		<br>
+
+		<input type="button" value="Add New" class="padding10" onclick="window.location.href = '/admin/grs/new';">
+
+		<table class= "table">
+				<tr>
+					<th>Id
+					<th>Name
+					<th>Details
+					<th>Unique Code
+					<th>Download Document
+					<th>File Size (KB)
+					<th>Edit
+					<th>Delete
+				</tr>	
+			<% @grs.each do |c| %>
+				<tr><td><%= c.id %>
+					<td><%= c.name %>
+					<td><%= c.details.html_safe %>					
+					<td><%= c.unique_code rescue "" %>
+					<% unless c.document_file_name.blank? %>
+						<td><%= link_to c.document_file_name, "http://#{self.request.host}:#{self.request.port}#{c.document}", :target => "_blank" %>
+					<% else %>
+						<td> File not found.
+					<% end %>
+					<td><%= c.document_file_size rescue "" %>
+					<td><%= link_to image_tag("/assets/edit.png"), edit_admin_gr_path(c) , :method => :get %>
+					<td><%= link_to image_tag("/assets/delete.png"), admin_gr_path(c), :method => :delete, :class =>"delete_#{c.id}", :remote => :true, :confirm => 'Are you sure?' %>
+				</tr>
+			<% end %>
+		</table>

@@ -1,0 +1,116 @@
+<section id="entries">
+	<article id="post-57" class="post-57 post type-post status-publish format-image hentry category-images tag-image">
+		<div class="ribbon">
+			<a href="#">
+				<div class="shadow"></div>
+			</a>
+		</div>
+		<section class="entry-header">
+			<h2 class="entry-title">
+				<a rel="bookmark" href="#">Image Post Format</a>
+			</h2>
+		</section>
+		<section class="entry-content">
+			<div class="entry-inner clearfix" style="margin: 0">
+				<p class="image">
+				<a class="prettyphoto-anchor" rel="prettyPhoto" href="http://demo.exultic.com/raffinade/wp-content/uploads/2012/06/IMG_7258.jpg"></a>
+				<img alt="" src="http://demo.exultic.com/raffinade/wp-content/uploads/2012/06/IMG_7258.jpg">
+			</div>
+		</section>
+		<section class="entry-footer">
+			<div class="share-bubble">
+				<div class="action-icon"></div>
+				<div class="popover">
+					<div class="bt_twitter">
+					</div>
+					<div class="bt_facebook">
+						<div class="fb-like" data-show-faces="false" data-width="82" data-send="false" data-layout="button_count" data-href="http://demo.exultic.com/raffinade/images/image-post-format"></div>
+					</div>
+					<div class="bt_plusone">
+						<div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;">
+					</div>
+</div>
+<input class="shortlink" type="text" value="bit.ly/QSN6hT" onclick="jQuery(this).select();">
+</div>
+</div>
+<a class="comments-count" title="View comments" href="http://demo.exultic.com/raffinade/images/image-post-format#comments">0</a>
+<a id="like-57" class="likes-count" title="I like it!" href="#">62</a>
+<a class="date-stickie" href="http://demo.exultic.com/raffinade/images/image-post-format">
+<span class="day">24</span>
+<span class="month">Jun</span>
+</a>
+	</article>
+
+
+
+
+<article id="post-36" class="post-36 post type-post status-publish format-link hentry category-links tag-link">
+<div class="ribbon">
+<a href="http://demo.exultic.com/raffinade/type/link/">
+<div class="shadow"></div>
+</a>
+</div>
+<section class="entry-header"></section>
+<section class="entry-content">
+<div class="link">
+<div class="link-url">
+<a href="http://exultic.com">
+Exultic
+<span>→</span>
+</a>
+</div>
+<div class="link-description">(an optional description)</div>
+</div>
+</section>
+<section class="entry-footer">
+<div class="share-bubble">
+<div class="action-icon"></div>
+<div class="popover">
+<div class="bt_twitter"></div>
+<div class="bt_facebook"></div>
+<div class="bt_plusone"></div>
+<input class="shortlink" type="text" value="bit.ly/QT1kiB" onclick="jQuery(this).select();">
+</div>
+</div>
+<a class="comments-count" title="View comments" href="http://demo.exultic.com/raffinade/links/link-post-format#comments">0</a>
+<a id="like-36" class="likes-count" title="I like it!" href="#">9</a>
+<a class="date-stickie" href="http://demo.exultic.com/raffinade/links/link-post-format">
+<span class="day">24</span>
+<span class="month">Jun</span>
+</a>
+</section>
+</article>
+
+
+
+<article id="post-68" class="post-68 post type-post status-publish format-quote hentry category-quotes tag-quote">
+<div class="ribbon">
+<a href="http://demo.exultic.com/raffinade/type/quote/">
+<div class="shadow"></div>
+</a>
+</div>
+<section class="entry-header"></section>
+<section class="entry-content">
+<div class="quote">
+<blockquote>Donec vel nunc arcu, sit amet tempus turpis.</blockquote>
+</div>
+</section>
+<section class="entry-footer">
+<div class="share-bubble">
+<div class="action-icon"></div>
+<div class="popover">
+<div class="bt_twitter">
+<div class="bt_facebook">
+<div class="bt_plusone">
+<input class="shortlink" type="text" value="bit.ly/LeL7G2" onclick="jQuery(this).select();">
+</div>
+</div>
+<a class="comments-count" title="View comments" href="http://demo.exultic.com/raffinade/quotes/quote#comments">1</a>
+<a id="like-68" class="likes-count" title="I like it!" href="#">17</a>
+<a class="date-stickie" href="http://demo.exultic.com/raffinade/quotes/quote">
+<span class="day">24</span>
+<span class="month">Jun</span>
+</a>
+</section>
+</article>
+</section>
