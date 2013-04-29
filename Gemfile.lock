@@ -156,6 +156,7 @@ DEPENDENCIES
   execjs
   jquery-rails
   meta-tags
+  mime-types
   newrelic_rpm
   paperclip
   permalink (~> 1.2.1)

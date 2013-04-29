@@ -10,6 +10,7 @@ gem "permalink", "~> 1.2.1"
 gem 'meta-tags', :require => 'meta_tags'
 gem 'newrelic_rpm'
 gem "rabl", "~> 0.8.0"
+gem "mime-types"
 
 group :production do
   gem 'pg'

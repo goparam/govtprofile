@@ -7,6 +7,11 @@
 </head>
 <body class="home blog">
 	<div class="login">
+
+		<a id="logo" href="<%= root_path %>">
+			GResolutionRails
+		</a>
+		
 		<% flash.each do |key, value| %>
 			<br>
 			<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>

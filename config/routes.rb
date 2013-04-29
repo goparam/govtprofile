@@ -1,4 +1,4 @@
-Easyrails::Application.routes.draw do
+GResolutionRails::Application.routes.draw do
 
 	devise_for :users do
 		get 'logout' => 'devise/sessions#destroy'
