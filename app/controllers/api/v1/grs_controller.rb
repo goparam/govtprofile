@@ -1,7 +1,7 @@
 class Api::V1::GrsController <  Api::V1::ApiV1Controller
 
 	def index
-		@grs = Gr.order(:gr_date).all
+		@grs = Gr.order("gr_date desc").all
 		render "api/v1/grs/index"
 	end
 
