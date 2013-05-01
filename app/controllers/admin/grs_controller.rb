@@ -25,6 +25,7 @@ class Admin::GrsController < Admin::AdminController
   
   def update
     @gr = Gr.find(params[:id])
+    @gr.department = Department.find(params[:gr][:department_id]) rescue []
     if @gr.update_attributes(params[:gr])
       flash[:success] = "#{@gr.id} is successfully updated!"
       redirect_to admin_grs_path
@@ -36,6 +37,7 @@ class Admin::GrsController < Admin::AdminController
   
   def create
     @gr = Gr.new(params[:gr])
+    @gr.department = Department.find(params[:gr][:department_id]) rescue []
     if @gr.save
       flash[:success] = "#{@gr.id} is successfully created!"
       redirect_to admin_grs_path

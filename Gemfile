@@ -11,6 +11,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'newrelic_rpm'
 gem "rabl", "~> 0.8.0"
 gem "mime-types"
+gem 'will_paginate', '~> 3.0'
 
 group :production do
   gem 'pg'

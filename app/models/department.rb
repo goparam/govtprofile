@@ -12,5 +12,6 @@ class Department < ActiveRecord::Base
   	attr_accessible :id, :name
   
 	# has_many :department_grs, :dependent => :destroy
-	belongs_to :gr
+	has_one :department_gr, :dependent => :destroy
+  	has_one :gr, :through => :department_gr
 end
