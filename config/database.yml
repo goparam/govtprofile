@@ -20,10 +20,10 @@ test:
 
 production:
   adapter: postgresql
-  database: d34saddvebj5l1
-  host: ec2-23-21-85-233.compute-1.amazonaws.com
-  user: qpknbucccdjogv
-  password: 4kA9Dzj-7ZOfRxi06XB-60zQaW
+  database: dfsq4s4p15jcf8
+  host: ec2-54-235-155-182.compute-1.amazonaws.com
+  user: yscwktkqxqdexn
+  password: U3hk7B2HObrZIbzWVaqmVW0Zn9
   port: 5432
   # adapter: sqlite3
   # database: db/development.sqlite3
