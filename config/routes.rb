@@ -16,6 +16,7 @@ GResolutionRails::Application.routes.draw do
 		namespace :v1 do
 			resources :grs
 			resources :api_v1
+			resources :departments
 		end
 	end
 
