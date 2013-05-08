@@ -1,2 +1,2 @@
-collection @grs
+collection @depts
 attributes :name
