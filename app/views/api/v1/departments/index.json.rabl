@@ -1,1 +1,2 @@
+collection @grs
 attributes :name
