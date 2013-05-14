@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>GResolutionRails</title>
+  <title>Acts and Resolutions</title>
 	<%= stylesheet_link_tag    "style" %>
 	<%= stylesheet_link_tag    "login" %>
 	<%= csrf_meta_tags %>
@@ -9,7 +9,7 @@
 	<div class="login">
 
 	<a id="logo" href="<%= root_path %>">
-		GResolutionRails
+		Acts and Resolutions
 	</a>
 	
 	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
