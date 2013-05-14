@@ -11,7 +11,7 @@ class Admin::GrsController < Admin::AdminController
   def index
     @title = 'Government Resolutions'
     @desc = 'Manage all Government Resolutions in this section'
-    @grs = Gr.all
+    @grs = Gr.order("gr_date desc")
   end    
   
   def new
