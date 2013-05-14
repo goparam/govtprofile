@@ -3,10 +3,12 @@ class Admin::DepartmentsController < Admin::AdminController
     @department = Department.find(params[:id])
     unless @department.gr.nil? 
       flash[:error] = "Department is used for Resolution! Can't Delete!"
-    elsif @department.destroy  
-      respond_to do |f|
-        f.js
-      end 
+    else
+      if @department.destroy  
+        respond_to do |f|
+          f.js
+        end 
+      end
     end
   end
   
