@@ -41,18 +41,18 @@ GResolutionRails::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.action_mailer.default_url_options = { :host => 'http://calm-journey-6916.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'http://actsandresolution.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
-  :domain               => "calm-journey-6916.herokuapp.com",
+  :domain               => "actsandresolution.herokuapp.com",
   :user_name            => 'pravin.vaja@definelabs.com',
   :password             => 'define@123',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }  
-  config.action_controller.asset_host = "http://calm-journey-6916.herokuapp.com/"
-  config.action_mailer.asset_host = "calm-journey-6916.herokuapp.com"
+  config.action_controller.asset_host = "http://actsandresolution.herokuapp.com/"
+  config.action_mailer.asset_host = "http://actsandresolution.herokuapp.com"
   
   config.default_content_type = "text/html"
 
