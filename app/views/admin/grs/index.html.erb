@@ -1,32 +1,38 @@
-
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+			<div class="span6">
+				<input type="button" value="Add New" class="padding10" onclick="window.location.href='/admin/grs/new';">
+			</div>
+		</div>
 		<br>
-
-		<input type="button" value="Add New" class="padding10" onclick="window.location.href = '/admin/grs/new';">
 
 		<table class= "table">
 				<tr>
 					<th>Id
 					<th>Name
-					<th>Details
+					<th class="span6">Details
 					<th>Unique Code
-					<th>Download Document
+					<th>Department
+					<th>GR Date
 					<th>File Size (KB)
-					<th>Edit
-					<th>Delete
+					<th>Actions
 				</tr>	
 			<% @grs.each do |c| %>
-				<tr><td><%= c.id %>
+				<tr style="font-size: 12px;"><td><%= c.id %>
 					<td><%= c.name %>
 					<td><%= c.details.html_safe %>					
 					<td><%= c.unique_code rescue "" %>
-					<% unless c.document_file_name.blank? %>
-						<td><%= link_to c.document_file_name, c.document.url(:download => true), :target => "_blank" %>
-					<% else %>
-						<td> File not found.
-					<% end %>
+					<td><%= c.department.name.titlecase rescue "" %> 
+					<td><%= c.gr_date.strftime("%d-%b-%Y") rescue "" %>					
 					<td><%= c.document_file_size rescue "" %>
-					<td><%= link_to image_tag("/assets/edit.png"), edit_admin_gr_path(c) , :method => :get %>
-					<td><%= link_to image_tag("/assets/delete.png"), admin_gr_path(c), :method => :delete, :class =>"delete_#{c.id}", :remote => :true, :confirm => 'Are you sure?' %>
+					<td><%= link_to image_tag("/assets/edit.png"), edit_admin_gr_path(c) , :method => :get %> &nbsp 
+						<%= link_to image_tag("/assets/delete.png"), admin_gr_path(c), :method => :delete, :class =>"delete_#{c.id}", :remote => :true, :confirm => 'Are you sure?' %> &nbsp
+						<% unless c.document_file_name.blank? %>
+							<%= link_to "<img src='/assets/1368534643_save.png' height=20px width=20px>".html_safe, c.document.url(:download => true), :target => "_blank" %>
+						<% end %>
 				</tr>
 			<% end %>
 		</table>

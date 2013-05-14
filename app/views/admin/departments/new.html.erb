@@ -1,4 +1,9 @@
-
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+		</div>
 		
 		<%= form_for @department, :html => { :multipart => true }, :url => admin_departments_path do |c|%>
 

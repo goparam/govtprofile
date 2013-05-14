@@ -1,3 +1,9 @@
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+		</div>
 		<%= form_for @department, :url => admin_department_path(@department) do |c|%>
 
 			<%= c.label :name %>

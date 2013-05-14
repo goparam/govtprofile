@@ -1,3 +1,10 @@
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+		</div>
+		
 		<%= form_for @gr, :html => { :multipart => true }, :url => admin_gr_path(@gr) do |c|%>
 
 			<%= c.label :name %>
