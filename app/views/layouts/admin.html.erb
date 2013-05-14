@@ -1,17 +1,17 @@
 <html>
 <head>
-  <title>GOVT</title>
+  <title>Acts and Resolutions</title>
   	<%= stylesheet_link_tag    "admin/admin" %>
 	<%= javascript_include_tag  "admin/admin" %>
 	<%= csrf_meta_tags %>
 </head>
 <body class="blog">
 	<%= render 'admin/header' %>
-	<div class="container">
+	<div style="margin-left: 30px; margin-right: 30px;">
 		<br><br>
 		<div class="row">
 			<div class="span12"><h1><%= @title %></h1></div>
-			<div class="span6"><p><%= @desc %></p></div>
+			<div class="span12"><p><%= @desc %></p></div>
 		</div>
 		<% flash.each do |key, value| %>
 			<br>
