@@ -19,9 +19,15 @@
 class Gr < ActiveRecord::Base
   	attr_accessible :details, :id, :name, :document, :gr_date, :department_id, :unique_code
 
-	has_attached_file :document, 
-        :url => "/assets/admin/grs/document/:id/:style/:basename.:extension",
-        :path => ":rails_root/public/assets/admin/grs/document/:id/:style/:basename.:extension"
+	# has_attached_file :document, 
+ #        :url => "/assets/admin/grs/document/:id/:style/:basename.:extension",
+ #        :path => ":rails_root/public/assets/admin/grs/document/:id/:style/:basename.:extension"
+
+    has_attached_file :document,
+	    :storage => :dropbox,
+	    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+	    :styles => { :medium => "300x300" },
+	    :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{document.original_filename}" }}
 
 	validates_attachment_presence :document
 	

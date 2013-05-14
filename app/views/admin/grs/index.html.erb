@@ -20,7 +20,7 @@
 					<td><%= c.details.html_safe %>					
 					<td><%= c.unique_code rescue "" %>
 					<% unless c.document_file_name.blank? %>
-						<td><%= link_to c.document_file_name, "http://#{self.request.host}:#{self.request.port}#{c.document}", :target => "_blank" %>
+						<td><%= link_to c.document_file_name, c.document.url(:download => true), :target => "_blank" %>
 					<% else %>
 						<td> File not found.
 					<% end %>

@@ -23,7 +23,7 @@
 			<%= c.collection_select(:department_id, Department.all, :id, :name, {:prompt => true}, {:class => "height35 padding5", :style => "width: 367px;"}) %>
 			<br><br>
 			<input type="button" value="Save" class="padding10" onclick="document.forms['new_gr'].submit();">
-			<input type="button" value="Cancle" class="padding10" onclick="window.location.href='/admin/grs'">
+			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/grs'">
 			
 		<% end %>
 
