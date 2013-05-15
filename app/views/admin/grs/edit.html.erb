@@ -23,7 +23,7 @@
 			<br><br>
 			<%= c.label :gr_date %>
 			<% if @gr.gr_date.blank? %>
-				<%= c.text_field :gr_date, :class => "height35 padding5 span5", :readonly => true %>
+				<%= c.text_field :gr_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<% else %>
 				<%= c.text_field :gr_date, :value => @gr.gr_date.strftime("%d/%m/%Y"), :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<% end %>

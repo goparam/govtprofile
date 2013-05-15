@@ -37,7 +37,7 @@ class Admin::GrsController < Admin::AdminController
   
   def create
     @gr = Gr.new(params[:gr])
-    @gr.department = Department.find(params[:gr][:department_id]) rescue []
+    @gr.department = Department.find(params[:gr][:department_id]) rescue nil
     if @gr.save
       flash[:success] = "#{@gr.id} is successfully created!"
       redirect_to admin_grs_path
