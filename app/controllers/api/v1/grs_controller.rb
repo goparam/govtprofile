@@ -13,8 +13,8 @@ class Api::V1::GrsController <  Api::V1::ApiV1Controller
 				@grs = Gr.joins(:department).where(search.join(" AND ").to_s).uniq.order("grs.gr_date desc").paginate(:page => params[:page], :per_page => 10)
 			end
 			render "api/v1/grs/index"
-		rescue PG::Error:Date
-			render :json => "Something went wrong. Please try again!"
+		rescue
+			render :json => {"status" => false, "message" => "Something went wrong. Please try again!"}
 		end 
 	end
 
