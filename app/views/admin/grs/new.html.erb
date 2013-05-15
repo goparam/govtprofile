@@ -22,7 +22,7 @@
 			<br><br>
 			
 			<%= c.label :gr_date %>
-			<%= c.text_field :gr_date, :class => "height35 padding5 span5", :readonly => true %>
+			<%= c.text_field :gr_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%= c.label :department %>
 			<%= c.collection_select(:department_id, Department.all, :id, :name, {:prompt => true}, {:class => "height35 padding5", :style => "width: 367px;"}) %>
@@ -36,8 +36,8 @@
 			$('#gr_gr_date').datepicker();
 
 			check_valid = function(){
-				if($('#gr_gr_date').val()!=null && $('#gr_gr_date').val() != "")					
-					$('#gr_gr_date').val(new Date($('#gr_gr_date').val()));
+				// if($('#gr_gr_date').val()!=null && $('#gr_gr_date').val() != "")					
+				// 	$('#gr_gr_date').val(new Date($('#gr_gr_date').val()));
 				document.forms[0].submit();
 			}
 		</script>
