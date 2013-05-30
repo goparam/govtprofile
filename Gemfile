@@ -1,7 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+group :development do
+	#gem 'sqlite3' 
+end
 
+
+group :production do
+	gem 'pg'
+end
 gem "annotate", "~> 2.5.0.pre1"
 gem 'devise'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -19,7 +26,7 @@ group :production do
 end
 group :development do
   gem 'rspec-rails', '2.6.1'
-  gem 'sqlite3', '1.3.5'
+  #gem 'sqlite3', '1.3.5'
 end
 
 group :assets do
