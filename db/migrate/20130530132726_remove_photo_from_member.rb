@@ -1,7 +1,5 @@
 class RemovePhotoFromMember < ActiveRecord::Migration
-   def change
-   
-      
-      remove_column :profiles, :photo
+   def change      
+      remove_column :members, :photo
   end
 end
