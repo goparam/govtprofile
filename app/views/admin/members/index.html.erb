@@ -1,0 +1,42 @@
+
+
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+			<div class="span6">
+				<input type="button" value="Add New" class="padding10" onclick="window.location.href='/admin/members/new';">
+			</div>
+		</div>
+		<br>
+
+		<table class= "table">
+				<tr>
+					<th class="span1">Id
+					<th class="span2">Name
+					<th class="span2">Email
+					<th class="span2">DOB
+					<th class="span2">Joining Date
+					<th class="span2">Curront Joining Date
+					<th class="span2">phone no
+					<th class="span2">Photo
+					<th class="span2">Actions
+				</tr>	
+			<% @members.each do |c| %>
+				<tr style="font-size: 12px;"><td><%= c.id %>
+					<td><%= c.name %>
+					<td><%= c.email %>
+					<td><%= c.dob ("%d-%b-%Y")%>					
+					<td><%= c.joining_date ("%d-%b-%Y")rescue "" %>
+					
+					<td><%= c.curront_loction_joning_date("%d-%b-%Y") rescue "" %>	
+					<td><%= c.phones rescue "" %> 				
+					
+					<td><%= link_to image_tag("/assets/edit.png"), edit_admin_members_path(c) , :method => :get %> &nbsp 
+						<%= link_to image_tag("/assets/delete.png"), admin_members_path(c), :method => :delete, :class =>"delete_#{c.id}", :remote => :true, :confirm => 'Are you sure?' %> &nbsp
+						
+					
+				</tr>
+			<% end %>
+		</table>

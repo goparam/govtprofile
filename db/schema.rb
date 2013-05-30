@@ -11,37 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423121348) do
- 
-  create_table "department_grs", :force => true do |t|
-    t.integer  "department_id"
-    t.integer  "gr_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+ActiveRecord::Schema.define(:version => 20130529055534) do
+
+  create_table "members", :force => true do |t|
+    t.date     "dob"
+    t.string   "photo"
+    t.date     "joining_date"
+    t.date     "curront_loction_joning_date"
+    t.string   "email"
+    t.string   "phones"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
-  create_table "departments", :force => true do |t|
-    t.string   "name"
+  create_table "phones", :force => true do |t|
+    t.string   "phone_no"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "member_id"
   end
 
-  create_table "grs", :force => true do |t|
+  create_table "profiles", :force => true do |t|
     t.string   "name"
-    t.text     "details"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "document_file_name"
-    t.string   "document_content_type"
-    t.integer  "document_file_size"
-    t.datetime "document_updated_at"
-    t.string   "unique_code"
-    t.date     "gr_date"
-    t.integer  "department_id"
+    t.string   "designation"
+    t.string   "current_workong_district"
+    t.string   "current_working_location"
+    t.string   "district"
+    t.string   "city"
+    t.string   "qualifications"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "member_id"
   end
 
-  add_index "grs", ["id"], :name => "index_grs_on_id", :unique => true
-  add_index "grs", ["unique_code"], :name => "index_grs_on_unique_code", :unique => true
+  create_table "qualifications", :force => true do |t|
+    t.string   "qualification"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "member_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",     :null => false

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Acts and Resolutions</title>
+  <title>Department Phonebook</title>
 	<%= stylesheet_link_tag    "style" %>
 	<%= stylesheet_link_tag    "login" %>		
 	<%= csrf_meta_tags %>
@@ -8,7 +8,7 @@
 <body class="home blog">
 	<div class="login">
 		<a id="logo" href="<%= root_path %>">
-			Acts and Resolutions
+			Department Phonebook
 		</a>
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 		<%= devise_error_messages! %>

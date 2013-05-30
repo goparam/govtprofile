@@ -1,23 +1,14 @@
-GResolutionRails::Application.routes.draw do
+DepartmentPhonebookRails::Application.routes.draw do
 
 	devise_for :users do
 		get 'logout' => 'devise/sessions#destroy'
 	end
 
-	root :to => "admin/grs#index"
+	root :to => "admin/members#index"
 	
 	namespace :admin do    
-		match "/" => "grs#index"
-		resources :grs
-		resources :departments
+		match "/" => "profiles#index"
+		resources :profiles
+		resources :members
 	end
-
-	namespace :api do    
-		namespace :v1 do
-			resources :grs
-			resources :api_v1
-			resources :departments
-		end
-	end
-
 end

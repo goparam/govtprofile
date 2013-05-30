@@ -1,0 +1,264 @@
+		<div class="row">
+			<div class="span6">
+				
+			</div>
+		</div>
+		
+		
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+		var $total = navigation.find('li').length;
+		var $current = index+1;
+		var $percent = ($current/$total) * 100;
+		$('#rootwizard').find('.bar').css({width:$percent+'%'});
+		
+		// If it's the last tab then hide the last button and show the finish instead
+		if($current >= $total) {
+			$('#rootwizard').find('.pager .next').hide();
+			$('#rootwizard').find('.pager .finish').show();
+			$('#rootwizard').find('.pager .finish').removeClass('disabled');
+		} else {
+			$('#rootwizard').find('.pager .next').show();
+			$('#rootwizard').find('.pager .finish').hide();
+		}
+		
+	}});
+	$('#rootwizard .finish').click(function() {
+		alert('Finished!, Starting over!');
+		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+	});
+});
+
+
+
+
+
+</script>
+ <%= form_for @member, :html => { :multipart => true }, :url => admin_members_path do |c|%>
+
+
+		<div class='container'>
+		
+		<div class="span12">
+			<section id="wizard">
+			  <div class="page-header">
+	            <h1>Enter Your Informetion</h1>
+	          </div>
+	
+				<div id="rootwizard">
+					<div class="navbar">
+					  <div class="navbar-inner">
+					    <div class="container">
+					<ul>
+	  	<li><a href="#tab1" data-toggle="tab">Comman Info</a></li>
+		<li><a href="#tab2" data-toggle="tab">English</a></li>
+		<li><a href="#tab3" data-toggle="tab">Marathi</a></li>
+		<li><a href="#tab4" data-toggle="tab">Qualification</a></li>
+		
+	</ul>
+	 </div>
+	  </div>
+	</div>
+	<div class="tab-content">
+	    <div class="tab-pane" id="tab1">
+	     
+			
+			<%= c.label :email %>
+			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+
+			
+			<br><br>
+			
+			<%= c.label :dob %>
+			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			<%= c.label :joining_date %>
+			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			<%= c.label :curront_loction_joning_date %>
+			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+			<%= c.label :Phonenos %>
+			<div id=phonenos>
+
+				<script language="javascript">var i=1;</script>
+				
+			
+			<input id="member_phone" class="height35 padding5 span5" type="text" name="phone[0]"><img src="/assets/delete.png" onclick=addrefField(i)> 
+		</div>
+			
+		<script language="javascript">
+						function addrefField(i){
+						var newfieldContent = "<div><input type=\"text\" name=\"phone["+i+"]\" onBlur=\"updateDOM(this)\" />  </div> \n";
+
+						var oldfieldContent = document.getElementById('phonenos').innerHTML;
+
+						el = document.getElementById('phonenos');
+						el.innerHTML = oldfieldContent + newfieldContent;
+						i++;
+
+						}
+		</script>
+
+
+			
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	      <%= c.label :name %>
+
+			<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="profile_E[name]">
+			<br><br>
+			<%= c.label :designation %>
+
+			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_E[designation]">
+			<br><br>
+
+			<%= c.label :current_workong_district %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]">
+			<br><br>
+
+			<%= c.label :current_working_location %>
+
+			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_working_location]">
+			<br><br>
+
+			<%= c.label :district %>
+
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]">
+			<br><br>
+
+			<%= c.label :city %>
+
+			<input id="profile_city" class="height35 padding5 span5" type="text" size="30" name="profile_E[city]">
+			<br><br>
+
+
+
+	    </div>
+		<div class="tab-pane" id="tab3">
+			
+
+
+			<%= c.label :name %>
+
+			<input id="profile_name" class="height35 padding5 span5" type="text" size="30" name="profile_M[name]">
+			<br><br>
+			<%= c.label :designation %>
+
+			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_M[designation]">
+			<br><br>
+
+			<%= c.label :current_workong_district %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_workong_district]">
+			<br><br>
+
+			<%= c.label :current_working_location %>
+
+			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_working_location]">
+			<br><br>
+
+			<%= c.label :district %>
+
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[district]">
+			<br><br>
+
+			<%= c.label :city %>
+
+			<input id="profile_city" class="height35 padding5 span5" type="text" size="30" name="profile_M[city]">
+			<br><br>
+
+
+
+
+
+	    </div>
+		<div class="tab-pane" id="tab4">
+			
+			<table width="800">
+				<tr>
+					<th >
+						Qualification
+					</th>
+						<th >
+							Qualification
+						</th>
+						<th>
+						</th>
+						
+					</tr>
+					</table>
+				
+					<script language="javascript">var j=1;</script>
+					
+					<div id= "qualification_add">
+							
+								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name="qualification_E[0]">
+
+			
+								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name="qualification_M[0]">
+
+			
+								
+								<img src="/assets/delete.png" onclick=qualificationFild(j)> 
+								
+
+		</div>
+
+		<script language="javascript">
+						function qualificationFild(j){
+						var newfieldContent = "<div><tr><td><input type=\"text\" class=\"height35 padding5 span5\"  size=\"30\" name=\"qualification_E["+j+"]\" onBlur=\"updateDOM(this)\" />   \n</td><td><input type=\"text\" name=\"qualification_M["+j+"]\" class=\"height35 padding5 span5\"  size=\"30\" onBlur=\"updateDOM(this)\" />  \n</td></tr></div>";
+
+						var oldfieldContent = document.getElementById('qualification_add').innerHTML;
+
+						el = document.getElementById('qualification_add');
+						el.innerHTML = oldfieldContent + newfieldContent;
+						j++;
+
+						}
+		</script>
+					
+						
+			
+
+
+
+
+	    </div>
+		
+		<ul class="pager wizard">
+			<li class="previous first"><a href="javascript:;">First</a></li>
+			<li class="previous"><a href="javascript:;">Previous</a></li>
+			<li class="next last"><a href="javascript:;">Last</a></li>
+		  	<li class="next"><a href="javascript:;">Next</a></li>
+			<li class="next finish" style="display:none;"><a href="javascript:;">Finish</a></li>
+		</ul>
+	</div>	
+</div>
+
+			<input type="button" value="Save" class="padding10" onclick="document.forms['new_member'].submit();">
+			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/members'">
+			
+		<% end %>
+
+		<script type="text/javascript">
+			$('#member_dob').datepicker();
+			$('#member_joining_date').datepicker();
+
+			$('#member_curront_loction_joning_date').datepicker();
+
+
+			check_valid = function(){
+				// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
+				// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
+				document.forms[0].submit();
+			}
+
+		
+		</script>

@@ -1,4 +1,4 @@
-GResolutionRails::Application.configure do
+DepartmentPhonebookRails::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -34,20 +34,5 @@ GResolutionRails::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
- 
-  config.action_mailer.default_url_options = { :host => 'http://localhost:3000/' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :domain               => "localhost:3000",
-  :user_name            => 'pravin.vaja@definelabs.com',
-  :password             => 'define@123',
-  :authentication       => 'plain',
-  :enable_starttls_auto => true  }  
-  config.action_controller.asset_host = "http://localhost:3000/"
-  config.action_mailer.asset_host = "localhost:3000"
-  
-  config.default_content_type = "text/html"
-  
+
 end

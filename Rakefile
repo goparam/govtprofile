@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-GResolutionRails::Application.load_tasks
+DepartmentPhonebookRails::Application.load_tasks

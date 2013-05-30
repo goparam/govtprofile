@@ -1,0 +1,60 @@
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+		</div>
+		
+		<%= form_for @profile, :html => { :multipart => true }, :url => admin_profile_path(@profile) do |c|%>
+
+			<%= c.label :first_name %>
+			<%= c.text_field :first_name, :autofocus => true, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%= c.label :last_name %>
+			<%= c.text_field :last_name, :autofocus => true, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%= c.label :email %>
+			<%= c.text_field :email, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			
+
+			<%= c.label :phone %>
+			<%= c.text_field :phone, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%= c.label :address %>
+			<%= c.text_area :address, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+
+			
+			<br><br>
+
+			<%= c.label :state %>
+			<%= c.text_field :state, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%= c.label :city %>
+			<%= c.text_field :city, :class => "height35 padding5 span5" %>
+			<br><br>
+
+
+			
+			<br><br>
+			<br>
+			<input type="button" value="Save" class="padding10" onclick="check_valid()">
+			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/profiles'">
+
+		<% end %>
+
+
+		<script type="text/javascript">
+			$('#gr_gr_date').datepicker();
+
+			check_valid = function(){
+				// if($('#gr_gr_date').val()!=null && $('#gr_gr_date').val() != "")					
+				// 	$('#gr_gr_date').val(new Date($('#gr_gr_date').val()));
+				document.forms[0].submit();
+			}
+		</script>

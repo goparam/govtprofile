@@ -1,0 +1,91 @@
+		<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				<p><%= @desc %></p>
+			</div>
+		</div>
+		
+		<%= form_for @profile, :html => { :multipart => true }, :url => admin_profiles_path do |c|%>
+
+			<%=c.label :name %>
+			<%=c.text_field :name, :autofocus => true, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%=c.label :resignation %>
+			<%=c.text_field :resignation, :autofocus => true, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%=c.label :district %>
+			<%=c.text_field :district, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			<%=c.label :city %>
+			<%=c.text_field :city, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			
+			<%=c.label :current_workong_district %>
+			<%=c.text_field :current_workong_district, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			
+			<%=c.label :current_working_location %>
+			<%=c.text_field :current_working_location, :class => "height35 padding5 span5" %>
+			<br><br>
+
+			
+			
+			
+			<%= c.label :email %>
+
+			<input id="chapter_name" class="height35 padding5 span5" type="text" size="30" name="member[email]">
+			<br><br>
+			<%= c.label :dob %>
+			<input id="member_dob" class="height35 padding5 span5" type="text" size="30" readonly="readonly" name="member[dob]" data-date-format="dd/mm/yyyy">
+			
+			<br><br>
+
+			
+			<%= c.label :curront_loction_joning_date %>
+			<input id="member_curront_loction_joning_date" class="height35 padding5 span5" type="text" size="30" readonly="readonly" name="member[curront_loction_joning_date]" data-date-format="dd/mm/yyyy">
+			
+			<br><br>
+
+			
+			<br><br>
+
+			<%= member.label :joining_date %>
+			<input id="member_joining_date" class="height35 padding5 span5" type="text" size="30" readonly="readonly" name="member[joining_date]" data-date-format="dd/mm/yyyy">
+			
+			<br><br>
+
+				<%= form_for @phone do |phone| %>
+			<%= phone.label :phone_no %>
+			<%= phone.text_field :phone, :class => "height35 padding5 span5" %>
+			<br><br>
+			<% end %>
+			
+			
+
+			
+			<%= form_for @qualification do |qualification| %>
+			<%= qualification.label :qualification %>
+			<%= qualification.text_field :qualification, :class => "height35 padding5 span5" %>
+			<br><br>
+			<% end %>
+			
+			<br><br>
+			<input type="button" value="Save" class="padding10" onclick="document.forms['new_profile'].submit();">
+			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/profiles'">
+			
+		<% end %>
+<script type="text/javascript">
+			$('#member_dob').datepicker();
+			$('#member_curront_loction_joning_date').datepicker();
+			$('#member_curront_joining_date').datepicker();
+			check_valid = function(){
+				// if($('#gr_gr_date').val()!=null && $('#gr_gr_date').val() != "")					
+				// 	$('#gr_gr_date').val(new Date($('#gr_gr_date').val()));
+				document.forms[0].submit();
+			}
+		</script>

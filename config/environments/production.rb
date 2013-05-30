@@ -1,4 +1,4 @@
-GResolutionRails::Application.configure do
+DepartmentPhonebookRails::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -40,22 +40,6 @@ GResolutionRails::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
-  config.action_mailer.default_url_options = { :host => 'http://actsandresolution.herokuapp.com/' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :domain               => "actsandresolution.herokuapp.com",
-  :user_name            => 'pravin.vaja@definelabs.com',
-  :password             => 'define@123',
-  :authentication       => 'plain',
-  :enable_starttls_auto => true  }  
-  config.action_controller.asset_host = "http://actsandresolution.herokuapp.com/"
-  config.action_mailer.asset_host = "http://actsandresolution.herokuapp.com"
-  
-  config.default_content_type = "text/html"
-
   
   config.assets.precompile << Proc.new { |path|
     if path =~ /\.(css|js)\z/
