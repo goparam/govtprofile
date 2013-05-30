@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530082824) do
+ActiveRecord::Schema.define(:version => 20130530135037) do
 
   create_table "members", :force => true do |t|
     t.date     "dob"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(:version => 20130530082824) do
     t.string   "phones"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "phones", :force => true do |t|
@@ -66,6 +70,10 @@ ActiveRecord::Schema.define(:version => 20130530082824) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
