@@ -1,2 +1,0 @@
-collection @depts
-attributes :name
