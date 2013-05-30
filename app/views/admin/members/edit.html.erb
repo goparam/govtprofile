@@ -1,10 +1,52 @@
+		<div class="row">
+			<div class="span6">
+				
+			</div>
+		</div>
+		
+		
 
-		 <div class='container'>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+		var $total = navigation.find('li').length;
+		var $current = index+1;
+		var $percent = ($current/$total) * 100;
+		$('#rootwizard').find('.bar').css({width:$percent+'%'});
+		
+		// If it's the last tab then hide the last button and show the finish instead
+		if($current >= $total) {
+			$('#rootwizard').find('.pager .next').hide();
+			$('#rootwizard').find('.pager .finish').show();
+			$('#rootwizard').find('.pager .finish').removeClass('disabled');
+		} else {
+			$('#rootwizard').find('.pager .next').show();
+			$('#rootwizard').find('.pager .finish').hide();
+		}
+		
+	}});
+	$('#rootwizard .finish').click(function() {
+		alert('Finished!, Starting over!');
+		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+	});
+});
+
+
+
+
+
+</script>
+
+ <%= form_for @member, :html => { :multipart => true }, :url =>"/admin/members/#{@member.id}" do |c|%>
+
+
+		<div class='container'>
 		
 		<div class="span12">
 			<section id="wizard">
 			  <div class="page-header">
-	            <h1>Wizard With Finish Button On last tab</h1>
+	            <h1>Enter Your Informetion</h1>
 	          </div>
 	
 				<div id="rootwizard">
@@ -12,76 +54,266 @@
 					  <div class="navbar-inner">
 					    <div class="container">
 					<ul>
-					  	<li><a href="#tab1" data-toggle="tab">First</a></li>
-						<li><a href="#tab2" data-toggle="tab">Second</a></li>
-						<li><a href="#tab3" data-toggle="tab">Third</a></li>
-						<li><a href="#tab4" data-toggle="tab">Forth</a></li>
-						<li><a href="#tab5" data-toggle="tab">Fifth</a></li>
-						<li><a href="#tab6" data-toggle="tab">Sixth</a></li>
-						<li><a href="#tab7" data-toggle="tab">Seventh</a></li>
-					</ul>
-					 </div>
-					  </div>
-					</div>
-					<div class="tab-content">
-					    <div class="tab-pane" id="tab1">
-					      1
-					    </div>
-					    <div class="tab-pane" id="tab2">
-					      2
-					    </div>
-						<div class="tab-pane" id="tab3">
-							3
-					    </div>
-						<div class="tab-pane" id="tab4">
-							4
-					    </div>
-						<div class="tab-pane" id="tab5">
-							5
-					    </div>
-						<div class="tab-pane" id="tab6">
-							6
-					    </div>
-						<div class="tab-pane" id="tab7">
-							7
-					    </div>
-						<ul class="pager wizard">
-							<li class="previous first"><a href="javascript:;">First</a></li>
-							<li class="previous"><a href="javascript:;">Previous</a></li>
-							<li class="next last"><a href="javascript:;">Last</a></li>
-						  	<li class="next"><a href="javascript:;">Next</a></li>
-							<li class="next finish" style="display:none;"><a href="javascript:;">Finish</a></li>
-						</ul>
-					</div>	
-				</div>
-				
-
-
-   
+	  	<li><a href="#tab1" data-toggle="tab">Comman Info</a></li>
+		<li><a href="#tab2" data-toggle="tab">English</a></li>
+		<li><a href="#tab3" data-toggle="tab">Marathi</a></li>
+		<li><a href="#tab4" data-toggle="tab">Qualification</a></li>
 		
-<script>
-	$(document).ready(function() {
-	  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-			var $total = navigation.find('li').length;
-			var $current = index+1;
-			var $percent = ($current/$total) * 100;
-			$('#rootwizard').find('.bar').css({width:$percent+'%'});
+	</ul>
+	 </div>
+	  </div>
+	</div>
+	<div class="tab-content">
+	    <div class="tab-pane" id="tab1">
+	     <% @profile_E=@member.profiles[0] %>
+			 <% @profile_M=@member.profiles[1] %>
+			<%= c.label :email %>
+			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+
 			
-			// If it's the last tab then hide the last button and show the finish instead
-			if($current >= $total) {
-				$('#rootwizard').find('.pager .next').hide();
-				$('#rootwizard').find('.pager .finish').show();
-				$('#rootwizard').find('.pager .finish').removeClass('disabled');
-			} else {
-				$('#rootwizard').find('.pager .next').show();
-				$('#rootwizard').find('.pager .finish').hide();
+			<br><br>
+			
+			<%= c.label :dob %>
+			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			<%= c.label :joining_date %>
+			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			<%= c.label :curront_loction_joning_date %>
+			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+			<%= c.label :Phonenos %>
+						<% i=0
+						
+						@phones=JSON.parse(@member.phones) rescue""
+						%>
+						<% @phones.each do |phone| %>
+						<input id="member_phone"  type="text" name=phone[<%= i %>] value= <%=phone[1]%>><% i = i + 1 %>
+						<br>
+							<% end %>
+					
+			<div id=phonenos>
+				
+						
+						
+
+				
+				
+			
+			<input id="member_phone"  type="text" name=phone[<%= i %>]>
+			
+			<img src="/assets/delete.png"  onclick= addrefField()> 
+		</div>
+			
+		<script language="javascript">
+		var k = <%= i%>+1;
+						function addrefField(){
+						var newfieldContent = "<div><input type=\"text\" name=\"phone["+ k +"]\" />  </div> \n";
+
+						var oldfieldContent = document.getElementById('phonenos').innerHTML;
+
+						el = document.getElementById('phonenos');
+						el.innerHTML = oldfieldContent + newfieldContent;
+						k++;
+
+						}
+		</script>
+
+
+			
+	    </div>
+	    		
+	    <div class="tab-pane" id="tab2">
+	      <%= c.label :name %>
+
+			<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="profile_E[name]" value=<%= @profile_E.name%>>
+			<br><br>
+			<%= c.label :designation %>
+
+			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_E[designation]" value=<%= @profile_E.designation%>>
+			<br><br>
+
+			<%= c.label :current_workong_district %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]" value=<%= @profile_E.current_workong_district%>>
+			<br><br>
+
+			<%= c.label :current_working_location %>
+
+			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_working_location]" value=<%= @profile_E.current_working_location%>>
+			<br><br>
+
+			<%= c.label :district %>
+
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]" value=<%= @profile_E.district%>>
+			<br><br>
+
+			<%= c.label :city %>
+
+			<input id="profile_city" class="height35 padding5 span5" type="text" size="30" name="profile_E[city]" value=<%= @profile_E.city%>>
+			<br><br>
+
+
+
+	    </div>
+		<div class="tab-pane" id="tab3">
+			
+
+
+			<%= c.label :name %>
+
+			<input id="profile_name" class="height35 padding5 span5" type="text" size="30" name="profile_M[name]" value=<%= @profile_M.name%>>
+			<br><br>
+			<%= c.label :designation %>
+
+			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_M[designation]"  value=<%= @profile_M.designation%>>
+			<br><br>
+
+			<%= c.label :current_workong_district %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_workong_district]"  value=<%= @profile_M.current_workong_district%>>
+			<br><br>
+
+			<%= c.label :current_working_location %>
+
+			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_working_location]"  value=<%= @profile_M.current_working_location%>>
+			<br><br>
+
+			<%= c.label :district %>
+
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[district]"  value=<%= @profile_M.district%>>
+			<br><br>
+
+			<%= c.label :city %>
+
+			<input id="profile_city" class="height35 padding5 span5" type="text" size="30" name="profile_M[city]"  value=<%= @profile_M.city%>>
+			<br><br>
+
+			
+
+
+
+	    </div>
+		<div class="tab-pane" id="tab4">
+			
+			<table width="800">
+				<tr>
+					<th >
+						Qualification
+					</th>
+						<th >
+							Qualification
+						</th>
+						<th>
+						</th>
+						
+					</tr>
+					</table>
+				
+					<script language="javascript">var j=1;</script>
+					
+						<% 
+						
+						@qualifications_E=JSON.parse(@profile_E.qualifications) 
+						@qualifications_M=JSON.parse(@profile_M.qualifications) 
+						%>
+						<%
+						i=0; 
+						@qualifications_arry_M=Hash.new()
+						@qualifications_arry_M={[0]=>"0"}
+						@qualifications_M.each do |qualification| 
+
+							@qualifications_arry_M[i]=qualification[1]
+							i = i + 1
+
+						end 
+						i=0
+						@qualifications_E.each do |qualification| %>
+
+							
+								<div>
+								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name=qualification_E[<%= i %>] value = <%= qualification[1] %>> 
+
+			
+			
+			
+								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name=qualification_M[<%= i %>] value =<%= @qualifications_arry_M[i] %>>
+						</div>
+
+						<%
+
+							i= i + 1
+						end
+						%> 
+						
+						
+					<div id= "qualification_add">
+							
+								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name=qualification_E[<%= i %>]>
+
+			
+								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name=qualification_M[<%= i %>]>
+
+			
+								
+								<img src="/assets/delete.png" onclick=qualificationFild()> 
+								
+
+		</div>
+
+
+
+		<script language="javascript">
+						var l=<%= i %> +1
+						function qualificationFild(){
+						var newfieldContent = "<div><tr><td><input type=\"text\" class=\"height35 padding5 span5\"  size=\"30\" name=\"qualification_E["+l+"]\" onBlur=\"updateDOM(this)\" />   \n</td><td><input type=\"text\" name=\"qualification_M["+l+"]\" class=\"height35 padding5 span5\"  size=\"30\" onBlur=\"updateDOM(this)\" />  \n</td></tr></div>";
+
+						var oldfieldContent = document.getElementById('qualification_add').innerHTML;
+
+						el = document.getElementById('qualification_add');
+						el.innerHTML = oldfieldContent + newfieldContent;
+						l++;
+
+						}
+		</script>
+					
+						
+			
+
+
+
+
+	    </div>
+		
+		<ul class="pager wizard">
+			<li class="previous first"><a href="javascript:;">First</a></li>
+			<li class="previous"><a href="javascript:;">Previous</a></li>
+			<li class="next last"><a href="javascript:;">Last</a></li>
+		  	<li class="next"><a href="javascript:;">Next</a></li>
+			<li class="next finish" style="display:none;"><a href="javascript:;">Finish</a></li>
+		</ul>
+	</div>	
+</div>
+
+			<input type="button" value="Save" class="padding10" onclick="check_valid()">
+			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/members'">
+			
+		<% end %>
+
+		<script type="text/javascript">
+			$('#member_dob').datepicker();
+			$('#member_joining_date').datepicker();
+
+			$('#member_curront_loction_joning_date').datepicker();
+
+
+			check_valid = function(){
+				// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
+				// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
+				document.forms[0].submit();
 			}
-			
-		}});
-		$('#rootwizard .finish').click(function() {
-			alert('Finished!, Starting over!');
-			$('#rootwizard').find("a[href*='tab1']").trigger('click');
-		});	
-		window.prettyPrint && prettyPrint()
-	});	
-	</script>
+
+		
+		</script>

@@ -32,22 +32,46 @@
 				</tr>	
 			<% @members.each do |c| %>
 				<tr style="font-size: 12px;"><td><%= c.id %>
-					<td><%=  %>
+					<%
+					@profiles=c.profiles
+					 @profiles.each do |profiles| 
+					if profiles['language']=="E"
+						@Profile=	profiles
+					end
+				end
+					%>
+					<td><%=  @Profile.name%>
 					<td><%= c.email %>
-					<td><%= c.dob rescue "" %>		
-					<td><%=  %>
-					<td><%=  %>
-					<td><%=  %>
+					<td><%= c.dob rescue "" %>
+					<td>	
+					<% 
+						
+						@qualifications=JSON.parse(@Profile.qualifications) rescue""
+						%>
+						<% @qualifications.each do |qualification| %>
+						<%=qualification[1]%>/<br>
+							<% end %>
+							
+					<%= %>
+					<td><%=  @Profile.city%>
+					<td><%=  @Profile.district%>
 
 					<td><%= c.joining_daterescue rescue"" %>
-					<td><%=  %>
-						<td><%=  %>
-							<td><%=  %>
+					<td><%=  @Profile.designation%>
+						<td><%=  @Profile.current_workong_district%>
+							<td><%=  @Profile.current_working_location%>
 					<td><%= c.curront_loction_joning_date rescue "" %>	
 					
-					<td><%= c.phones rescue "" %> 				
-					
-					
+					<td>
+						<% 
+						
+						@phones=JSON.parse(c.phones) rescue""
+						%>
+						<% @phones.each do |phone| %>
+						<%=phone[1]%>/<br>
+							<% end %>
+						
+						
 					
 				</tr>
 			<% end %>

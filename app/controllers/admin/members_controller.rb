@@ -9,8 +9,8 @@ class Admin::MembersController < Admin::AdminController
   end
   
   def index
-    @title = 'Government Resolutions'
-    @desc = 'Manage all Government Resolutions in this section'
+    @title = 'Phone Book'
+    
     @members = Member.all
   end    
   
@@ -20,13 +20,15 @@ class Admin::MembersController < Admin::AdminController
   end
   
   def edit
-   # @member = Member.find(params[:id])
+    @member = Member.find(params[:id])
+    
   end
   
   def update
     @member = Member.find(params[:id])
-    @member.department = Department.find(params[:member][:department_id]) rescue []
-    if @member.update_attributes(params[:member])
+    @profile_M=@member.profiles.find_by_language("M")
+     @profile_E=@member.profiles.find_by_language("E")
+    if @member.update_attributes(params[:member]) && @profile_E.update_attributes(params[:profile_E]) && @profile_M.update_attributes(params[:member_M])
       flash[:success] = "#{@member.id} is successfully updated!"
       redirect_to admin_members_path
     else
@@ -37,13 +39,15 @@ class Admin::MembersController < Admin::AdminController
   
   def create
       @profile_M=params[:profile_M]
-       @profile_M['qualifications']=params[:qualification_M].inspect
+       @profile_M['qualifications']=params[:qualification_M].to_json#.inspect
+        @profile_M['language']="M"
 
       @profile_E=params[:profile_E]
-      @profile_E['qualifications']=params[:qualification_E].inspect
+      @profile_E['qualifications']=params[:qualification_E].to_json#.inspect
+      @profile_E['language']="E"
 
       @member_param = params[:member]
-       @member_param['phones']=params[:phone].inspect
+       @member_param['phones']=params[:phone].to_json#.inspect
 
       @member = Member.new(@member_param)
 
