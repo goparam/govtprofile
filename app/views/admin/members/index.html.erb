@@ -15,52 +15,29 @@
 				<tr>
 					<th class="span1">Id
 					<th class="span2">Name
+					<th class="span2">अधिकाऱ्यांचे नांव
 					<th class="span2">Email
-					<th class="span2">DOB
-					<th class="span2">Qualification
-					<th class="span2">City
-					<th class="span2">District
-					<th class="span2">Joining Date
-					<th class="span2">Designation
-					<th class="span2">current workong district
-					<th class="span2">current working location
 					
-					<th class="span2">Curront Joining Date
 					<th class="span2">phone no
 					
-					<th class="span2">Actions
+					<th class="span2">Photo
 				</tr>	
 			<% @members.each do |c| %>
 				<tr style="font-size: 12px;"><td><%= c.id %>
 					<%
 					@profiles=c.profiles
 					 @profiles.each do |profiles| 
-					if profiles['language']=="E"
-						@Profile=	profiles
+						if profiles['language']=="M"
+							@Profile_M=	profiles
+						else 
+							@Profile_E=	profiles
+						end
 					end
-				end
 					%>
-					<td><%=  @Profile.name%>
+					<td><%=  @Profile_E.name%>
+					<td><%=  @Profile_M.name%>
 					<td><%= c.email %>
-					<td><%= c.dob rescue "" %>
-					<td>	
-					<% 
-						
-						@qualifications=JSON.parse(@Profile.qualifications) rescue""
-						%>
-						<% @qualifications.each do |qualification| %>
-						<%=qualification[1]%>/<br>
-							<% end %>
-							
-					<%= %>
-					<td><%=  @Profile.city%>
-					<td><%=  @Profile.district%>
-
-					<td><%= c.joining_daterescue rescue"" %>
-					<td><%=  @Profile.designation%>
-						<td><%=  @Profile.current_workong_district%>
-							<td><%=  @Profile.current_working_location%>
-					<td><%= c.curront_loction_joning_date rescue "" %>	
+					
 					
 					<td>
 						<% 
@@ -70,6 +47,8 @@
 						<% @phones.each do |phone| %>
 						<%=phone[1]%>/<br>
 							<% end %>
+					<td>
+						<img src=<%=c.photo%> width=60 >
 						
 						
 					

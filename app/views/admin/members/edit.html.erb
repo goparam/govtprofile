@@ -56,7 +56,7 @@ $(document).ready(function() {
 					<ul>
 	  	<li><a href="#tab1" data-toggle="tab">Comman Info</a></li>
 		<li><a href="#tab2" data-toggle="tab">English</a></li>
-		<li><a href="#tab3" data-toggle="tab">Marathi</a></li>
+		<li><a href="#tab3" data-toggle="tab">मराठी </a></li>
 		<li><a href="#tab4" data-toggle="tab">Qualification</a></li>
 		
 	</ul>
@@ -65,8 +65,15 @@ $(document).ready(function() {
 	</div>
 	<div class="tab-content">
 	    <div class="tab-pane" id="tab1">
-	     <% @profile_E=@member.profiles[0] %>
-			 <% @profile_M=@member.profiles[1] %>
+	     <% 
+	     	if @member.profiles[0].language == "E"
+	     		@profile_E=@member.profiles[0] 
+	     		@profile_M=@member.profiles[1]
+	     	else
+	     		@profile_E=@member.profiles[1] 
+	     		@profile_M=@member.profiles[0]
+	     	end
+	     		%>
 			<%= c.label :email %>
 			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
 			<br><br>
@@ -162,37 +169,43 @@ $(document).ready(function() {
 	    </div>
 		<div class="tab-pane" id="tab3">
 			
+			<label >अधिकाऱ्यांचे नांव</label>
 
+			
 
-			<%= c.label :name %>
 
 			<input id="profile_name" class="height35 padding5 span5" type="text" size="30" name="profile_M[name]" value=<%= @profile_M.name%>>
 			<br><br>
-			<%= c.label :designation %>
 
-			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_M[designation]"  value=<%= @profile_M.designation%>>
-			<br><br>
 
-			<%= c.label :current_workong_district %>
 
-			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_workong_district]"  value=<%= @profile_M.current_workong_district%>>
-			<br><br>
 
-			<%= c.label :current_working_location %>
 
-			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_working_location]"  value=<%= @profile_M.current_working_location%>>
-			<br><br>
-
-			<%= c.label :district %>
-
-			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[district]"  value=<%= @profile_M.district%>>
-			<br><br>
-
-			<%= c.label :city %>
+			<label >मुळ गाव</label>
 
 			<input id="profile_city" class="height35 padding5 span5" type="text" size="30" name="profile_M[city]"  value=<%= @profile_M.city%>>
 			<br><br>
 
+			<label >मुळ जिल्हा </label>
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[district]" value=<%= @profile_M.district%>>
+			<br><br>
+			<h1><b>सध्याची पदस्थापना</b></h1><br>
+			<label > पदाचे नाव   </label>
+
+			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_M[designation]"  value=<%= @profile_M.designation%>>
+			<br><br>
+
+			<label >जिल्हा</label>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_workong_district]"  value=<%= @profile_M.current_workong_district%>>
+			<br><br>
+
+			<label > विभाग</label>
+
+			<input id="profile_current_working_location" class="height35 padding5 span5" type="text" size="30" name="profile_M[current_working_location]"  value=<%= @profile_M.current_working_location%>>
+			<br><br>
+
+			
 			
 
 
@@ -206,7 +219,7 @@ $(document).ready(function() {
 						Qualification
 					</th>
 						<th >
-							Qualification
+							 शैक्षणिकअर्हता
 						</th>
 						<th>
 						</th>

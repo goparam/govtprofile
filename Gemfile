@@ -12,7 +12,7 @@ end
 gem "annotate", "~> 2.5.0.pre1"
 gem 'devise'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem "paperclip-dropbox", :git => "git://github.com/definelabs/paperclip-dropbox.git"
+gem "paperclip-dropbox", :git =>  "git://github.com/definelabs/paperclip-dropbox.git"
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem "permalink", "~> 1.2.1"
 gem 'meta-tags', :require => 'meta_tags'

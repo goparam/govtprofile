@@ -30,13 +30,16 @@
 					
 					<th class="span2">Actions
 				</tr>	
+			</table>
 			<% @members.each do |c| %>
 				<tr style="font-size: 12px;"><td><%= c.id %>
 					<%
 					@profiles=c.profiles
 					 @profiles.each do |profiles| 
 					if profiles['language']=="E"
-						@Profile=	profiles
+						@Profile_E=	profiles
+					else
+						@Profile_M=	profiles
 					end
 				end
 					%>

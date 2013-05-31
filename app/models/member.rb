@@ -15,7 +15,11 @@
 
 class Member < ActiveRecord::Base
   attr_accessible :curront_loction_joning_date, :dob, :email, :joining_date, :photo, :phones
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo, 
+   		:storage => :dropbox,
+	    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+	    :styles => { :medium => "300x300>" }, 
+	    :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
 	
   has_many :profiles
 end
