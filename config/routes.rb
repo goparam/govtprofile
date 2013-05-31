@@ -11,4 +11,11 @@ DepartmentPhonebookRails::Application.routes.draw do
 		resources :profiles
 		resources :members
 	end
+	namespace :api do 
+		namespace :v1 do 
+			resources :members
+    
+  end
+    
+  end
 end
