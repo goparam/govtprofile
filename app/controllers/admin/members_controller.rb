@@ -1,11 +1,25 @@
 class Admin::MembersController < Admin::AdminController
  def destroy
     @member = Member.find(params[:id])
-    if @member.destroy  
-      respond_to do |f|
-        f.js
-      end 
-    end  
+    @profiles=@member.profiles
+           @profiles.each do |profiles| 
+            if profiles['language']=="M"
+              @Profile_M= profiles
+            else 
+              @Profile_E= profiles
+            end
+          end
+    if @member.destroy  && @Profile_E.destroy && @Profile_M.destroy
+      respond_to do |format|
+         flash[:success] = "#{@member.id} is successfully Deleted!"
+        format.html { redirect_to admin_members_url }
+      
+      end
+      else 
+      flash[:error] = "#{@member.errors.full_messages}!"
+      redirect_to redirect_to admin_members_url
+    end
+    
   end
   
   def index
@@ -15,7 +29,7 @@ class Admin::MembersController < Admin::AdminController
   end    
   
   def new
-    @title = 'Add new Government Resolution'
+    
     @member = Member.new
   end
   
@@ -57,11 +71,24 @@ class Admin::MembersController < Admin::AdminController
    
     if @member.save #&& @profile_M.save && @profile_E.save 
       flash[:success] = "#{@member.id} is successfully created!"
-      redirect_to admin_members_path
+      redirect_to "/admin/members/#{@member.id}"
     else 
       flash[:error] = "#{@member.errors.full_messages}!"
       redirect_to new_admin_member_path
     end
   end
+
+
+
+   def show
+    
+    @member = Member.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json 
+    end
+  end
+
 
 end

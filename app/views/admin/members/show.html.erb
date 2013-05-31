@@ -1,81 +1,75 @@
-
-
-		<div class="row">
-			<div class="span6">
-				<h1><%= @title %></h1>
-				<p><%= @desc %></p>
-			</div>
-			<div class="span6">
-				<input type="button" value="Add New" class="padding10" onclick="window.location.href='/admin/members/new';">
-			</div>
-		</div>
-		<br>
-
-		<table class= "table">
+<div class='container'>
+		
+		<div class="span12">
+			<section id="wizard">
+			  <div class="page-header">
+	<%
+		@profiles=@member.profiles
+		 @profiles.each do |profiles| 
+			if profiles['language']=="M"
+				@Profile_M=	profiles
+			else 
+				@Profile_E=	profiles
+			end
+		end
+	%>
+	<table class= "table">
 				<tr>
-					<th class="span1">Id
-					<th class="span2">Name
-					<th class="span2">Email
-					<th class="span2">DOB
-					<th class="span2">Qualification
-					<th class="span2">City
-					<th class="span2">District
-					<th class="span2">Joining Date
-					<th class="span2">Designation
-					<th class="span2">current workong district
-					<th class="span2">current working location
-					
-					<th class="span2">Curront Joining Date
-					<th class="span2">phone no
-					
-					<th class="span2">Actions
-				</tr>	
-			</table>
-			<% @members.each do |c| %>
-				<tr style="font-size: 12px;"><td><%= c.id %>
-					<%
-					@profiles=c.profiles
-					 @profiles.each do |profiles| 
-					if profiles['language']=="E"
-						@Profile_E=	profiles
-					else
-						@Profile_M=	profiles
-					end
-				end
-					%>
-					<td><%=  @Profile.name%>
-					<td><%= c.email %>
-					<td><%= c.dob rescue "" %>
-					<td>	
-					<% 
+<td>
+  <b>Name:</b><td>
+  <%= @Profile_E.name rescue ""%>
+<tr>
+
+<td>
+  <b>नाव:</b><td>
+  <%= @Profile_M.name rescue ""%>
+<tr>
+<td>
+  <b>जन्म दिनांक:</b><td>
+  <%= @member.dob rescue ""%>
+<tr>
+<td>
+  <b>शैक्षणिक अर्हता:</b><td>
+ <% 
 						
-						@qualifications=JSON.parse(@Profile.qualifications) rescue""
+						@qualifications=JSON.parse(@Profile_M.qualifications) rescue""
 						%>
 						<% @qualifications.each do |qualification| %>
-						<%=qualification[1]%>/<br>
+						<%=qualification[1]%>/
 							<% end %>
-							
-					<%= %>
-					<td><%=  @Profile.city%>
-					<td><%=  @Profile.district%>
+<tr>
+<td>
+  <b>मुळ गांव:</b><td>
+  <%= @Profile_M.city rescue ""%>
+<tr>
+<td>
+  <b>मुळ जिल्हा:</b><td>
+  <%= @Profile_M.district rescue ""%>
+<tr>
+<td>
+  <b>सेवेत रुजूझाल्याचा दिनांक:</b><td>
+  <%= @member.joining_date rescue ""%>
+<tr>
+<td>
+  <b>पदाचेनांव:</b><td>
+  <%= @Profile_M.designation rescue ""%>
+<tr>
+<td>
+  <b>सध्याच्या पदावर कार्यरत असल्याचा दिनांक :</b><td>
+  <%= @member.curront_loction_joning_date rescue ""%>
+<tr>
+<td>
+  <b>ई-मेल आयडी:</b><td>
+  <%= @member.email rescue ""%>
+<tr>
 
-					<td><%= c.joining_daterescue rescue"" %>
-					<td><%=  @Profile.designation%>
-						<td><%=  @Profile.current_workong_district%>
-							<td><%=  @Profile.current_working_location%>
-					<td><%= c.curront_loction_joning_date rescue "" %>	
-					
-					<td>
-						<% 
-						
-						@phones=JSON.parse(c.phones) rescue""
-						%>
-						<% @phones.each do |phone| %>
-						<%=phone[1]%>/<br>
-							<% end %>
-						
-						
-					
-				</tr>
-			<% end %>
-		</table>
+
+	<td>
+	
+		<a href= /admin/members/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a> &nbsp 
+            <%= link_to image_tag("/assets/delete.png"), "/admin/members/#{@member.id}", :method => :delete,  :confirm => 'Are you sure?' %> &nbsp
+            
+   </table>
+		
+				
+		
