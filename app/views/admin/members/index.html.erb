@@ -44,9 +44,12 @@
 						
 						@phones=JSON.parse(c.phones) rescue""
 						%>
-						<% @phones.each do |phone| %>
-						<%=phone[1]%>/<br>
-							<% end %>
+						<% 
+						if !@phones.blank?
+							@phones.each do |phone| %>
+							<%=phone[1]%>/<br>
+							<% end 
+						end%>
 					<td>
 						<img src=<%=c.photo%> width=60 >
 						
