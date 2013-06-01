@@ -138,11 +138,13 @@ intTextBox = intTextBox-1;
 <% 
 						
 						@phones=JSON.parse(@member.phones) rescue""
-						%>
-						<% @phones.each do |phone| %>
-						<script type="text/javascript"> addElement(<%=phone[1]%>); </script>
 						
-							<% end %>
+						if !@phones.blank?
+							 @phones.each do |phone| %>
+							<script type="text/javascript"> addElement(<%=phone[1]%>); </script>
+							
+							<% end 
+						end%>
 
 
 	    </div>
@@ -277,38 +279,40 @@ intqualification = intqualification-1;
 
 <% 
 						
-						@qualifications_E=JSON.parse(@profile_E.qualifications) 
-						@qualifications_M=JSON.parse(@profile_M.qualifications) 
+						@qualifications_E=JSON.parse(@profile_E.qualifications)  rescue""
+						@qualifications_M=JSON.parse(@profile_M.qualifications) rescue""
 						%>
 						<%
-						i=0; 
-						@qualifications_arry_M=Hash.new()
-						@qualifications_arry_M={[0]=>"0"}
-						@qualifications_M.each do |qualification| 
+						if !@qualifications_M.blank? && !@qualifications_E.blank?
+							i=0; 
+							@qualifications_arry_M=Hash.new()
+							@qualifications_arry_M={[0]=>"0"}
+							@qualifications_M.each do |qualification| 
 
-							@qualifications_arry_M[i]=qualification[1]
-							i = i + 1
+								@qualifications_arry_M[i]=qualification[1]
+								i = i + 1
 
-						end 
+							end 
 
-						i=0; 
-						@qualifications_arry_M=Hash.new()
-						@qualifications_arry_M={[0]=>"0"}
-						@qualifications_M.each do |qualification| 
+							i=0; 
+							@qualifications_arry_M=Hash.new()
+							@qualifications_arry_M={[0]=>"0"}
+							@qualifications_M.each do |qualification| 
 
-							@qualifications_arry_M[i]=qualification[1]
-							i = i + 1
+								@qualifications_arry_M[i]=qualification[1]
+								i = i + 1
 
-						end 
-						i=0
-						@qualifications_E.each do |qualification| %>
+							end 
+							i=0
+							@qualifications_E.each do |qualification| %>
 
-							<script type="text/javascript"> addQualification('<%= qualification[1]%>','<%=@qualifications_arry_M[i] %>');</script>
-								
+								<script type="text/javascript"> addQualification('<%= qualification[1]%>','<%=@qualifications_arry_M[i] %>');</script>
+									
 
-						<%
+							<%
 
-							i= i + 1
+								i= i + 1
+							end
 						end
 						%> 
 
