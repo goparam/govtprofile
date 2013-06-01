@@ -33,7 +33,7 @@
  <% 
 						
 						@qualifications=JSON.parse(@Profile_M.qualifications) rescue""
-						if if !@qualifications.blank?
+						 if !@qualifications.blank?
 							%>
 							<% @qualifications.each do |qualification| %>
 							<%=qualification[1]%>/
