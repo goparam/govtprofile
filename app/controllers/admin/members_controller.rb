@@ -41,8 +41,20 @@ class Admin::MembersController < Admin::AdminController
   def update
     @member = Member.find(params[:id])
     @profile_M=@member.profiles.find_by_language("M")
+     @profile_M_param=params[:profile_M]
+    @profile_M_param['qualifications']=params[:qualification_M].to_json#.inspect
+
+
      @profile_E=@member.profiles.find_by_language("E")
-    if @member.update_attributes(params[:member], :phones=>params[:phone].to_json) && @profile_E.update_attributes(params[:profile_E], :qualifications=>params[:qualification_E].to_json) && @profile_M.update_attributes(params[:member_M], :qualifications=>params[:qualification_E].to_json)
+     @profile_E_param=params[:profile_E]
+      @profile_E_param['qualifications']=params[:qualification_E].to_json#.inspect
+
+
+     @member_param = params[:member]
+       @member_param['phones']=params[:phone].to_json#.inspect
+
+
+    if @member.update_attributes(@member_param) && @profile_E.update_attributes(@profile_E_param) && @profile_M.update_attributes(@profile_M_param)
       flash[:success] = "#{@member.id} is successfully updated!"
       redirect_to admin_members_path
     else

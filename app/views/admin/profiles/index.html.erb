@@ -1,39 +1,36 @@
-		<div class="row">
-			<div class="span6">
-				<h1><%= @title %></h1>
-				<p><%= @desc %></p>
-			</div>
-			<div class="span6">
-				<input type="button" value="Add New" class="padding10" onclick="window.location.href='/admin/profiles/new';">
-			</div>
-		</div>
-		<br>
 
-		<table class= "table">
-				<tr>
-					<th class="span1">Id
-					<th class="span2">First Name
-					<th class="span6">Last Name
-					<th class="span2">Email
-					<th class="span2">Phone
-					<th class="span1">Address
-					<th class="span1">State
-					<th class="span2">City
-					<th class="span2">Actions
-				</tr>	
-			<% @profiles.each do |profile| %>
-				<tr style="font-size: 12px;"><td><%= profile.id %>
-					<td><%= profile.first_name %>
-					<td><%= profile.last_name %>				
-					<td><%= profile.email rescue "" %>
-					<td><%= profile.phone rescue "" %> 
-					<td><%= profile.address %>					
-					<td><%= profile.state %>
-						<td><%= profile.city %>
-					<td><%= link_to image_tag("/assets/edit.png"), edit_admin_profile_path(profile) , :method => :get %> &nbsp 
-						<%= link_to image_tag("/assets/delete.png"), admin_profile_path(profile), :method => :delete, :class =>"delete_#{profile.id}", :remote => :true, :confirm => 'Are you sure?' %> &nbsp
-						
-					
-				</tr>
-			<% end %>
-		</table>
+<html>
+<head>
+<title>Adding and Removing Text Boxes Dynamically</title>
+<script type="text/javascript">
+var intTextBox=0;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addElement()
+{
+intTextBox = intTextBox + 1;
+var contentID = document.getElementById('content');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "Text "+intTextBox+": <input type='text' id='" + intTextBox + "' name='" + intTextBox + "'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeElement()
+{
+if(intTextBox != 0)
+{
+var contentID = document.getElementById('content');
+contentID.removeChild(document.getElementById('strText'+intTextBox));
+intTextBox = intTextBox-1;
+}
+}
+</script>
+</head>
+<body>
+<p>Demo of Adding and Removing Text Box Dynamically using JavaScript</p>
+<p><a href="javascript:addElement();" >Add</a> <a href="javascript:removeElement();" >Remove</a></p>
+<div id="content"></div>
+</body>
+</html>

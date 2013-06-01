@@ -94,44 +94,57 @@ $(document).ready(function() {
 			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%= c.label :Phonenos %>
-						<% i=0
+						
+					
+						<script type="text/javascript">
+var intTextBox=-1;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addElement(value)
+{
+	if(value==null)
+	{
+		value="Enter phone no"
+	}
+intTextBox = intTextBox + 1;
+var contentID = document.getElementById('phone');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' value='"+value+"' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeElement()
+{
+if(intTextBox != 0)
+{
+var contentID = document.getElementById('phone');
+contentID.removeChild(document.getElementById('strText'+intTextBox));
+intTextBox = intTextBox-1;
+}
+}
+</script>
+						
+
+
+
+		<a href="javascript:addElement(' ');" >Add</a>
+		<a href="javascript:removeElement();" >Remove</a>
+
+<div id="phone">   </div>
+
+			
+<% 
 						
 						@phones=JSON.parse(@member.phones) rescue""
 						%>
 						<% @phones.each do |phone| %>
-						<input id="member_phone"  type="text" name=phone[<%= i %>] value= <%=phone[1]%>><% i = i + 1 %>
-						<br>
+						<script type="text/javascript"> addElement(<%=phone[1]%>); </script>
+						
 							<% end %>
-					
-			<div id=phonenos>
-				
-						
-						
-
-				
-				
-			
-			<input id="member_phone"  type="text" name=phone[<%= i %>]>
-			
-			<img src="/assets/delete.png"  onclick= addrefField()> 
-		</div>
-			
-		<script language="javascript">
-		var k = <%= i%>+1;
-						function addrefField(){
-						var newfieldContent = "<div><input type=\"text\" name=\"phone["+ k +"]\" />  </div> \n";
-
-						var oldfieldContent = document.getElementById('phonenos').innerHTML;
-
-						el = document.getElementById('phonenos');
-						el.innerHTML = oldfieldContent + newfieldContent;
-						k++;
-
-						}
-		</script>
 
 
-			
 	    </div>
 	    		
 	    <div class="tab-pane" id="tab2">
@@ -227,9 +240,42 @@ $(document).ready(function() {
 					</tr>
 					</table>
 				
-					<script language="javascript">var j=1;</script>
 					
-						<% 
+					
+						
+						
+						
+					<script type="text/javascript">
+var intqualification=-1;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addQualification(value_E,value_M)
+{
+intqualification = intqualification + 1;
+var contentID = document.getElementById('qualification');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intqualification);
+newTBDiv.innerHTML = " <input type='text' id='" + intqualification + " ' class='height35 padding5 span5' size='30' value='"+value_E+"' name='qualification_E[" + intqualification + "]'/><input type='text' id='" + intqualification + "' class='height35 padding5 span5' size='30'  value='"+value_M+"'name='qualification_M[" + intqualification + "]'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeQualification()
+{
+if(intqualification != 0)
+{
+var contentID = document.getElementById('qualification');
+contentID.removeChild(document.getElementById('strText'+intqualification));
+intqualification = intqualification-1;
+}
+}
+</script>
+<a href="javascript:addQualification();" >Add</a>
+		<a href="javascript:removeQualification();" >Remove</a>
+		<div id="qualification">   </div>
+
+
+<% 
 						
 						@qualifications_E=JSON.parse(@profile_E.qualifications) 
 						@qualifications_M=JSON.parse(@profile_M.qualifications) 
@@ -244,57 +290,32 @@ $(document).ready(function() {
 							i = i + 1
 
 						end 
+
+						i=0; 
+						@qualifications_arry_M=Hash.new()
+						@qualifications_arry_M={[0]=>"0"}
+						@qualifications_M.each do |qualification| 
+
+							@qualifications_arry_M[i]=qualification[1]
+							i = i + 1
+
+						end 
 						i=0
 						@qualifications_E.each do |qualification| %>
 
-							
-								<div>
-								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name=qualification_E[<%= i %>] value = <%= qualification[1] %>> 
-
-			
-			
-			
-								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name=qualification_M[<%= i %>] value =<%= @qualifications_arry_M[i] %>>
-						</div>
+							<script type="text/javascript"> addQualification('<%= qualification[1]%>','<%=@qualifications_arry_M[i] %>');</script>
+								
 
 						<%
 
 							i= i + 1
 						end
 						%> 
-						
-						
-					<div id= "qualification_add">
-							
-								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name=qualification_E[<%= i %>]>
 
-			
-								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name=qualification_M[<%= i %>]>
-
-			
-								
-								<img src="/assets/delete.png" onclick=qualificationFild()> 
-								
-
-		</div>
+		
 
 
 
-		<script language="javascript">
-						var l=<%= i %> +1
-						function qualificationFild(){
-						var newfieldContent = "<div><tr><td><input type=\"text\" class=\"height35 padding5 span5\"  size=\"30\" name=\"qualification_E["+l+"]\" onBlur=\"updateDOM(this)\" />   \n</td><td><input type=\"text\" name=\"qualification_M["+l+"]\" class=\"height35 padding5 span5\"  size=\"30\" onBlur=\"updateDOM(this)\" />  \n</td></tr></div>";
-
-						var oldfieldContent = document.getElementById('qualification_add').innerHTML;
-
-						el = document.getElementById('qualification_add');
-						el.innerHTML = oldfieldContent + newfieldContent;
-						l++;
-
-						}
-		</script>
-					
-						
 			
 
 

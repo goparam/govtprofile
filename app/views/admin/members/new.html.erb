@@ -89,27 +89,43 @@ $(document).ready(function() {
 			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%= c.label :Phonenos %>
-			<div id=phonenos>
+		
 
-				<script language="javascript">var i=1;</script>
-				
-			
-			<input id="member_phone" class="height35 padding5 span5" type="text" name="phone[0]"><img src="/assets/delete.png" onclick=addrefField(i)> 
-		</div>
-			
-		<script language="javascript">
-						function addrefField(i){
-						var newfieldContent = "<div><input type=\"text\" name=\"phone["+i+"]\" class=\"height35 padding5 span5\" />  </div> \n";
+			Phone no.  1: <input id="0" type="text" name="'phone[o]'/">
 
-						var oldfieldContent = document.getElementById('phonenos').innerHTML;
+			<script type="text/javascript">
+var intTextBox=0;
 
-						el = document.getElementById('phonenos');
-						el.innerHTML = oldfieldContent + newfieldContent;
-						i++;
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addElement()
+{
+intTextBox = intTextBox + 1;
+var contentID = document.getElementById('phone');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
+contentID.appendChild(newTBDiv);
+}
 
-						}
-		</script>
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeElement()
+{
+if(intTextBox != 0)
+{
+var contentID = document.getElementById('phone');
+contentID.removeChild(document.getElementById('strText'+intTextBox));
+intTextBox = intTextBox-1;
+}
+}
+</script>
 
+
+
+
+		<a href="javascript:addElement();" >Add</a>
+		<a href="javascript:removeElement();" >Remove</a>
+
+<div id="phone">   </div>
 
 			
 	    </div>
@@ -207,35 +223,51 @@ $(document).ready(function() {
 						
 					</tr>
 					</table>
-				
-					<script language="javascript">var j=1;</script>
-					
-					<div id= "qualification_add">
-							
-								<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name="qualification_E[0]">
+
+					<script type="text/javascript">
+var intqualification=0;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addQualification()
+{
+intqualification = intqualification + 1;
+var contentID = document.getElementById('qualification');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intqualification);
+newTBDiv.innerHTML = " <input type='text' id='" + intqualification + " ' class='height35 padding5 span5' size='30' name='qualification_E[" + intqualification + "]'/><input type='text' id='" + intqualification + "' class='height35 padding5 span5' size='30' name='qualification_M[" + intqualification + "]'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeQualification()
+{
+if(intqualification != 0)
+{
+var contentID = document.getElementById('qualification');
+contentID.removeChild(document.getElementById('strText'+intqualification));
+intqualification = intqualification-1;
+}
+}
+</script>
+
+
+<input id="qualification_E" class="height35 padding5 span5" type="text" size="30" name="qualification_E[0]">
 
 			
 								<input id="qualification_M" class="height35 padding5 span5" type="text" size="30" name="qualification_M[0]">
 
-			
-								
-								<img src="/assets/delete.png" onclick=qualificationFild(j)> 
-								
 
-		</div>
+		<a href="javascript:addQualification();" >Add</a>
+		<a href="javascript:removeQualification();" >Remove</a>
 
-		<script language="javascript">
-						function qualificationFild(j){
-						var newfieldContent = "<div><tr><td><input type=\"text\" class=\"height35 padding5 span5\"  size=\"30\" name=\"qualification_E["+j+"]\" onBlur=\"updateDOM(this)\" />   \n</td><td><input type=\"text\" name=\"qualification_M["+j+"]\" class=\"height35 padding5 span5\"  size=\"30\" onBlur=\"updateDOM(this)\" />  \n</td></tr></div>";
+<div id="qualification">   </div>
 
-						var oldfieldContent = document.getElementById('qualification_add').innerHTML;
 
-						el = document.getElementById('qualification_add');
-						el.innerHTML = oldfieldContent + newfieldContent;
-						j++;
 
-						}
-		</script>
+				
+					
+
+		
 					
 						
 			
