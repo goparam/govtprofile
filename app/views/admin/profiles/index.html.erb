@@ -1,7 +1,5 @@
 
-<html>
-<head>
-<title>Adding and Removing Text Boxes Dynamically</title>
+<link href="/assets/bootstrap/prettify.min.css" rel="stylesheet">
 <script type="text/javascript">
 var intTextBox=0;
 
@@ -12,7 +10,7 @@ intTextBox = intTextBox + 1;
 var contentID = document.getElementById('content');
 var newTBDiv = document.createElement('div');
 newTBDiv.setAttribute('id','strText'+intTextBox);
-newTBDiv.innerHTML = "Text "+intTextBox+": <input type='text' id='" + intTextBox + "' name='" + intTextBox + "'/>";
+newTBDiv.innerHTML = "Text "+intTextBox+": <input type='text' id='" + intTextBox + "'  name='" + intTextBox + "'/>";
 contentID.appendChild(newTBDiv);
 }
 
@@ -32,5 +30,3 @@ intTextBox = intTextBox-1;
 <p>Demo of Adding and Removing Text Box Dynamically using JavaScript</p>
 <p><a href="javascript:addElement();" >Add</a> <a href="javascript:removeElement();" >Remove</a></p>
 <div id="content"></div>
-</body>
-</html>

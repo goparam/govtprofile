@@ -1,5 +1,5 @@
 class Admin::ProfilesController < Admin::AdminController
-	def index
+	def index# *= require_tree ../bootstrap/
 		 @profiles = Profile.all
 	end
 	def new
