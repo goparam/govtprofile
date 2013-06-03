@@ -3,7 +3,7 @@ def index
 		@members = Member.all
 		
 		if params[:name].nil? && params[:email].nil?  && params[:phones].nil? && params[:diesignation].nil? && params[:current_working_location].nil?&& params[:current_workong_district].nil?
-				@member=@members
+				
 		else
 				
 				@profiles=Profile.all
