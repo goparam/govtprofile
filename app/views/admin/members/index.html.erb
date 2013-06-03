@@ -52,7 +52,7 @@
 							<%@phone_arry<<phone[1]%>
 							<% end 
 						end%>
-						<%=@phone_arry.join(" / ").to_s%>
+						<%= @phone_arry.join("/<br>").html_safe %>
 					<td>
 						<img src=<%=c.photo%> width=60 >
 						
