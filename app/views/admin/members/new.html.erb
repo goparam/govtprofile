@@ -135,8 +135,14 @@ intTextBox = intTextBox-1;
 			<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="profile_E[name]">
 			<br><br>
 			<%= c.label :designation %>
+			<select class="height35 padding5 span5"   name="profile_E[designation]">
 
-			<input id="profile_designation" class="height35 padding5 span5" type="text" size="30" name="profile_E[designation]">
+				<option value=" Additional Collector"> Additional Collector</option>
+				<option value=" Dy.Collector">Dy.Collector</option>
+				<option value="  Tahsildar">  Tahsildar</option>
+				<option value=" Naib-Tahsildar "> Naib-Tahsildar </option>
+			</select>
+			
 			<br><br>
 
 			<%= c.label :current_workong_district %>
