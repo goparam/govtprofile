@@ -33,12 +33,14 @@
  <% 
 						
 						@qualifications=JSON.parse(@Profile_M.qualifications) rescue""
+						@qualification_array=[]
 						 if !@qualifications.blank?
 							%>
 							<% @qualifications.each do |qualification| %>
-							<%=qualification[1]%>/
+							<%@qualification_array<<qualification[1]%>
 							<% end 
 						end%>
+						<%=@qualification_array.join(" / ").to_s%>
 <tr>
 <td>
   <b>मुळ गांव:</b><td>
