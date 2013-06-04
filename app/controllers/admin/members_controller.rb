@@ -25,7 +25,7 @@ class Admin::MembersController < Admin::AdminController
   def index
     @title = 'Phone Book'
     
-    @members = Member.joins(:profiles).uniq
+    @members = Member.joins(:profiles).order("profiles.name").uniq
 
   end    
   
