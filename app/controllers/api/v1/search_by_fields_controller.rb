@@ -2,7 +2,7 @@ class Api::V1::SearchByFieldsController <  Api::V1::ApiV1Controller
 def index
 		
 		
-		if params[:name].nil? && params[:birth_date].nil?  && params[:posting_date].nil? && params[:diesignation].nil? && params[:home_district].nil?
+		if params[:name].blank? && params[:birth_date].blank?  && params[:posting_date].blank? && params[:diesignation].blank? && params[:home_district].blank?
 				
 		else
 				
