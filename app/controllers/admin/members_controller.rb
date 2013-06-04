@@ -102,6 +102,12 @@ class Admin::MembersController < Admin::AdminController
       format.json 
     end
   end
-
+def english
+    @member = Member.new
+end
+def englishEdit
+    @member = Member.find(params[:id])
+end
+  
 
 end

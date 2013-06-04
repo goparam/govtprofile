@@ -7,8 +7,8 @@ DepartmentPhonebookRails::Application.routes.draw do
 	root :to => "admin/members#index"
 	
 	namespace :admin do    
-		match "/" => "profiles#index"
-		
+		get 'english/new' => 'members#english'
+		get 'english/:id/edit' => 'members#englishEdit'
 		resources :members
 	end
 	namespace :api do 
