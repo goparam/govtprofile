@@ -56,44 +56,7 @@
 
 			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]">
 			<br><br>
-			<%= c.label :Phonenos %>
-		
-
-			Phone no.  1: <input id="0" type="text" name="'phone[o]'/">
-
-			<script type="text/javascript">
-var intTextBox=0;
-
-//FUNCTION TO ADD TEXT BOX ELEMENT
-function addElement()
-{
-intTextBox = intTextBox + 1;
-var contentID = document.getElementById('phone');
-var newTBDiv = document.createElement('div');
-newTBDiv.setAttribute('id','strText'+intTextBox);
-newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
-contentID.appendChild(newTBDiv);
-}
-
-//FUNCTION TO REMOVE TEXT BOX ELEMENT
-function removeElement()
-{
-if(intTextBox != 0)
-{
-var contentID = document.getElementById('phone');
-contentID.removeChild(document.getElementById('strText'+intTextBox));
-intTextBox = intTextBox-1;
-}
-}
-</script>
-
-<a href="javascript:addElement();" >Add</a>
-		<a href="javascript:removeElement();" >Remove</a>
-
-<div id="phone">   </div>
-<br>
-<br>
-
+			
 <%= c.label :Qualification %>
 <script type="text/javascript">
 var intqualification=0;
@@ -135,6 +98,43 @@ intqualification = intqualification-1;
 
 
 
+<%= c.label :Phonenos %>
+		
+
+			Phone no.  1: <input id="0" type="text" name="'phone[o]'/">
+
+			<script type="text/javascript">
+var intTextBox=0;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addElement()
+{
+intTextBox = intTextBox + 1;
+var contentID = document.getElementById('phone');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeElement()
+{
+if(intTextBox != 0)
+{
+var contentID = document.getElementById('phone');
+contentID.removeChild(document.getElementById('strText'+intTextBox));
+intTextBox = intTextBox-1;
+}
+}
+</script>
+
+<a href="javascript:addElement();" >Add</a>
+		<a href="javascript:removeElement();" >Remove</a>
+
+<div id="phone">   </div>
+<br>
+<br>
 
 
 

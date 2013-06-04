@@ -83,16 +83,42 @@ $(document).ready(function() {
 			<br><br>
 			
 			<%= c.label :dob %>
+			<%
+			if !@member.dob.blank?
+				@value=@member.dob.strftime("%d/%m/%Y")
+			else
+				@value=""
+				
+			end
+			%>
 
-			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :dob, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
+			<%
+			if !@member.joining_date.blank?
+				@value=@member.joining_date.strftime("%d/%m/%Y")
+				else
+				@value=""
+				
+			end
+			%>
+
 
 			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date,  :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :joining_date,  :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
+			<%
+			if !@member.curront_loction_joning_date.blank?
+				@value=@member.curront_loction_joning_date.strftime("%d/%m/%Y")
+				else
+				@value=""
+				
+			end
+			%>
+
 
 			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :curront_loction_joning_date, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%= c.label :Phonenos %>
 						
@@ -287,7 +313,7 @@ intqualification = intqualification-1;
 }
 }
 </script>
-<a href="javascript:addQualification();" >Add</a>
+<a href="javascript:addQualification('','');" >Add</a>
 		<a href="javascript:removeQualification();" >Remove</a>
 		<div id="qualification">   </div>
 

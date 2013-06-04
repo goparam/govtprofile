@@ -36,19 +36,44 @@
 			<br><br>
 			
 			<%= c.label :dob %>
-			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%
+			if !@member.dob.blank?
+				@value=@member.dob.strftime("%d/%m/%Y")
+			else
+				@value=""
+				
+			end
+			%>
+
+			<%= c.text_field :dob, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
+			<%
+			if !@member.joining_date.blank?
+				@value=@member.joining_date.strftime("%d/%m/%Y")
+				else
+				@value=""
+				
+			end
+			%>
+
 
 			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :joining_date,  :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
-			<%= c.label :home_district %>
-			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]" value=<%= @profile_E.district%>>
-			
-			<br><br>
+			<%
+			if !@member.curront_loction_joning_date.blank?
+				@value=@member.curront_loction_joning_date.strftime("%d/%m/%Y")
+				else
+				@value=""
+				
+			end
+			%>
+
+
 			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :curront_loction_joning_date, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
+			
 			<%= c.label :current_post %>
 
 			<input id="profile_current_post" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_post]"  value='<%= @profile_E.current_post %>'>
@@ -57,59 +82,7 @@
 
 			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]" value=<%= @profile_E.current_workong_district%>>
 			<br><br>
-			<script type="text/javascript">
-var intTextBox=-1;
-
-//FUNCTION TO ADD TEXT BOX ELEMENT
-function addElement(value)
-{
-	if(value==null)
-	{
-		value="Enter phone no"
-	}
-intTextBox = intTextBox + 1;
-var contentID = document.getElementById('phone');
-var newTBDiv = document.createElement('div');
-newTBDiv.setAttribute('id','strText'+intTextBox);
-newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' value='"+value+"' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
-contentID.appendChild(newTBDiv);
-}
-
-//FUNCTION TO REMOVE TEXT BOX ELEMENT
-function removeElement()
-{
-if(intTextBox != 0)
-{
-var contentID = document.getElementById('phone');
-contentID.removeChild(document.getElementById('strText'+intTextBox));
-intTextBox = intTextBox-1;
-}
-}
-</script>
-						
-
-
-
-		<a href="javascript:addElement(' ');" >Add</a>
-		<a href="javascript:removeElement();" >Remove</a>
-
-<div id="phone">   </div>
-
-			
-<% 
-						
-						@phones=JSON.parse(@member.phones) rescue""
-						
-						if !@phones.blank?
-							 @phones.each do |phone| %>
-							<script type="text/javascript"> addElement(<%=phone[1]%>); </script>
-							
-							<% end 
-						end%>
-
-
-
-
+			<%= c.label :Qualification %>
 
 
 
@@ -140,14 +113,15 @@ intqualification = intqualification-1;
 }
 }
 </script>
-<a href="javascript:addQualification();" >Add</a>
+<a href="javascript:addQualification('');" >Add</a>
 		<a href="javascript:removeQualification();" >Remove</a>
 		<div id="qualification">   </div>
 
 
 <% 
 						
-						@qualifications_E=JSON.parse(@profile_E.qualifications)  rescue""
+						if !@qualifications_E.blank?
+							@qualifications_E=JSON.parse(@profile_E.qualifications)  rescue""
 						
 						%>
 						<%
@@ -163,7 +137,65 @@ intqualification = intqualification-1;
 
 								
 						end
+					end
 						%> 
+
+
+
+
+						<script type="text/javascript">
+var intTextBox=-1;
+
+//FUNCTION TO ADD TEXT BOX ELEMENT
+function addElement(value)
+{
+	if(value==null)
+	{
+		value="Enter phone no"
+	}
+intTextBox = intTextBox + 1;
+var contentID = document.getElementById('phone');
+var newTBDiv = document.createElement('div');
+newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' value='"+value+"' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
+contentID.appendChild(newTBDiv);
+}
+
+//FUNCTION TO REMOVE TEXT BOX ELEMENT
+function removeElement()
+{
+if(intTextBox != 0)
+{
+var contentID = document.getElementById('phone');
+contentID.removeChild(document.getElementById('strText'+intTextBox));
+intTextBox = intTextBox-1;
+}
+}
+</script>
+			<br>
+			<br>			
+<%= c.label :Phonenos %>
+
+
+		<a href="javascript:addElement(' ');" >Add</a>
+		<a href="javascript:removeElement();" >Remove</a>
+
+<div id="phone">   </div>
+
+			
+<% 
+						
+						@phones=JSON.parse(@member.phones) rescue""
+						
+						if !@phones.blank?
+							 @phones.each do |phone| %>
+							<script type="text/javascript"> addElement(<%=phone[1]%>); </script>
+							
+							<% end 
+						end%>
+
+
+
 
 
 
