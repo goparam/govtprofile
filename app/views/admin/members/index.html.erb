@@ -13,7 +13,7 @@
 
 		<table class= "table">
 				<tr>
-					<th class="span1">Id
+					
 					<th class="span2">Name
 					<th class="span2">अधिकाऱ्यांचे नांव
 					<th class="span2">Email
@@ -23,7 +23,7 @@
 					<th class="span2">Photo
 				</tr>	
 			<% @members.each do |c| %>
-				<tr style="font-size: 12px;"><td><%= c.id %>
+				<tr style="font-size: 12px;">
 					<%
 					@profiles=c.profiles
 					 @profiles.each do |profiles| 
@@ -54,8 +54,9 @@
 						end%>
 						<%= @phone_arry.join("/<br>").html_safe %>
 					<td>
+						<% if !c.photo.blank? %>
 						<img src=<%=c.photo%> width=60 >
-						
+						<% end %>
 						
 					
 				</tr>

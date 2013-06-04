@@ -15,7 +15,7 @@ def index
 				
 				search << "lower(profiles.name) like '%#{params[:name].downcase}%'" unless params[:name].nil? || params[:name].blank?
 				
-				@member = Member.joins(:profiles).where(search.join(" AND ").to_s).uniq
+				@member = Member.joins(:profiles).where(search.join(" AND ").to_s).uniq.order("name")
 			
 		end
 					render "api/v1/search_by_fields/index"
