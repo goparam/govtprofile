@@ -16,6 +16,6 @@
 #
 
 class Profile < ActiveRecord::Base
-	attr_accessible :name, :designation, :current_workong_district, :current_working_location, :district,  :city, :member_id, :qualifications, :language
+	attr_accessible :name, :designation, :current_workong_district, :current_working_location, :district,  :city, :member_id, :qualifications, :language, :current_post
 	belongs_to :member	
 end

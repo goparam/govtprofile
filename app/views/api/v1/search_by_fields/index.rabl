@@ -1,5 +1,5 @@
 collection @member
-	attributes   :email, :photo, :phones
+	attributes   :email, :photo, :phones, :current_post
 	
 	node(:dob) {|member| member.dob.strftime("%d/%m/%Y") rescue ""}
 	node(:curront_loction_joning_date) {|member| member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""}
