@@ -10,7 +10,7 @@ def index
 				search = []
 				search << "lower(profiles.diesignation) like '%#{params[:diesignation].downcase}%'" unless params[:diesignation].nil? || params[:diesignation].blank?
 				search << "lower(profiles.district) like '%#{params[:home_district].downcase}%'" unless params[:home_district].nil? || params[:home_district].blank?
-				search << "(members.curront_loction_joning_date = '#{Date.parse(params[:posting_date])}')" unless params[:posting_date].nil? || params[:posting_date].blank? 
+				search << "(Date(members.curront_loction_joning_date) = '#{Date.parse(params[:posting_date])}')" unless params[:posting_date].nil? || params[:posting_date].blank? 
 				search << "(Date(members.dob)='#{Date.parse(params[:birth_date])}')" unless params[:birth_date].nil? || params[:birth_date].blank? 
 				
 				search << "lower(profiles.name) like '%#{params[:name].downcase}%'" unless params[:name].nil? || params[:name].blank?
