@@ -9,55 +9,16 @@
 
 			<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="profile_E[name]">
 			<br><br>
-			<%= c.label :designation %>
-			<select class="height35 padding5 span5"   name="profile_E[designation]">
 
-				<option value=" Additional Collector"> Additional Collector</option>
-				<option value=" Dy.Collector">Dy.Collector</option>
-				<option value="  Tahsildar">  Tahsildar</option>
-				<option value=" Naib-Tahsildar "> Naib-Tahsildar </option>
-			</select>
-			<br><br>
-			<%= c.label :email %>
-			
-			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
-			<br><br>
 			<%= c.label :photo %>
 			<%= c.file_field :photo %>
 			<br><br>
-			
-			
-			
-			
+
 			<%= c.label :dob %>
 			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
-
-			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
-			<br><br>
-
-			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
-			<br><br>
-
-
-			<%= c.label :home_district %>
-
-			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]">
-			<br><br>
-
-
-			<%= c.label :current_post %>
-
-			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_post]">
-			<br><br>
-			<%= c.label :current_posting_district %>
-
-			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]">
-			<br><br>
 			
-<%= c.label :Qualification %>
+			<%= c.label :Education %>
 <script type="text/javascript">
 var intqualification=0;
 
@@ -96,8 +57,43 @@ intqualification = intqualification-1;
 
 <div id="qualification">   </div>
 
+<br><br>
 
 
+
+			<%= c.label :home_district %>
+
+			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]">
+			<br><br>
+
+			<%= c.label :joining_date %>
+			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			<%= c.label :current_posting_district %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]">
+			<br><br>
+			
+
+			<%= c.label :current_post %>
+
+			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_post]">
+			<br><br>
+
+			<%= c.label :curront_posting_joning_date %>
+			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+
+			
+			<%= c.label :email %>
+			
+			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+			<br><br>
+			
+			
+			
 <%= c.label :Phonenos %>
 		
 
@@ -160,3 +156,4 @@ intTextBox = intTextBox-1;
 
 		
 		</script>
+		<br><br>
