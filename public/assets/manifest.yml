@@ -62,6 +62,8 @@ twitter-widget-top.png: twitter-widget-top-7b0a586f81e00ee4c623b525071ece07.png
 up-arrow.png: up-arrow-8340a75cddfd6554c7ecc25965681d37.png
 admin/admin.js: admin/admin-ad8bafcf4c3ac46b1495bdbd72b241e0.js
 admin/departments.js: admin/departments-3af39f1da6f167c2cbf453ed74daff3d.js
+admin/jquery.dataTables.nightly.js: admin/jquery.dataTables.nightly-d4aeac27a0170e62e9e9b408945c530b.js
+admin/jquery.js: admin/jquery-b50813cba3f4dec9c02235d943ce42a9.js
 admin/members.js: admin/members-3af39f1da6f167c2cbf453ed74daff3d.js
 admin/profiles.js: admin/profiles-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/api_v1.js: api/v1/api_v1-3af39f1da6f167c2cbf453ed74daff3d.js
@@ -92,9 +94,15 @@ webtrends.hm.js: webtrends.hm-16d7c53793e13c84b6745dcb6300f1e1.js
 webtrends.min.js: webtrends.min-7428e22f5461a886fe400d52b86d6dda.js
 admin/admin.css: admin/admin-c62123a63d48d33d6ae941c6adf8ac94.css
 admin/chosen.css: admin/chosen-866c158b87b5b8619b815875706f6602.css
+admin/demo_table.css: admin/demo_table-38d0d513a29b432aa7477a182d76d188.css
 admin/departments.css: admin/departments-7270767b2a9e9fff880aa5de378ca791.css
+admin/images/ui-bg_glass_75_e6e6e6_1x400.png: admin/images/ui-bg_glass_75_e6e6e6_1x400-3e20bce1b7b2f5dd47ca6ac361805162.png
+admin/images/ui-bg_highlight-soft_75_cccccc_1x100.png: admin/images/ui-bg_highlight-soft_75_cccccc_1x100-081f36ef02c9233c6db45d2d566fbecd.png
+admin/images/ui-icons_888888_256x240.png: admin/images/ui-icons_888888_256x240-5b928d6b862809eb8130d7b7e0b51a1d.png
+admin/jquery-ui-1.7.2.custom.css: admin/jquery-ui-1.7.2.custom-f9964a214b2d99f49cf3b6a9906ddcee.css
 admin/members.css: admin/members-7270767b2a9e9fff880aa5de378ca791.css
 admin/profiles.css: admin/profiles-7270767b2a9e9fff880aa5de378ca791.css
+admin/site_jui.css: admin/site_jui-eeefc00cf35808292ffd154e953c0fa7.css
 api/v1/api_v1.css: api/v1/api_v1-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/api_v1_controller.css: api/v1/api_v1_controller-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/departments.css: api/v1/departments-7270767b2a9e9fff880aa5de378ca791.css
