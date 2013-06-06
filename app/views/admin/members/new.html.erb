@@ -1,4 +1,32 @@
 		
+<link rel="stylesheet" href="/assets/admin/jquery-ui.css" />
+
+<script src="/assets/admin/jquery-ui.js"></script>
+<script>
+
+$(function() {
+$( "#dob" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#joining_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#curront_loction_joning_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+});
+
+
+
+
+
+</script>
 
 
 
@@ -43,6 +71,7 @@ $(document).ready(function() {
 
 
 </script>
+	
  <%= form_for @member, :html => { :multipart => true }, :url => admin_members_path do |c|%>
 
 
@@ -72,9 +101,10 @@ $(document).ready(function() {
 
 	    <div class="tab-pane" id="tab1">
 	     
-			
+		
+
 			<%= c.label :email %>
-			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "height35 padding5 span5" %>
 			<br><br>
 			<%= c.label :photo %>
 			<%= c.file_field :photo %>
@@ -84,15 +114,17 @@ $(document).ready(function() {
 			
 			
 			<%= c.label :dob %>
-			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<input type="text" id="dob" class="height35 padding5 span5" type="text" size="30"  name="member[dob]"/>
+			
 			<br><br>
 
 			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<input type="text" id="joining_date" class="height35 padding5 span5" type="text" size="30"  name="member[joining_date]"/>
 			<br><br>
 
 			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<input type="text" id="curront_loction_joning_date" class="height35 padding5 span5" type="text" size="30"  name="member[curront_loction_joning_date]"/>
+			
 			<br><br>
 			<%= c.label :Phonenos %>
 		
@@ -312,18 +344,4 @@ intqualification = intqualification-1;
 			
 		<% end %>
 
-		<script type="text/javascript">
-			$('#member_dob').datepicker();
-			$('#member_joining_date').datepicker();
-
-			$('#member_curront_loction_joning_date').datepicker();
-
-
-			check_valid = function(){
-				// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
-				// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
-				document.forms[0].submit();
-			}
-
 		
-		</script>

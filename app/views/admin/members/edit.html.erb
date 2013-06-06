@@ -1,3 +1,32 @@
+		<link rel="stylesheet" href="/assets/admin/jquery-ui.css" />
+
+<script src="/assets/admin/jquery-ui.js"></script>
+<script>
+
+$(function() {
+$( "#dob" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#joining_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#curront_loction_joning_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+});
+
+
+
+
+
+</script>
+
 		<div class="row">
 			<div class="span6">
 				
@@ -92,7 +121,7 @@ $(document).ready(function() {
 			end
 			%>
 
-			<%= c.text_field :dob, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :dob, :id=>"dob", :value =>@value, :class => "height35 padding5 span5",  "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%
 			if !@member.joining_date.blank?
@@ -105,7 +134,7 @@ $(document).ready(function() {
 
 
 			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date,  :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :joining_date, :id=>"joining_date", :value =>@value, :class => "height35 padding5 span5",  "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%
 			if !@member.curront_loction_joning_date.blank?
@@ -118,7 +147,7 @@ $(document).ready(function() {
 
 
 			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :value =>@value, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :curront_loction_joning_date, :id=>"curront_loction_joning_date", :value =>@value, :class => "height35 padding5 span5",  "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			<%= c.label :Phonenos %>
 						

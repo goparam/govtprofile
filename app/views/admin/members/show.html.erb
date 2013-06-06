@@ -1,8 +1,41 @@
-<div class='container'>
+
+
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+		var $total = navigation.find('li').length;
+		var $current = index+1;
+		var $percent = ($current/$total) * 100;
+		$('#rootwizard').find('.bar').css({width:$percent+'%'});
 		
-		<div class="span12">
-			<section id="wizard">
-			  <div class="page-header">
+		// If it's the last tab then hide the last button and show the finish instead
+		if($current >= $total) {
+			$('#rootwizard').find('.pager .next').hide();
+			$('#rootwizard').find('.pager .finish').show();
+			$('#rootwizard').find('.pager .finish').removeClass('disabled');
+		} else {
+			$('#rootwizard').find('.pager .next').show();
+			$('#rootwizard').find('.pager .finish').hide();
+		}
+		
+	}});
+	$('#rootwizard .finish').click(function() {
+		alert('Finished!, Starting over!');
+		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+	});
+});
+
+
+
+
+
+</script>
+
 	<%
 		@profiles=@member.profiles
 		 @profiles.each do |profiles| 
@@ -13,67 +46,200 @@
 			end
 		end
 	%>
-	<table class= "table">
+
+	<table>
 				<tr>
-<td>
-  <b>Name:</b><td>
-  <%= @Profile_E.name rescue ""%>
-<tr>
-
-<td>
-  <b>नाव:</b><td>
-  <%= @Profile_M.name rescue ""%>
-<tr>
-<td>
-  <b>जन्म दिनांक:</b><td>
-  <%= @member.dob rescue ""%>
-<tr>
-<td>
-  <b>शैक्षणिक अर्हता:</b><td>
- <% 
-						
-						@qualifications=JSON.parse(@Profile_M.qualifications) rescue""
-						@qualification_array=[]
-						 if !@qualifications.blank?
-							%>
-							<% @qualifications.each do |qualification| %>
-							<%@qualification_array<<qualification[1]%>
-							<% end 
-						end%>
-						<%=@qualification_array.join(" / ").to_s%>
-<tr>
-<td>
-  <b>मुळ गांव:</b><td>
-  <%= @Profile_M.city rescue ""%>
-<tr>
-<td>
-  <b>मुळ जिल्हा:</b><td>
-  <%= @Profile_M.district rescue ""%>
-<tr>
-<td>
-  <b>सेवेत रुजूझाल्याचा दिनांक:</b><td>
-  <%= @member.joining_date rescue ""%>
-<tr>
-<td>
-  <b>पदाचेनांव:</b><td>
-  <%= @Profile_M.designation rescue ""%>
-<tr>
-<td>
-  <b>सध्याच्या पदावर कार्यरत असल्याचा दिनांक :</b><td>
-  <%= @member.curront_loction_joning_date rescue ""%>
-<tr>
-<td>
-  <b>ई-मेल आयडी:</b><td>
-  <%= @member.email rescue ""%>
-<tr>
-
-
-	<td>
-	
+<th valign="top">&nbsp;&nbsp;
+						<% if !@member.photo.blank? %>
+						<img src='<%=@member.photo%>' width="120" >
+						<% else %><img src='/assets/person.png' width= "100" >
+						<% end %><br>
 		<a href= /admin/members/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a> &nbsp 
             <%= link_to image_tag("/assets/delete.png"), "/admin/members/#{@member.id}", :method => :delete,  :confirm => 'Are you sure?' %> &nbsp<a href= /admin/english/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a>
-            
-   </table>
+        </td>
+
+  <th valign="top" align="centor" >
+  	 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<%= @Profile_E.name rescue ""%>
+  </th>
+</tr>
+	</table>
+
+<div class='container'>
 		
+		<div class="span12">
+			<section id="wizard">
+			 
+	
+				<div id="rootwizard">
+					<div class="navbar">
+					  <div class="navbar-inner">
+					    <div class="container">
+					<ul>
+	  
+		<li><a href="#tab1" data-toggle="tab">English</a></li>
+		<li><a href="#tab2" data-toggle="tab">मराठी</a></li>
+		
+		
+	</ul>
+	 </div>
+	  </div>
+	</div>
+	<div class="tab-content">
+
+	    <div class="tab-pane" id="tab1">
+	     
+			 <table class= "table"><tr>
+	    
+	    		<td>
+						  <b>Name:</b><td>
+						  <%= @Profile_E.name rescue ""%>
+						<tr>
+						<td>
+						  <b>Date of birth:</b><td>
+						  <% if !@member.dob.blank? %>
+						  <%= @member.dob.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						<tr>
+						<td>
+						  <b>Education:</b><td>
+						 <% 
+												
+												@qualifications=JSON.parse(@Profile_E.qualifications) rescue""
+												@qualification_array=[]
+												 if !@qualifications.blank?
+													%>
+													<% @qualifications.each do |qualification| %>
+													<%@qualification_array<<qualification[1]%>
+													<% end 
+												end%>
+												<%=@qualification_array.join(" , ").to_s%>
+						<tr>
+						
+						<td>
+						  <b>Home district:</b><td>
+						  <%= @Profile_E.district rescue ""%>
+						<tr>
+						<td>
+						  <b>Joining date:</b><td>
+						  <% if !@member.joining_date.blank? %>
+						  <%= @member.joining_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						  
+						<tr>
+						<td>
+						  <b>Post:</b><td>
+						  <%= @Profile_E.current_post rescue ""%>
+						<tr>
+							<td>
+						  <b>Posting district:</b><td>
+						  <% if !@member.curront_loction_joning_date.blank? %>
+						  <%= @member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						 
+						<tr>
+						<td>
+						  <b>Current posting district :</b><td>
+						  <%= @Profile_E.current_posting_district rescue ""%>
+						<tr>
+						<td>
+						  <b>Email:</b><td>
+						  <%= @member.email rescue ""%>
+						
+							<tr>
+						<td>
+						  <b>Phone no:</b><td>
+						   <% 
+												
+												@phones=JSON.parse(@member.phones) rescue""
+												@phone_array=[]
+												 if !@phones.blank?
+													%>
+													<% @phones.each do |phone| %>
+													<%@phone_array<<phone[1]%>
+													<% end 
+												end%>
+												<%=@phone_array.join(" / ").to_s%>
+							
+						            
+						   </table>
+			
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	     <table class= "table"><tr>
+	    
+	    		<td>
+						  <b>नाव:</b><td>
+						  <%= @Profile_M.name rescue ""%>
+						<tr>
+						<td>
+						  <b>जन्म दिनांक:</b><td>
+						  <%= @member.dob rescue ""%>
+						<tr>
+						<td>
+						  <b>शैक्षणिक अर्हता:</b><td>
+						 <% 
+												
+												@qualifications=JSON.parse(@Profile_M.qualifications) rescue""
+												@qualification_array=[]
+												 if !@qualifications.blank?
+													%>
+													<% @qualifications.each do |qualification| %>
+													<%@qualification_array<<qualification[1]%>
+													<% end 
+												end%>
+												<%=@qualification_array.join(" / ").to_s%>
+						
+						<tr>
+						<td>
+						  <b>मुळ जिल्हा:</b><td>
+						  <%= @Profile_M.district rescue ""%>
+						<tr>
+						<td>
+						  <b>सेवेत रुजूझाल्याचा दिनांक:</b><td>
+						  <%= @member.joining_date rescue ""%>
+						<tr>
+						<td>
+						  <b>पदाचेनांव:</b><td>
+						  <%= @Profile_M.current_post rescue ""%>
+						  <tr>
+						<td>
+						  <b>जिल्हा:</b><td>
+						  <%= @Profile_M.current_posting_district rescue ""%>
+						<tr>
+						<td>
+						  <b>सध्याच्या पदावर कार्यरत असल्याचा दिनांक :</b><td>
+						  <%= @member.curront_loction_joning_date rescue ""%>
+						<tr>
+						<td>
+						  <b>ई-मेल आयडी:</b><td>
+						  <%= @member.email rescue ""%>
+						
+							<tr><td>
+						  <b>दुरध्वनी क्रमांक:</b><td>
+						  <% 
+												
+												@phones=JSON.parse(@member.phones) rescue""
+												@phone_array=[]
+												 if !@phones.blank?
+													%>
+													<% @phones.each do |phone| %>
+													<%@phone_array<<phone[1]%>
+													<% end 
+												end%>
+												<%=@phone_array.join(" / ").to_s%>
+							
+								
+						            
+						   </table>
+			</div>				
+
+	    </div>
+		
+		
+	</div>	
+</div>
+
+
+
 				
 		

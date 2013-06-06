@@ -1,3 +1,32 @@
+<link rel="stylesheet" href="/assets/admin/jquery-ui.css" />
+
+<script src="/assets/admin/jquery-ui.js"></script>
+<script>
+
+$(function() {
+$( "#dob" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#joining_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+$( "#curront_loction_joning_date" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+
+});
+
+
+
+
+
+</script>
+
 <div class="span12">
 			<section id="wizard">
 			  <div class="page-header">
@@ -15,7 +44,7 @@
 			<br><br>
 
 			<%= c.label :dob %>
-			<%= c.text_field :dob, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :dob, :id=>"dob", :class => "height35 padding5 span5",  "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 			
 			<%= c.label :Education %>
@@ -67,7 +96,7 @@ intqualification = intqualification-1;
 			<br><br>
 
 			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :joining_date, :id=>"joining_date", :class => "height35 padding5 span5",  "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 
 			<%= c.label :current_posting_district %>
@@ -82,7 +111,7 @@ intqualification = intqualification-1;
 			<br><br>
 
 			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :class => "height35 padding5 span5", :readonly => true, "data-date-format" => "dd/mm/yyyy" %>
+			<%= c.text_field :curront_loction_joning_date, :id=>"curront_loction_joning_date", :class => "height35 padding5 span5", "data-date-format" => "dd/mm/yyyy" %>
 			<br><br>
 
 
@@ -141,18 +170,7 @@ intTextBox = intTextBox-1;
 			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/members'">
 			
 		<% end %>
-		<script type="text/javascript">
-			$('#member_dob').datepicker();
-			$('#member_joining_date').datepicker();
-
-			$('#member_curront_loction_joning_date').datepicker();
-
-
-			check_valid = function(){
-				// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
-				// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
-				document.forms[0].submit();
-			}
+		
 
 		
 		</script>
