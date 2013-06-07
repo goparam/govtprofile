@@ -1,5 +1,5 @@
 class Admin::MembersController < Admin::AdminController
-   caches_action :index
+   caches_action :index, :new, :english
  def destroy
     @member = Member.find(params[:id])
     @profiles=@member.profiles
