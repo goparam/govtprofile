@@ -11,9 +11,7 @@
 		<br><br>		
 		<% flash.each do |key, value| %>
 			<br>
-			<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>
-				<a class="close" data-dismiss="alert" href="#">&times;</a>
-			</div>
+			
 		<% end %>
 		<%= yield %>
 	</div>
