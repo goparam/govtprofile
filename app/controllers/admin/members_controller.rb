@@ -1,5 +1,5 @@
 class Admin::MembersController < Admin::AdminController
-   caches_action :index
+  
  def destroy
     @member = Member.find(params[:id])
     @profiles=@member.profiles
@@ -11,7 +11,7 @@ class Admin::MembersController < Admin::AdminController
             end
           end
     if @member.destroy  && @Profile_E.destroy && @Profile_M.destroy
-        expire_action :action => :index
+       
       respond_to do |format|
          flash[:success] = "#{@member.id} is successfully Deleted!"
         format.html { redirect_to admin_members_url }
@@ -58,7 +58,7 @@ class Admin::MembersController < Admin::AdminController
 
 
     if @member.update_attributes(@member_param) && @profile_E.update_attributes(@profile_E_param) && @profile_M.update_attributes(@profile_M_param)
-        expire_action :action => :index
+       
       flash[:success] = "#{@member.id} is successfully updated!"
       redirect_to admin_members_path
     else
@@ -87,7 +87,7 @@ class Admin::MembersController < Admin::AdminController
     @member.profiles << Profile.new(params[:profile_E])
    
     if @member.save #&& @profile_M.save && @profile_E.save 
-        expire_action :action => :index
+       
       flash[:success] = "#{@member.id} is successfully created!"
       redirect_to "/admin/members/#{@member.id}"
     else 
