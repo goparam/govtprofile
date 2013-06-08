@@ -47,7 +47,13 @@ $(document).ready(function() {
 		end
 	%>
 
-	<table>
+	
+
+<div class='container'>
+		
+		<div class="span12">
+			<section id="wizard">
+			 <table>
 				<tr>
 <th valign="top">&nbsp;&nbsp;
 						<% if !@member.photo.blank? %>
@@ -58,17 +64,12 @@ $(document).ready(function() {
             <%= link_to image_tag("/assets/delete.png"), "/admin/members/#{@member.id}", :method => :delete,  :confirm => 'Are you sure?' %> &nbsp<a href= /admin/english/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a>
         </td>
 
-  <th valign="top" align="centor" >
-  	 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<%= @Profile_E.name rescue ""%>
+  <td valign="top" align="centor" >
+  	 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<%= @Profile_E.name rescue ""%><br>
+  	 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<i><%= @Profile_M.name rescue ""%></i>
   </th>
 </tr>
 	</table>
-
-<div class='container'>
-		
-		<div class="span12">
-			<section id="wizard">
-			 
 	
 				<div id="rootwizard">
 					<div class="navbar">
@@ -173,7 +174,9 @@ $(document).ready(function() {
 						<tr>
 						<td>
 						  <b>जन्म दिनांक:</b><td>
-						  <%= @member.dob rescue ""%>
+						   <% if !@member.dob.blank? %>
+						  <%= @member.dob.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
 						<tr>
 						<td>
 						  <b>शैक्षणिक अर्हता:</b><td>
@@ -196,7 +199,9 @@ $(document).ready(function() {
 						<tr>
 						<td>
 						  <b>सेवेत रुजूझाल्याचा दिनांक:</b><td>
-						  <%= @member.joining_date rescue ""%>
+						 <% if !@member.joining_date.blank? %>
+						  <%= @member.joining_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
 						<tr>
 						<td>
 						  <b>पदाचेनांव:</b><td>
@@ -208,7 +213,9 @@ $(document).ready(function() {
 						<tr>
 						<td>
 						  <b>सध्याच्या पदावर कार्यरत असल्याचा दिनांक :</b><td>
-						  <%= @member.curront_loction_joning_date rescue ""%>
+						  <% if !@member.curront_loction_joning_date.blank? %>
+						  <%= @member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
 						<tr>
 						<td>
 						  <b>ई-मेल आयडी:</b><td>
