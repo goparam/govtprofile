@@ -1,8 +1,9 @@
-
-collection @updated
-	node(:updated_at){|member| member.updated_at.strftime("%Y-%m-%d %H:%M:%S") rescue ""}
+object @updated
+node(:updated_at) { |u| u.updated_at } 
+	
 		child @members do
 			attributes   :id, :is_deleted, :email, :photo 
+
 			node(:phones){|member| JSON.parse(member.phones)rescue ""}
 			node(:dob) {|member| member.dob.strftime("%d/%m/%Y") rescue ""}
 			node(:curront_loction_joning_date) {|member| member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""}
@@ -12,6 +13,7 @@ collection @updated
 						node(:qualifications){|member| JSON.parse(member.qualifications)rescue ""}
 						
 			end
-	end
+
+end
 
 	
