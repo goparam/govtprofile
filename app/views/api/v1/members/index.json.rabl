@@ -1,5 +1,5 @@
 object @updated
-node(:updated_at) { |u| u.updated_at } 
+node(:updated_at) { |u| u.updated_at.strftime("%Y/%m/%d %H:%M:%S") rescue ""}
 	
 		child @members do
 			attributes   :id, :is_deleted, :email, :photo 

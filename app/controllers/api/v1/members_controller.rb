@@ -4,7 +4,7 @@ class Api::V1::MembersController <  Api::V1::ApiV1Controller
 		
 		if !params[:updated_at].blank?
 			
-			@members = Member.find_by_sql("SELECT DISTINCT 'members'.* FROM 'members' INNER JOIN 'profiles' ON 'profiles'.'member_id' = 'members'.'id' WHERE (members.updated_at > '#{params[:updated_at]}' ) ORDER BY updated_at desc")
+			@members = Member.where("members.updated_at > '#{params[:updated_at]}'")
 		else
 			@members = Member.uniq.order("updated_at desc")
 		end
