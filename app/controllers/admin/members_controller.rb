@@ -10,8 +10,8 @@ class Admin::MembersController < Admin::AdminController
               @Profile_E= profiles
             end
           end
-    if @member.destroy  && @Profile_E.destroy && @Profile_M.destroy
-        expire_action :action => :index
+    if @member.update_attributes(:is_deleted=>1)  && @Profile_E.destroy && @Profile_M.destroy
+    expire_action :action => :index
       respond_to do |format|
          flash[:success] = "#{@member.id} is successfully Deleted!"
         format.html { redirect_to admin_members_url }
@@ -27,7 +27,7 @@ class Admin::MembersController < Admin::AdminController
   def index
     @title = 'Phone Book'
     
-    @members = Member.joins(:profiles).uniq
+    @members = Member.find_all_by_is_deleted(0)
 
   end    
   

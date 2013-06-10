@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608113400) do
+ActiveRecord::Schema.define(:version => 20130610070226) do
 
   create_table "members", :force => true do |t|
     t.date     "dob"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(:version => 20130608113400) do
     t.date     "curront_loction_joning_date"
     t.string   "email"
     t.string   "phones"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "is_deleted",                  :default => false
   end
 
   create_table "phones", :force => true do |t|

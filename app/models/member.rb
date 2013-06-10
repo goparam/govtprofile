@@ -14,7 +14,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :curront_loction_joning_date, :dob, :email, :joining_date, :photo, :phones
+  attr_accessible :curront_loction_joning_date, :dob, :email, :joining_date, :photo, :phones, :updated_at, :is_deleted
   has_attached_file :photo, 
    		:storage => :dropbox,
 	    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
