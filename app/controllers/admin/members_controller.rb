@@ -10,7 +10,7 @@ class Admin::MembersController < Admin::AdminController
               @Profile_E= profiles
             end
           end
-    if @member.update_attributes(:is_deleted=>1)  && @Profile_E.destroy && @Profile_M.destroy
+    if @member.update_attributes(:is_deleted=>'True')  && @Profile_E.destroy && @Profile_M.destroy
     expire_action :action => :index
       respond_to do |format|
          flash[:success] = "#{@member.id} is successfully Deleted!"
