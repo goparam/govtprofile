@@ -1,6 +1,7 @@
 ---
 ! ' Delete.jpg': ! ' Delete-e65b98a3644bd682a141e157b68af512.jpg'
 1368534643_save.png: 1368534643_save-64f5632796b2d92be212ff105807bec0.png
+Edit.png: Edit-8091ba00e2a21032a7a97e37c8a05385.png
 IMG_725.jpg: IMG_725-e00ea4c528772da8daf3dcdca6ecd8bc.jpg
 ajax-loader.gif: ajax-loader-ae42762e5e8f63b0ef0967bf09dd649c.gif
 audio-player.png: audio-player-c338df00c829f41884029070e396470c.png
@@ -12,6 +13,7 @@ default_thumb.png: default_thumb-201536da903487ec962f7da8d5187764.png
 delete.png: delete-e90f0bb7eed0fd08a6d91f1252117aeb.png
 depth-arrow.png: depth-arrow-2b24075b06ced427e0352e5130de9f58.png
 edit.png: edit-9518a7e160145399354f639cac90ed2c.png
+edit_E.png: edit_E-ce032df8ca1dcfcb55cfce45fa34bbbc.png
 envelope.png: envelope-310e3a1a2d8a761ba64ad8528197f631.png
 folded-paper-body.png: folded-paper-body-5917be7ac2e98ac83534fa850c69f228.png
 folded-paper-shadow.png: folded-paper-shadow-2588840800a1acf5a02f3ead615b061a.png
@@ -89,6 +91,7 @@ jquery-playlist.js: jquery-playlist-a1b9dfb03754f4e1087518266a0249d0.js
 jquery-prettyphoto.js: jquery-prettyphoto-c97ee61f8b0915a9d8f0d8f34eb0237c.js
 jquery161_min.js: jquery161_min-80c2c92582c64a8f459910d5d4d16a51.js
 mediaelement-and-player.min.js: mediaelement-and-player.min-8960239b3aa107cbea3525851ed6163c.js
+sessions.js: sessions-3af39f1da6f167c2cbf453ed74daff3d.js
 slides-jquery-min.js: slides-jquery-min-7f483fb3bc2ac7fc364bbece29d3ca49.js
 superfish.js: superfish-a8d058b85161c79e5ec6917b33d761a7.js
 twitter-widgets.js: twitter-widgets-95969ec73ed15cb6c0c4d979f253b8b5.js
@@ -129,6 +132,7 @@ fb-edge-widget.css: fb-edge-widget-97e1cb3ca32d5545ea722d83a3c79952.css
 login.css: login-5d7380b4c437ab4e6fd8679b47a6b803.css
 mediaplayer.css: mediaplayer-ff0d6b77717ceba39fd4df96b3fdbee4.css
 prettyphoto.css: prettyphoto-8a6fd688060d5be254fd9536cddc6bce.css
+sessions.css: sessions-7270767b2a9e9fff880aa5de378ca791.css
 style.css: style-3d93ec52c8d0890580d206759f12ffa7.css
 styles.css: styles-080a39450ec694b21c4f890d490c6a86.css
 wooden.css: wooden-522923971065f7a28db41877fd8d66a7.css
