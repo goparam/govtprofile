@@ -5,9 +5,9 @@ class Api::V1::MembersController <  Api::V1::ApiV1Controller
 		
 		if !params[:updated_at].blank? 
 			
-				@members = Member.where("members.updated_at > '#{params[:updated_at]}'").uniq.order("updated_at desc")
+				@members = Member.includes(:profiles).where("members.updated_at > '#{params[:updated_at]}'").uniq.order("members.updated_at desc, profiles.language")
 		else
-				@members = Member.uniq.order("updated_at desc")
+				@members = Member.includes(:profiles).uniq.order("members.updated_at desc, profiles.language")
 
 		end
 	
