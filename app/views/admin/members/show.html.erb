@@ -60,8 +60,8 @@ $(document).ready(function() {
 						<img src='<%=@member.photo%>' width="120" >
 						<% else %><img src='/assets/person.png' width= "100" >
 						<% end %><br>
-		<a href= /admin/members/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a> &nbsp 
-            <%= link_to image_tag("/assets/delete.png"), "/admin/members/#{@member.id}", :method => :delete,  :confirm => 'Are you sure?' %> &nbsp<a href= /admin/english/<%= @member.id%>/edit> <%= image_tag("/assets/edit_E.png") %></a>
+		<a href= /admin/english/<%= @member.id%>/edit> <%= image_tag("/assets/edit.png") %></a> &nbsp 
+            <%= link_to image_tag("/assets/delete.png"), "/admin/members/#{@member.id}", :method => :delete,  :confirm => 'Are you sure?' %> 
         </td>
 
   <td valign="top" align="centor" >

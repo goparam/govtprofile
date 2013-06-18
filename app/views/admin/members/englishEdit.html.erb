@@ -4,23 +4,23 @@
 <script src="/assets/admin/jquery-ui.js"></script>
 <script>
 
-$(function() {
-$( "#dob" ).datepicker({
-changeMonth: true,
-changeYear: true
-});
+		$(function() {
+			$( "#dob" ).datepicker({
+				changeMonth: true,
+				changeYear: true
+			});
 
-$( "#joining_date" ).datepicker({
-changeMonth: true,
-changeYear: true
-});
+			$( "#joining_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true
+			});
 
-$( "#curront_loction_joning_date" ).datepicker({
-changeMonth: true,
-changeYear: true
-});
+			$( "#curront_loction_joning_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true
+			});
 
-});
+		});
 
 
 
@@ -35,7 +35,7 @@ changeYear: true
 	          </div>
 	          <%= form_for @member, :html => { :multipart => true }, :url =>"/admin/members/#{@member.id}" do |c|%>
 
-<% 
+			<% 
 	     	if @member.profiles[0].language == "E"
 	     		@profile_E=@member.profiles[0] 
 	     		@profile_M=@member.profiles[1]
@@ -51,183 +51,108 @@ changeYear: true
 			<br><br>
 
 
+			<%= c.label :designation %>
+			<select class="height35 padding5 span5"   name="profile_E[designation]" >
+				<option selected value='<%= @profile_E.designation%>'> <%= @profile_E.designation%></option>
+				<option value=" Additional Collector"> Additional Collector</option>
+				<option value=" Dy.Collector">Dy.Collector</option>
+				<option value="  Tahsildar">  Tahsildar</option>
+				<option value=" Naib-Tahsildar "> Naib-Tahsildar </option>
+			</select> 	
 			
-			
-			
-			
-			<%= c.label :photo %>
-			<%= c.file_field :photo %>
-			
-			<br><br>
-			
-			<%= c.label :dob %>
-			<%
-			if !@member.dob.blank?
-				@value=@member.dob.strftime("%d/%m/%Y")
-			else
-				@value=""
-				
-			end
-			%>
-
-			<%= c.text_field :dob, :value =>@value, :class => "height35 padding5 span5", :id => "dob", "data-date-format" => "dd/mm/yyyy" %>
-			<br><br>
-
-
 			<%= c.label :Qualification %>
 
 
 
 
 
-<script type="text/javascript">
-var intqualification=-1;
+				<script type="text/javascript">
+					var intqualification=-1;
 
-//FUNCTION TO ADD TEXT BOX ELEMENT
-function addQualification(value_E)
-{
-intqualification = intqualification + 1;
-var contentID = document.getElementById('qualification');
-var newTBDiv = document.createElement('div');
-newTBDiv.setAttribute('id','strText'+intqualification);
-newTBDiv.innerHTML = " <input type='text' id='" + intqualification + " ' class='height35 padding5 span5' size='30' value='"+value_E+"' name='qualification_E[" + intqualification + "]'/>";
-contentID.appendChild(newTBDiv);
-}
+					//FUNCTION TO ADD TEXT BOX ELEMENT
+					function addQualification(value_E)
+					{
+						intqualification = intqualification + 1;
+						var contentID = document.getElementById('qualification');
+						var newTBDiv = document.createElement('div');
+						newTBDiv.setAttribute('id','strText'+intqualification);
+						newTBDiv.innerHTML = " <input type='text' id='" + intqualification + " ' class='height35 padding5 span5' size='30' value='"+value_E+"' name='qualification_E[" + intqualification + "]'/>";
+						contentID.appendChild(newTBDiv);
+					}
 
-//FUNCTION TO REMOVE TEXT BOX ELEMENT
-function removeQualification()
-{
-if(intqualification != 0)
-{
-var contentID = document.getElementById('qualification');
-contentID.removeChild(document.getElementById('strText'+intqualification));
-intqualification = intqualification-1;
-}
-}
-</script>
-<a href="javascript:addQualification('');" >Add</a>
-		<a href="javascript:removeQualification();" >Remove</a>
-		<div id="qualification">   </div>
+					//FUNCTION TO REMOVE TEXT BOX ELEMENT
+					function removeQualification()
+					{
+						if(intqualification != 0)
+						{
+							var contentID = document.getElementById('qualification');
+							contentID.removeChild(document.getElementById('strText'+intqualification));
+							intqualification = intqualification-1;
+						}
+					}
+				</script>
+				<a href="javascript:addQualification('');" >Add</a>
+				<a href="javascript:removeQualification();" >Remove</a>
+				<div id="qualification">   </div>
 
 
-<% 
+						<% 
 						@qualifications_E=JSON.parse(@profile_E.qualifications) rescue""
 						if !@qualifications_E.blank?
 							 
 						
-						%>
-						<%
-						
-
-							
 							@qualifications_E.each do |qualification| %>
 
 								<script type="text/javascript"> addQualification('<%= qualification[1]%>');</script>
 									
 
-							<%
-
-								
+							<%								
+							end
 						end
-					end
 						%> 
-
-
-
-<br><br>
-			<%
-			if !@member.joining_date.blank?
-				@value=@member.joining_date.strftime("%d/%m/%Y")
-				else
-				@value=""
-				
-			end
-			%>
-			
-
-			<%= c.label :joining_date %>
-			<%= c.text_field :joining_date,  :value =>@value, :class => "height35 padding5 span5", :id => "joining_date", "data-date-format" => "dd/mm/yyyy" %>
-			
-			<%
-			if !@member.curront_loction_joning_date.blank?
-				@value=@member.curront_loction_joning_date.strftime("%d/%m/%Y")
-				else
-				@value=""
-				
-			end
-			%>
 			<br><br>
 
 
-			<%= c.label :home_district %>
+			<script type="text/javascript">
+						var intTextBox=-1;
 
-			<input id="profile_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[district]"  value='<%= @profile_E.district %>'>
-			<br><br>
+						//FUNCTION TO ADD TEXT BOX ELEMENT
+						function addElement(value)
+						{
+							if(value==null)
+							{
+								value="Enter phone no"
+							}
+							intTextBox = intTextBox + 1;
+							var contentID = document.getElementById('phone');
+							var newTBDiv = document.createElement('div');
+							newTBDiv.setAttribute('id','strText'+intTextBox);
+							newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' value='"+value+"' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
+							contentID.appendChild(newTBDiv);
+							}
 
-
-			
-			
-			<%= c.label :current_post %>
-
-			<input id="profile_current_post" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_post]"  value='<%= @profile_E.current_post %>'>
-			<br><br>
-			<%= c.label :current_posting_district %>
-
-			<input id="profile_current_workong_district" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_workong_district]" value=<%= @profile_E.current_workong_district%>>
-			<br><br>
-
-
-			<%= c.label :curront_posting_joning_date %>
-			<%= c.text_field :curront_loction_joning_date, :value =>@value, :class => "height35 padding5 span5", :id => "curront_loction_joning_date", "data-date-format" => "dd/mm/yyyy" %>
-			<br><br>
-
-
-			<%= c.label :email %>
-			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
-			<br><br>
-			
-
-
-						<script type="text/javascript">
-var intTextBox=-1;
-
-//FUNCTION TO ADD TEXT BOX ELEMENT
-function addElement(value)
-{
-	if(value==null)
-	{
-		value="Enter phone no"
-	}
-intTextBox = intTextBox + 1;
-var contentID = document.getElementById('phone');
-var newTBDiv = document.createElement('div');
-newTBDiv.setAttribute('id','strText'+intTextBox);
-newTBDiv.innerHTML = "Phone no.  "+ (intTextBox + 1) +": <input type='text' value='"+value+"' id='" + intTextBox + "' name='phone[" + intTextBox + "]'/>";
-contentID.appendChild(newTBDiv);
-}
-
-//FUNCTION TO REMOVE TEXT BOX ELEMENT
-function removeElement()
-{
-if(intTextBox != 0)
-{
-var contentID = document.getElementById('phone');
-contentID.removeChild(document.getElementById('strText'+intTextBox));
-intTextBox = intTextBox-1;
-}
-}
-</script>
+							//FUNCTION TO REMOVE TEXT BOX ELEMENT
+							function removeElement()
+							{
+							if(intTextBox != 0)
+							{
+								var contentID = document.getElementById('phone');
+								contentID.removeChild(document.getElementById('strText'+intTextBox));
+								intTextBox = intTextBox-1;
+							}
+						}
+						</script>
 						
-<%= c.label :Phonenos %>
+						<%= c.label :Phonenos %>
 
 
-		<a href="javascript:addElement(' ');" >Add</a>
-		<a href="javascript:removeElement();" >Remove</a>
+								<a href="javascript:addElement(' ');" >Add</a>
+								<a href="javascript:removeElement();" >Remove</a>
 
-<div id="phone">   </div>
+						<div id="phone">   </div>
 
-			
-<% 
+									
+						<% 
 						
 						@phones=JSON.parse(@member.phones) rescue""
 						
@@ -238,28 +163,152 @@ intTextBox = intTextBox-1;
 							<% end 
 						end%>
 
+			<br><br>
+
+
+			<%= c.label :email %>
+			<%= c.text_field :email, :rows => 5, :cols => 5, :class => "padding5 span5" %>
+			<br><br>
+
+			<%= c.label :home_district %>
+			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, include_blank: true) %>
+
+			
+			<br><br>
+
+			<%= c.label :home_taluka %>
+			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+
+			
+			<br><br>
+
+			<%= c.label :dob %>
+				<%
+				if !@member.dob.blank?
+					@value=@member.dob.strftime("%d/%m/%Y")
+				else
+					@value=""
+					
+				end
+				%>
+
+			<%= c.text_field :dob, :value =>@value, :class => "height35 padding5 span5", :id => "dob", "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+			
+			
+
+
+			<%= c.label :Date_of_joining_Dept %>
+				<%
+				if !@member.joining_date.blank?
+					@value=@member.joining_date.strftime("%d/%m/%Y")
+					else
+					@value=""
+					
+				end
+				%>
+			<%= c.text_field :joining_date,  :value =>@value, :class => "height35 padding5 span5", :id => "joining_date", "data-date-format" => "dd/mm/yyyy" %>
+			
+
+			<br><br>
+
+			<%= c.label :Present_Post %>
+
+			<input id="profile_current_post" class="height35 padding5 span5" type="text" size="30" name="profile_E[current_post]"  value='<%= @profile_E.current_post %>'>
+			<br><br>
+
+
+			
+			<%= c.label :Posting_Dist %>
+			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, include_blank: true) %>
+			<br><br>
+
+			<%= c.label :Posting_Taluka %>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+			
+
+			
+			<br><br>
+			<%= c.label :Posting_Date %>
+			<%
+			if !@member.curront_loction_joning_date.blank?
+				@value=@member.curront_loction_joning_date.strftime("%d/%m/%Y")
+				else
+				@value=""
+				
+			end
+			%>
+			<%= c.text_field :curront_loction_joning_date, :value =>@value, :class => "height35 padding5 span5", :id => "curront_loction_joning_date", "data-date-format" => "dd/mm/yyyy" %>
+			<br><br>
+
+
+			
+			
+				<%= c.label :photo %>
+			<%= c.file_field :photo %>
+			
+			<br><br>
+
+						
 
 
 
 
 
-<input id="profile_current_workong_district"  type="hidden"  name="profile_M[current_post]" value='<%= @profile_M.current_post %>'>
+					<input id="profile_current_workong_district"  type="hidden"  name="profile_M[current_post]" value='<%= @profile_M.current_post %>'>
 
 
-						<input type="button" value="Save" class="padding10" onclick="check_valid()">
-			<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/members'">
+					<input type="button" value="Save" class="padding10" onclick="check_valid()">
+					<input type="button" value="Cancel" class="padding10" onclick="window.location.href='/admin/members'">
 			
 		<% end %>
-<script type="text/javascript">
+			<script type="text/javascript">
 			
 
-			check_valid = function(){
-				// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
-				// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
-				document.forms[0].submit();
-			}
+				check_valid = function(){
+					// if($('#member_member_date').val()!=null && $('#member_member_date').val() != "")					
+					// 	$('#member_member_date').val(new Date($('#member_member_date').val()));
+					document.forms[0].submit();
+				}
 
 		
-		</script>
+			</script>
 		
 <br><br>
+<script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/coffeescript">
+		jQuery -> 
+			talukas = $('#profile_E_city').html()
+			$('#profile_E_district').change ->
+				dist = $('#profile_E_district :selected').text()
+				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+				if options
+					$('#profile_E_city').html(options)
+				else
+					$('#profile_E_city').empty()
+				
+	</script>
+	<script type="text/coffeescript">
+		jQuery -> 
+			talukas = $('#profile_E_current_working_location').html()
+			$('#profile_E_current_workong_district').change ->
+				dist = $('#profile_E_current_workong_district :selected').text()
+				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+				if options
+					$('#profile_E_current_working_location').html(options)
+				else
+					$('#profile_E_current_working_location').empty()
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			dist = $('#profile_E_current_workong_district').val(<%= District.find_by_name(@profile_E.current_workong_district).id%>);
+			dist = $('#profile_E_current_working_location').val(<%= Taluka.find_by_name(@profile_E.current_working_location).id%>);
+			dist = $('#profile_E_district').val(<%= District.find_by_name(@profile_E.district).id%>);
+			dist = $('#profile_E_city').val(<%= Taluka.find_by_name(@profile_E.city).id%>);
+			// $("#profile_E_city optgroup").filter(function() {
+			// 	$('optgroup[label="' + campus + '"]', $sel).children().andSelf().show();
+			// 	alert($(this).attr('label'));
+			//});
+		});
+	</script>

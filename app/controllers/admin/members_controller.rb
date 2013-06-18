@@ -33,7 +33,8 @@ class Admin::MembersController < Admin::AdminController
   
   def new
     
-    @member = Member.new
+    @member = Member.includes(:profiles).new
+    
   end
   
   def edit
@@ -56,6 +57,11 @@ class Admin::MembersController < Admin::AdminController
      @member_param = params[:member]
        @member_param['phones']=params[:phone].to_json#.inspect
 
+       @profile_E_param['district']=(District.find(params[:profile_E][:district])).name
+       @profile_E_param['city']=(Taluka.find(params[:profile_E][:city])).name
+       @profile_E_param['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
+       @profile_E_param['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
+     
 
     if @member.update_attributes(@member_param) && @profile_E.update_attributes(@profile_E_param) && @profile_M.update_attributes(@profile_M_param)
         expire_action :action => :index
@@ -76,7 +82,11 @@ class Admin::MembersController < Admin::AdminController
       @profile_E=params[:profile_E]
       @profile_E['qualifications']=params[:qualification_E].to_json#.inspect
       @profile_E['language']="E"
-
+       @profile_E['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
+       @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
+      @profile_E['district']=(District.find(params[:profile_E][:district])).name
+       @profile_E['city']=(Taluka.find(params[:profile_E][:city])).name
+      
       @member_param = params[:member]
        @member_param['phones']=params[:phone].to_json#.inspect
 
@@ -108,6 +118,7 @@ class Admin::MembersController < Admin::AdminController
     end
   end
 def english
+  @taluka = Taluka.all()
     @member = Member.new
 end
 def englishEdit

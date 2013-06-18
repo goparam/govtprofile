@@ -7,4 +7,5 @@
 //= require ../bootstrap/jquery.bootstrap.wizard.js
 //= require ../bootstrap/prettify.js
 //= require_tree ../bootstrap
+//= require ../admin/dist_tal.js
 

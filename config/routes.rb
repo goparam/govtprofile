@@ -14,13 +14,14 @@ DepartmentPhonebookRails::Application.routes.draw do
 
 		resources :profiles
 	end
+
 	namespace :api do 
 		namespace :v1 do 
 			resources :designations
 			resources :members
 			resources :search_by_fields
-    
-  end
-    
-  end
+		end
+	end
+
+	resources :members
 end
