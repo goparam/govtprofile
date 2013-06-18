@@ -135,13 +135,13 @@
 			
 
 			<%= c.label :home_district %>
-			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, include_blank: true) %>
+			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {}, { :class=>"height35 padding5 span5" }) %>
 			
 			<br><br>
 			
 
 			<%= c.label :home_taluka %>
-			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
 			
 			
 			<br><br>
@@ -163,14 +163,14 @@
 
 			<%= c.label :posting_district %>
 			
-			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, include_blank: true) %>
+			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, {}, { :class=>"height35 padding5 span5" }) %>
 
 			
 			<br><br>
 			
 
 			<%= c.label :posting_taluka %>
-			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
 			
 			<br><br>
 

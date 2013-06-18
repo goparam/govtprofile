@@ -96,11 +96,10 @@ $(document).ready(function() {
 						  <%= @Profile_E.name rescue ""%>
 						<tr>
 						<td>
-						  <b>Date of birth:</b><td>
-						  <% if !@member.dob.blank? %>
-						  <%= @member.dob.strftime("%d/%m/%Y") rescue ""%>
-						  <% end %>
+						  <b>Designation:</b><td>
+						  <%= @Profile_E.designation rescue ""%>
 						<tr>
+						
 						<td>
 						  <b>Education:</b><td>
 						 <% 
@@ -115,38 +114,6 @@ $(document).ready(function() {
 												end%>
 												<%=@qualification_array.join(" , ").to_s%>
 						<tr>
-						
-						<td>
-						  <b>Home district:</b><td>
-						  <%= @Profile_E.district rescue ""%>
-						<tr>
-						<td>
-						  <b>Joining date:</b><td>
-						  <% if !@member.joining_date.blank? %>
-						  <%= @member.joining_date.strftime("%d/%m/%Y") rescue ""%>
-						  <% end %>
-						  
-						<tr>
-						<td>
-						  <b>Post:</b><td>
-						  <%= @Profile_E.current_post rescue ""%>
-						<tr>
-							<td>
-						  <b>Posting district:</b><td>
-						  <% if !@member.curront_loction_joning_date.blank? %>
-						  <%= @member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""%>
-						  <% end %>
-						 
-						<tr>
-						<td>
-						  <b>Current posting district :</b><td>
-						  <%= @Profile_E.current_posting_district rescue ""%>
-						<tr>
-						<td>
-						  <b>Email:</b><td>
-						  <%= @member.email rescue ""%>
-						
-							<tr>
 						<td>
 						  <b>Phone no:</b><td>
 						   <% 
@@ -160,6 +127,57 @@ $(document).ready(function() {
 													<% end 
 												end%>
 												<%=@phone_array.join(" / ").to_s%>
+							
+						<tr>
+						<td>
+						  <b>Email:</b><td>
+						  <%= @member.email rescue ""%>
+						
+						<tr>
+						
+						<td>
+						  <b>Home district:</b><td>
+						  <%= @Profile_E.district rescue ""%>
+						<tr>
+						
+						<td>
+						  <b>Home Taluka:</b><td>
+						  <%= @Profile_E.city rescue ""%>
+						
+						<tr>
+							<td>
+						  <b>Date of birth:</b><td>
+						  <% if !@member.dob.blank? %>
+						  <%= @member.dob.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						<tr>
+						<td>
+						  <b>Date of joining Dept:</b><td>
+						  <% if !@member.joining_date.blank? %>
+						  <%= @member.joining_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						  
+						<tr>
+						<td>
+						  <b>Present Post:</b><td>
+						  <%= @Profile_E.current_post rescue ""%>
+						<tr>
+						<td>
+						  <b>Posting district :</b><td>
+						  <%= @Profile_E.current_workong_district rescue ""%>
+						<tr>
+						<td>
+						  <b>Posting taluka :</b><td>
+						  <%= @Profile_E.current_working_location %>
+						
+						<tr>
+							<td>
+						  <b>Posting Date:</b><td>
+						  <% if !@member.curront_loction_joning_date.blank? %>
+						  <%= @member.curront_loction_joning_date.strftime("%d/%m/%Y") rescue ""%>
+						  <% end %>
+						 
+						
 							
 						            
 						   </table>

@@ -171,13 +171,13 @@
 			<br><br>
 
 			<%= c.label :home_district %>
-			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, include_blank: true) %>
+			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {}, { :class=>"height35 padding5 span5" }) %>
 
 			
 			<br><br>
 
 			<%= c.label :home_taluka %>
-			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
 
 			
 			<br><br>
@@ -221,11 +221,11 @@
 
 			
 			<%= c.label :Posting_Dist %>
-			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, include_blank: true) %>
+			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, {}, { :class=>"height35 padding5 span5" }) %>
 			<br><br>
 
 			<%= c.label :Posting_Taluka %>
-			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, include_blank: true)%>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
 			
 
 			
@@ -292,25 +292,17 @@
 	<script type="text/coffeescript">
 		jQuery -> 
 			talukas = $('#profile_E_current_working_location').html()
+			
 			$('#profile_E_current_workong_district').change ->
 				dist = $('#profile_E_current_workong_district :selected').text()
 				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+
 				if options
 					$('#profile_E_current_working_location').html(options)
 				else
 					$('#profile_E_current_working_location').empty()
 	</script>
-	<script type="text/coffeescript">
-		jQuery -> 
-			talukas = $('#profile_E_current_working_location').html()
-			$('#profile_E_current_workong_district').change ->
-				dist = $('#profile_E_current_workong_district :selected').text()
-				options = $(talukas).filter("optgroup[label='#{dist}']").html()
-				if options
-					$('#profile_E_current_working_location').html(options)
-				else
-					$('#profile_E_current_working_location').empty()
-	</script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			dist = $('#profile_E_current_workong_district').val(<%= District.find_by_name(@profile_E.current_workong_district).id rescue 0 %>);
