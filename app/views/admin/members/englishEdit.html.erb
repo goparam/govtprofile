@@ -300,12 +300,24 @@
 				else
 					$('#profile_E_current_working_location').empty()
 	</script>
+	<script type="text/coffeescript">
+		jQuery -> 
+			talukas = $('#profile_E_current_working_location').html()
+			$('#profile_E_current_workong_district').change ->
+				dist = $('#profile_E_current_workong_district :selected').text()
+				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+				if options
+					$('#profile_E_current_working_location').html(options)
+				else
+					$('#profile_E_current_working_location').empty()
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			dist = $('#profile_E_current_workong_district').val(<%= District.find_by_name(@profile_E.current_workong_district).id%>);
-			dist = $('#profile_E_current_working_location').val(<%= Taluka.find_by_name(@profile_E.current_working_location).id%>);
-			dist = $('#profile_E_district').val(<%= District.find_by_name(@profile_E.district).id%>);
-			dist = $('#profile_E_city').val(<%= Taluka.find_by_name(@profile_E.city).id%>);
+			dist = $('#profile_E_current_workong_district').val(<%= District.find_by_name(@profile_E.current_workong_district).id rescue 0 %>);
+
+			dist = $('#profile_E_current_working_location').val(<%= Taluka.find_by_name(@profile_E.current_working_location).id rescue 0 %>);
+			dist = $('#profile_E_district').val(<%= District.find_by_name(@profile_E.district).id rescue 0 %>);
+			dist = $('#profile_E_city').val(<%= Taluka.find_by_name(@profile_E.city).id rescue 0 %>);
 			// $("#profile_E_city optgroup").filter(function() {
 			// 	$('optgroup[label="' + campus + '"]', $sel).children().andSelf().show();
 			// 	alert($(this).attr('label'));
