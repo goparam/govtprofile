@@ -40,6 +40,7 @@ DepartmentPhonebookRails::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
   
   config.assets.precompile << Proc.new { |path|
     if path =~ /\.(css|js)\z/
