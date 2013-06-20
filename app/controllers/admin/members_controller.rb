@@ -1,5 +1,6 @@
 class Admin::MembersController < Admin::AdminController
    caches_action :index
+   before_filter(only:[:index]){@page_caching=true}
  def destroy
     @member = Member.find(params[:id])
     @profiles=@member.profiles
@@ -66,38 +67,38 @@ class Admin::MembersController < Admin::AdminController
     if @member.update_attributes(@member_param) && @profile_E.update_attributes(@profile_E_param) && @profile_M.update_attributes(@profile_M_param)
         expire_action :action => :index
       flash[:success] = "#{@member.id} is successfully updated!"
-      redirect_to admin_members_path
+     redirect_to "/admin/members/#{@member.id}"
     else
       flash[:error] = "#{@member.errors.full_messages}!"
-      redirect_to edit_admin_member_path
+      redirect_to "/admin/english/#{@member.id}/edit"
     end
   end
   
   def create
 
       @profile_M=params[:profile_M]
-       @profile_M['qualifications']=params[:qualification_M].to_json#.inspect
-        @profile_M['language']="M"
+      @profile_M['qualifications']=params[:qualification_M].to_json#.inspect
+      @profile_M['language']="M"
 
       @profile_E=params[:profile_E]
       @profile_E['qualifications']=params[:qualification_E].to_json#.inspect
       @profile_E['language']="E"
-       @profile_E['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
-       @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
+      @profile_E['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
+      @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
       @profile_E['district']=(District.find(params[:profile_E][:district])).name
-       @profile_E['city']=(Taluka.find(params[:profile_E][:city])).name
+      @profile_E['city']=(Taluka.find(params[:profile_E][:city])).name
       
       @member_param = params[:member]
-       @member_param['phones']=params[:phone].to_json#.inspect
+      @member_param['phones']=params[:phone].to_json#.inspect
 
       @member = Member.new(@member_param)
 
 
-    @member.profiles << Profile.new(@profile_M)
-    @member.profiles << Profile.new(params[:profile_E])
+      @member.profiles << Profile.new(@profile_M)
+      @member.profiles << Profile.new(params[:profile_E])
    
     if @member.save #&& @profile_M.save && @profile_E.save 
-        expire_action :action => :index
+      expire_action :action => :index
       flash[:success] = "#{@member.id} is successfully created!"
       redirect_to "/admin/members/#{@member.id}"
     else 

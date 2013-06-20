@@ -8,10 +8,15 @@
 <body class="blog">
 	<%= render 'admin/header' %>
 	<div style="margin-left: 30px; margin-right: 30px;">
-		<br><br>		
-		<% flash.each do |key, value| %>
-			<br>
-			
+		<br><br>	
+		<% unless @page_caching %>	
+			<% flash.each do |key, value| %>
+				<br>
+				<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>
+					<a class="close" data-dismiss="alert" href="#">&times;</a>
+				</div>
+				
+			<% end %>
 		<% end %>
 		<%= yield %>
 	</div>
