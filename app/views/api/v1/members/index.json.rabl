@@ -3,7 +3,7 @@ object @updated
 node(:updated_at) { |u| u.updated_at.strftime("%Y-%m-%d %H:%M:%S") rescue ""}
 	
 		child @members do
-			attributes   :id, :is_deleted, :email, :photo 
+			attributes   :id, :is_deleted,  :email, :photo 
 
 			node(:phones){|member| JSON.parse(member.phones)rescue ""}
 			node(:dob) {|member| member.dob.strftime("%d/%m/%Y") rescue ""}
