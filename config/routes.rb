@@ -10,6 +10,8 @@ DepartmentPhonebookRails::Application.routes.draw do
 	namespace :admin do    
 		get 'english/new' => 'members#english'
 		get 'english/:id/edit' => 'members#englishEdit'
+		get 'users' => 'members#users'
+		get 'approve/:id' => 'members#approve'
 		resources :members
 
 		resources :profiles

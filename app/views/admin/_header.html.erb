@@ -3,6 +3,9 @@
 		<div class="bs-docs-grid">
 			<div class="row show-grid">
 				<a href='/admin/members'><div class="span2 menu">Profiles</div></a>
+				<% if  current_user.approved == 1 %>
+					<a href='/admin/users'><div class="span2 menu">Users</div></a>
+				<% end %>
 				<a href='/logout' style="float: right;"><div class="span2 menu">Sign out</div></a>
 			</div>
 		</div>

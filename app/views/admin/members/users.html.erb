@@ -1,0 +1,131 @@
+
+
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+		var $total = navigation.find('li').length;
+		var $current = index+1;
+		var $percent = ($current/$total) * 100;
+		$('#rootwizard').find('.bar').css({width:$percent+'%'});
+		
+		// If it's the last tab then hide the last button and show the finish instead
+		if($current >= $total) {
+			$('#rootwizard').find('.pager .next').hide();
+			$('#rootwizard').find('.pager .finish').show();
+			$('#rootwizard').find('.pager .finish').removeClass('disabled');
+		} else {
+			$('#rootwizard').find('.pager .next').show();
+			$('#rootwizard').find('.pager .finish').hide();
+		}
+		
+	}});
+	$('#rootwizard .finish').click(function() {
+		alert('Finished!, Starting over!');
+		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+	});
+});
+</script>
+
+
+
+
+<div class='container'>
+	<div class="span12">
+		<section id="wizard">
+			<div id="rootwizard">
+				<div class="navbar">
+				  <div class="navbar-inner">
+					    <div class="container">
+							<ul>
+	  
+								<li><a href="#tab1" data-toggle="tab">Users</a></li>
+								<li><a href="#tab2" data-toggle="tab">Approved Users</a></li>
+								<li><a href="#tab3" data-toggle="tab">Not-Approved Users</a></li>
+								
+							</ul>
+	 					</div>
+	  				</div>
+				</div>
+				<div class="tab-content">
+
+	    			<div class="tab-pane" id="tab1">
+	     				
+			 			<table class= "table">
+			 			 	<tr>
+				 			 	<th>Name</th>
+				 			 	<th>Email</th>
+				 			 	<th>Status</th>
+				 			 </tr>
+				 			 <%  @users.each do |user| %> 
+					 			 <tr>
+					 			 	<td></td>
+					 			 	<td><%= user.email%></td>
+					 			 	<td>
+					 			 		<% if user.approved==0%>Not approved<% end %>
+					 			 		<% if user.approved==1%>Admin<% end %>
+					 			 		<% if user.approved==0%>Approved<% end %>
+					 			 	</td>
+
+					 			 </tr>
+				 			 <%end%>	
+				 		</table>
+					 	
+	    			</div>
+
+	    			
+
+	    			<div class="tab-pane" id="tab2">
+	     				
+	     				<table class= "table">
+			 			 	<tr>
+				 			 	<th>Name</th>
+				 			 	<th>Email</th>
+				 			 </tr>
+				 			 <%  @users_approved.each do |user| %> 
+					 			 <tr>
+					 			 	<td></td>
+					 			 	<td><%= user.email%></td>
+
+					 			 </tr>
+				 			 <%end%>	
+				 		</table>
+
+					</div>	
+
+
+						
+
+					<div class="tab-pane" id="tab3">
+	     				<table class= "table">
+			 			 	<tr>
+				 			 	<th>Name</th>
+				 			 	<th>Email</th>
+				 			 	<th></th>
+				 			 </tr>
+				 			 <%  @users_not_approved.each do |user| %> 
+					 			 <tr>
+					 			 	<td></td>
+					 			 	<td><%= user.email%></td>
+					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
+					 			 </tr>
+				 			 <%end%>	
+				 		</table>
+					</div>			
+
+	    		</div>
+		
+		
+			</div>	
+		</section>
+	</div>
+</div>
+
+
+
+				
+		
