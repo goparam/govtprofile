@@ -127,17 +127,18 @@ def englishEdit
 end
   
 def users
-   :authenticate_admin
+   authenticate_admin
    @users=User.all
    @users_approved=User.find_all_by_approved(2)
     @users_not_approved=User.find_all_by_approved(0)
 end
 def approve
-  :authenticate_admin
+  authenticate_admin
   @user=User.find(params[:id])
   if @user.update_attributes(:approved=>2)
-      flash[:success] = "#{@user.id} is successfully approved!"
-      redirect_to "/admin/users"
+      flash[:success] = "#{@user.email} is successfully approved!"
+      
+      redirect_to "/admin/users"      
     else
       flash[:error] = "#{@user.errors.full_messages}!"
     end

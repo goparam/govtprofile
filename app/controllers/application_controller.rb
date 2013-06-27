@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	def authenticate_admin
 		authenticate_user!
 		unless current_user.email == "admin@definelabs.com"
+			@user=User.find_by_email("admin@definelabs.com")
 			@user.update_attributes(:approved=>1)
 			sign_out
 			flash[:error] = "User is not admin! Try again using another username!"

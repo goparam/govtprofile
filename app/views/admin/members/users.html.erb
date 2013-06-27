@@ -43,9 +43,9 @@ $(document).ready(function() {
 					    <div class="container">
 							<ul>
 	  
-								<li><a href="#tab1" data-toggle="tab">Users</a></li>
+								<li><a href="#tab1" data-toggle="tab">Not-Approved Users</a></li>
 								<li><a href="#tab2" data-toggle="tab">Approved Users</a></li>
-								<li><a href="#tab3" data-toggle="tab">Not-Approved Users</a></li>
+								<li><a href="#tab3" data-toggle="tab">Users</a></li>
 								
 							</ul>
 	 					</div>
@@ -54,26 +54,21 @@ $(document).ready(function() {
 				<div class="tab-content">
 
 	    			<div class="tab-pane" id="tab1">
-	     				
-			 			<table class= "table">
+	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
 				 			 	<th>Email</th>
-				 			 	<th>Status</th>
+				 			 	<th></th>
 				 			 </tr>
-				 			 <%  @users.each do |user| %> 
+				 			 <%  @users_not_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
-					 			 	<td>
-					 			 		<% if user.approved==0%>Not approved<% end %>
-					 			 		<% if user.approved==1%>Admin<% end %>
-					 			 		<% if user.approved==0%>Approved<% end %>
-					 			 	</td>
-
+					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>
+			 			
 					 	
 	    			</div>
 
@@ -105,13 +100,18 @@ $(document).ready(function() {
 			 			 	<tr>
 				 			 	<th>Name</th>
 				 			 	<th>Email</th>
-				 			 	<th></th>
+				 			 	<th>Status</th>
 				 			 </tr>
-				 			 <%  @users_not_approved.each do |user| %> 
+				 			 <%  @users.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
-					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
+					 			 	<td>
+					 			 		<% if user.approved==0%>Not approved<% end %>
+					 			 		<% if user.approved==1%>Admin<% end %>
+					 			 		<% if user.approved==2%>Approved<% end %>
+					 			 	</td>
+
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>
