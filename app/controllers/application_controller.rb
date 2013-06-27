@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 	end
 	def authenticate_approved
 		authenticate_user!
-		unless current_user.approved == 2 || current_user.approved == 1
+		unless current_user.approved == 2 || current_user.email == "admin@definelabs.com"
 			sign_out
 			flash[:error] = "You have signed up successfully but your account has not been approved by your administrator yet"
 			redirect_to new_user_session_path
