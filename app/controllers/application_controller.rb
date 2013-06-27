@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
 				#1=>admin   2=>approved 	0=>not_approved 	
 	def authenticate_admin
 		authenticate_user!
-		unless current_user.email == "admin@definelabs.com"
-			@user=User.find_by_email("admin@definelabs.com")
-			@user.update_attributes(:approved=>1)
+		unless current_user.approved == 1
 			sign_out
 			flash[:error] = "User is not admin! Try again using another username!"
 			redirect_to new_user_session_path
@@ -16,7 +14,7 @@ class ApplicationController < ActionController::Base
 	end
 	def authenticate_approved
 		authenticate_user!
-		unless current_user.approved == 2 || current_user.email == "admin@definelabs.com"
+		unless current_user.approved == 2 || current_user.approved == 1
 			sign_out
 			flash[:error] = "You have signed up successfully but your account has not been approved by your administrator yet"
 			redirect_to new_user_session_path
