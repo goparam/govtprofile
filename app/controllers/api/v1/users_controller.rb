@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApplicationController
 		@user=User.new(params[:user])
 		if @user.save 
 			
-			render :json => {:success => true, :auth_token =>  @user.authentication_token}
+			render :json => {:success => true, :message => "Successfully registared!"}
 		else
 			
 			render :json => {:success => "#{@user.errors.full_messages}!"}
