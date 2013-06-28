@@ -58,4 +58,27 @@ DepartmentPhonebookRails::Application.configure do
     end
   }
 
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "gmail.com",
+  :user_name            => 'harikesh.kolekar@definelabs.com',
+  :password             => 'test1234!@#$',
+  :authentication       => 'login',
+  :enable_starttls_auto => true  }
+  
+  config.action_controller.asset_host = "http://localhost:3000"
+  config.action_mailer.asset_host = "localhost:3000"
+
+  config.default_content_type = "text/html"
+
+  # config.assets.compress = true
+
+  Paperclip.options[:command_path] = "/usr/bin/"
+
+
+
 end
