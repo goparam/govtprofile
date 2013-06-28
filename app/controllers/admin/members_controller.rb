@@ -135,24 +135,52 @@ def users
 end
 def approve
   authenticate_admin
-  @user=User.find(params[:id])
+  
+  require 'net/smtp'
 
 
 
-     require 'net/smtp'
 
-message = <<MESSAGE_END
-From: Private Person <harikesh.kolekar@definelabs.com>
-To: A Test User <harikeshkolekar@gmail.com>
-Subject: SMTP e-mail test
+    #  msg = "Subject: Hi There!\n\nThis works, and this part is in the body."
+    # smtp = Net::SMTP.new ('smtp.gmail.com', 587)
+    # smtp.enable_starttls_auto
+    # smtp.start("gmail.com", "harikesh.kolekar@definelabs.com", "test1234!@#$", :plain) do
+    #   smtp.send_message(msg, "harikesh.kolekar@definelabs.com", "harikeshkolekar@gmail.com")
+    # end
 
-This is a test e-mail message.
-MESSAGE_END
+#     require 'net/smtp'  
+# require 'net/pop'  
+# require 'time'  
+  
 
-Net::SMTP.start('localhost') do |smtp|
-  smtp.send_message message, 'harikesh.kolekar@definelabs.com', 
-                             'harikeshkolekar@gmail.com'
-end
+  
+# Net::POP3.start('pop.mail.yahoo.co.jp', 110, 'hary_kolekar@yahoo.co.in', 'surekha') do |pop|  
+# end  
+  
+# Net::SMTP.start('smtp.mail.yahoo.co.jp', 25, 'yahoo.co.jp', 'hary_kolekar@yahoo.co.in', 'surekha', :login) do |smtp|  
+#   smtp.send_message(msg, 'from@yahoo.co.jp', 'harikeshkolekar@gmail.com')  
+# end  
+
+
+
+
+                       # smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
+                       # smtp.start("gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) 
+                       
+    #                    do |s|
+    # s.send_message(message, 'harikesh.kolekar@definelabs.com', 
+    #                                                'harikeshkolekar@gmail.com')
+    #     end
+    @user=User.find(params[:id])
+  if @user.update_attributes(:approved=>2)
+      flash[:success] = "#{@user.email} is successfully approved!"
+      
+      redirect_to "/admin/users"      
+    else
+      flash[:error] = "#{@user.errors.full_messages}!"
+      redirect_to "/admin/users"      
+    end
+  
 
 end
 def decline
