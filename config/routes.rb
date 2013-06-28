@@ -21,7 +21,12 @@ DepartmentPhonebookRails::Application.routes.draw do
 		namespace :v1 do 
 			resources :designations
 			resources :members
-			resources :search_by_fields
+			resources :registar
+			resources :users do
+				post 'login', :on => :collection
+				post 'registar', :on => :collection
+				post 'logout', :on => :collection
+			end
 		end
 	end
 

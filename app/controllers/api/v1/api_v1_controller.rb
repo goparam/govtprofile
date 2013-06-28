@@ -1,5 +1,5 @@
 class Api::V1::ApiV1Controller < ApplicationController
-# before_filter :valid_token
+before_filter :valid_token
 	
 	private 
 		def valid_token

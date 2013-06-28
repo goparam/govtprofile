@@ -13,6 +13,7 @@ default_thumb.png: default_thumb-201536da903487ec962f7da8d5187764.png
 delete.png: delete-e90f0bb7eed0fd08a6d91f1252117aeb.png
 depth-arrow.png: depth-arrow-2b24075b06ced427e0352e5130de9f58.png
 edit.png: edit-9518a7e160145399354f639cac90ed2c.png
+edit1.png: edit1-1052139dd42dbcbaa3005375a02c4aa3.png
 edit_E.png: edit_E-ce032df8ca1dcfcb55cfce45fa34bbbc.png
 envelope.png: envelope-310e3a1a2d8a761ba64ad8528197f631.png
 folded-paper-body.png: folded-paper-body-5917be7ac2e98ac83534fa850c69f228.png
@@ -65,6 +66,7 @@ twitter-widget-top.png: twitter-widget-top-7b0a586f81e00ee4c623b525071ece07.png
 up-arrow.png: up-arrow-8340a75cddfd6554c7ecc25965681d37.png
 admin/admin.js: admin/admin-ad8bafcf4c3ac46b1495bdbd72b241e0.js
 admin/departments.js: admin/departments-3af39f1da6f167c2cbf453ed74daff3d.js
+admin/dist_tal.js: admin/dist_tal-71c9eaf3c06bffedf041f8d52c511254.js
 admin/jquery-ui.js: admin/jquery-ui-c77a70658ca26963e61ba9b1cde12c1a.js
 admin/jquery.dataTables.nightly.js: admin/jquery.dataTables.nightly-d4aeac27a0170e62e9e9b408945c530b.js
 admin/jquery.js: admin/jquery-b50813cba3f4dec9c02235d943ce42a9.js
@@ -74,9 +76,12 @@ api/v1/api_v1.js: api/v1/api_v1-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/api_v1_controller.js: api/v1/api_v1_controller-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/departments.js: api/v1/departments-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/designations.js: api/v1/designations-3af39f1da6f167c2cbf453ed74daff3d.js
+api/v1/english.js: api/v1/english-fa1f1fd99aa6a3742bc17020d92d30dc.js
 api/v1/members.js: api/v1/members-3af39f1da6f167c2cbf453ed74daff3d.js
+api/v1/registar.js: api/v1/registar-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/search_by_fields.js: api/v1/search_by_fields-3af39f1da6f167c2cbf453ed74daff3d.js
 api/v1/search_by_filds.js: api/v1/search_by_filds-3af39f1da6f167c2cbf453ed74daff3d.js
+api/v1/users.js: api/v1/users-3af39f1da6f167c2cbf453ed74daff3d.js
 bootstrap/bootstrap-datepicker.js: bootstrap/bootstrap-datepicker-0d33b797941d7b1bee67e8a699444aca.js
 bootstrap/bootstrap.js: bootstrap/bootstrap-e5d08ad4c04712dbf643ef0c5dcb572c.js
 bootstrap/bootstrap.min.js: bootstrap/bootstrap.min-b95c1fb3c4de09612dfaa6e3b4f50f7e.js
@@ -95,6 +100,7 @@ sessions.js: sessions-3af39f1da6f167c2cbf453ed74daff3d.js
 slides-jquery-min.js: slides-jquery-min-7f483fb3bc2ac7fc364bbece29d3ca49.js
 superfish.js: superfish-a8d058b85161c79e5ec6917b33d761a7.js
 twitter-widgets.js: twitter-widgets-95969ec73ed15cb6c0c4d979f253b8b5.js
+users.js: users-3af39f1da6f167c2cbf453ed74daff3d.js
 webtrends.hm.js: webtrends.hm-16d7c53793e13c84b6745dcb6300f1e1.js
 webtrends.min.js: webtrends.min-7428e22f5461a886fe400d52b86d6dda.js
 admin/admin.css: admin/admin-af4254f93402ceb73b0d5519eb4b35b5.css
@@ -120,8 +126,10 @@ api/v1/api_v1_controller.css: api/v1/api_v1_controller-7270767b2a9e9fff880aa5de3
 api/v1/departments.css: api/v1/departments-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/designations.css: api/v1/designations-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/members.css: api/v1/members-7270767b2a9e9fff880aa5de378ca791.css
+api/v1/registar.css: api/v1/registar-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/search_by_fields.css: api/v1/search_by_fields-7270767b2a9e9fff880aa5de378ca791.css
 api/v1/search_by_filds.css: api/v1/search_by_filds-7270767b2a9e9fff880aa5de378ca791.css
+api/v1/users.css: api/v1/users-7270767b2a9e9fff880aa5de378ca791.css
 bootstrap/bootstrap-datepicker.css: bootstrap/bootstrap-datepicker-fcabf3f93f84f68e25a50924e2e17b93.css
 bootstrap/bootstrap-responsive.css: bootstrap/bootstrap-responsive-6c31048e546180f2cb5a978e2e9e5592.css
 bootstrap/bootstrap.css: bootstrap/bootstrap-d759dc088c2b8ac3602d09049ace7172.css
@@ -135,4 +143,5 @@ prettyphoto.css: prettyphoto-8a6fd688060d5be254fd9536cddc6bce.css
 sessions.css: sessions-7270767b2a9e9fff880aa5de378ca791.css
 style.css: style-3d93ec52c8d0890580d206759f12ffa7.css
 styles.css: styles-080a39450ec694b21c4f890d490c6a86.css
+users.css: users-7270767b2a9e9fff880aa5de378ca791.css
 wooden.css: wooden-522923971065f7a28db41877fd8d66a7.css

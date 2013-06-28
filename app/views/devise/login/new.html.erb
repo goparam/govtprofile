@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Department Phonebook</title>
+	<%= stylesheet_link_tag    "style" %>
+	<%= stylesheet_link_tag    "login" %>
+	<%= csrf_meta_tags %>
+</head>
+<body class="home blog">
+	<div class="login">
+
+		<a id="logo" href="<%= root_path %>">
+			Department Phonebook
+		</a>
+		
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+		<%= devise_error_messages! %>
+
+		<div><%= f.email_field :email, :placeholder => "Email", :class => "input" %></div>
+
+		<div><%= f.password_field :password, :placeholder => "Password", :class => "input" %></div>
+
+		<div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password", :class => "input" %></div>
+
+		<div><%= f.submit "Sign up", :class => "submit" %></div>
+		
+		<% end %>
+
+	<%= render "devise/shared/links" %>
+
+	</div>
+</body>
+</html>

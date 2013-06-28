@@ -13,7 +13,7 @@ class Api::V1::MembersController <  Api::V1::ApiV1Controller
 	
 
 			@updated=@members[0]
-		render "api/v1/members/index"
+		render "api/v1/members/index.json"
 	end
 	
 end
