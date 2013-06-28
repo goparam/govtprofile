@@ -7,8 +7,9 @@ class Api::V1::UsersController < ApplicationController
 		end
 
 		user = User.find_for_database_authentication(:email => params[:email])
-
-		return invalid_login_attempt unless user
+		if !user
+			render :json => {:success => false, :massage => "Wrong email!"}and return 
+		end
 
 		if user.valid_password?(params[:password]) 
 			if user.approved==1 || user.approved==2
@@ -18,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
 				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet"}and return
 			end
 		else 
-			render :json => {:success => false, :massage => "Invalid password"}and return
+			render :json => {:success => false, :massage => "Wrong Password"}and return
 		end
 	end
 	def register
