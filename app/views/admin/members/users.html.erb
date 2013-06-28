@@ -81,12 +81,13 @@ $(document).ready(function() {
 			 			 	<tr>
 				 			 	<th>Name</th>
 				 			 	<th>Email</th>
+				 			 	<th></th>
 				 			 </tr>
 				 			 <%  @users_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
-
+					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>

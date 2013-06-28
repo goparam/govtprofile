@@ -136,14 +136,23 @@ end
 def approve
   authenticate_admin
   @user=User.find(params[:id])
-  if @user.update_attributes(:approved=>2)
-      flash[:success] = "#{@user.email} is successfully approved!"
-      
-      redirect_to "/admin/users"      
-    else
-      flash[:error] = "#{@user.errors.full_messages}!"
-    end
-  
+
+
+
+     require 'net/smtp'
+
+message = <<MESSAGE_END
+From: Private Person <harikesh.kolekar@definelabs.com>
+To: A Test User <harikeshkolekar@gmail.com>
+Subject: SMTP e-mail test
+
+This is a test e-mail message.
+MESSAGE_END
+
+Net::SMTP.start('localhost') do |smtp|
+  smtp.send_message message, 'harikesh.kolekar@definelabs.com', 
+                             'harikeshkolekar@gmail.com'
+end
 
 end
 def decline
