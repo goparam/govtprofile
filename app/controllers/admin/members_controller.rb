@@ -164,12 +164,12 @@ require "time" # for rfc2822
 
 
 
-                       smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
-                       smtp.enable_starttls
-                       Net::SMTP.start( "gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) do |s|
-    s.send_message(message, 'harikesh.kolekar@definelabs.com', 
-                                                   'harikeshkolekar@gmail.com')
-        end
+    #                    smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
+    #                    smtp.enable_starttls
+    #                    Net::SMTP.start( "gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) do |s|
+    # s.send_message(message, 'harikesh.kolekar@definelabs.com', 
+    #                                                'harikeshkolekar@gmail.com')
+    #     end
     @user=User.find(params[:id])
   if @user.update_attributes(:approved=>2)
       flash[:success] = "#{@user.email} is successfully approved!"
