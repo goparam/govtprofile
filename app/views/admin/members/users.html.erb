@@ -45,8 +45,8 @@ $(document).ready(function() {
 	  
 								<li><a href="#tab1" data-toggle="tab">Pending Users</a></li>
 								<li><a href="#tab2" data-toggle="tab">Approved Users</a></li>
-								<li><a href="#tab3" data-toggle="tab">All Users</a></li>
-								
+								<li><a href="#tab3" data-toggle="tab">Declined Users</a></li>
+								<li><a href="#tab4" data-toggle="tab">All Users</a></li>
 							</ul>
 	 					</div>
 	  				</div>
@@ -65,6 +65,7 @@ $(document).ready(function() {
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
+					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>
@@ -95,7 +96,29 @@ $(document).ready(function() {
 
 						
 
+
 					<div class="tab-pane" id="tab3">
+	     				
+	     				<table class= "table">
+			 			 	<tr>
+				 			 	<th>Name</th>
+				 			 	<th>Email</th>
+				 			 	<th></th>
+				 			 </tr>
+				 			 <%  @users_declined.each do |user| %> 
+					 			 <tr>
+					 			 	<td></td>
+					 			 	<td><%= user.email%></td>
+					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
+					 			 </tr>
+				 			 <%end%>	
+				 		</table>
+
+					</div>	
+
+
+
+					<div class="tab-pane" id="tab4">
 	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
@@ -107,9 +130,10 @@ $(document).ready(function() {
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
 					 			 	<td>
-					 			 		<% if user.approved==0%>Not approved<% end %>
-					 			 		<% if user.approved==1%>Admin<% end %>
-					 			 		<% if user.approved==2%>Approved<% end %>
+					 			 		<% if user.approved==0%>Not approved
+					 			 		<% elsif user.approved==1%>Admin
+					 			 		<% elsif user.approved==2%>Approved
+					 			 		<% else %> Declined<% end %>
 					 			 	</td>
 
 					 			 </tr>

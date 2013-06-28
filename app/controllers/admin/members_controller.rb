@@ -131,6 +131,7 @@ def users
    @users=User.all
    @users_approved=User.find_all_by_approved(2)
     @users_not_approved=User.find_all_by_approved(0)
+    @users_declined=User.find_all_by_approved(3)
 end
 def approve
   authenticate_admin
@@ -144,5 +145,16 @@ def approve
     end
   
 
+end
+def decline
+  authenticate_admin
+  @user=User.find(params[:id])
+  if @user.update_attributes(:approved=>3)
+      flash[:success] = "#{@user.email} is added to declined list!"
+      
+      redirect_to "/admin/users"      
+    else
+      flash[:error] = "#{@user.errors.full_messages}!"
+    end
 end
 end
