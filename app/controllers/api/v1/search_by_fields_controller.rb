@@ -4,7 +4,7 @@ def index
 		
 		if params[:name].blank? && params[:birth_date].blank?  && params[:posting_date].blank? && params[:designation].blank? && params[:home_district].blank?
 				
-		else
+		else 
 				
 				
 				search = []
