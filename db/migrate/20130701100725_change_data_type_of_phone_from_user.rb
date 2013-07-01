@@ -4,6 +4,6 @@ class ChangeDataTypeOfPhoneFromUser < ActiveRecord::Migration
   end
 
   def self.down
-   change_column :users, :phone, :integer
+   change_column :users, :phone, :string
   end
 end
