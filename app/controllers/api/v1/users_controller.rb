@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
 				user.reset_authentication_token! 
 				render :json => {:success => true, :auth_token => user.authentication_token} and return
 			else
-				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet }and return
+				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet "}and return
 			end
 		else 
 			render :json => {:success => false, :massage => "Wrong Password"}and return
