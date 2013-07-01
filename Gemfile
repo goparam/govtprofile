@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem "rabl", "~> 0.8.0"
 gem "mime-types"
 gem 'will_paginate', '~> 3.0'
+gem "mail", " 2.4.4"
 
 group :production do
   gem 'pg'

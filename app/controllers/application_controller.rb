@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 	before_filter :debug_params
 	#approved
 				#1=>admin   2=>approved 	0=>not_approved 	
+
+	
+
+
+
 	def authenticate_admin
 		authenticate_user!
 		unless current_user.approved == 1

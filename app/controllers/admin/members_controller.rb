@@ -136,9 +136,9 @@ end
 def approve
   authenticate_admin
   
-  require 'rubygems'
-require 'net/smtp'
-require "time" # for rfc2822
+#   require 'rubygems'
+# require 'net/smtp'
+# require "time" # for rfc2822
 
 
     #  msg = "Subject: Hi There!\n\nThis works, and this part is in the body."
@@ -164,13 +164,15 @@ require "time" # for rfc2822
 
 
 
-                       smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
-                       smtp.enable_starttls
-                       Net::SMTP.start( "gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) do |s|
-    s.send_message(message, 'harikesh.kolekar@definelabs.com', 
-                                                   'harikeshkolekar@gmail.com')
-        end
+    #                    smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
+    #                    smtp.enable_starttls
+    #                    Net::SMTP.start( "gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) do |s|
+    # s.send_message(message, 'harikesh.kolekar@definelabs.com', 
+    #                                                'harikeshkolekar@gmail.com')
+    #     end
+
     @user=User.find(params[:id])
+    Sendmail.registration_confirmation(@user).deliver
   if @user.update_attributes(:approved=>2)
       flash[:success] = "#{@user.email} is successfully approved!"
       

@@ -2,13 +2,13 @@ class Api::V1::UsersController < ApplicationController
 	def login
 		print "----------------------params = #{params}------------------------"
 
-		if params[:email].blank? || params[:password].blank?
+		if params[:phone].blank? || params[:password].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
-
-		user = User.find_for_database_authentication(:email => params[:email])
+			user = User.find_for_database_authentication(:phone => params[:phone])
+		
 		if !user
-			render :json => {:success => false, :massage => "Wrong email!"}and return 
+			render :json => {:success => false, :massage => "Wrong phone!"}and return 
 		end
 
 		if user.valid_password?(params[:password]) 
@@ -16,14 +16,14 @@ class Api::V1::UsersController < ApplicationController
 				user.reset_authentication_token! 
 				render :json => {:success => true, :auth_token => user.authentication_token} and return
 			else
-				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet"}and return
+				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet }and return
 			end
 		else 
 			render :json => {:success => false, :massage => "Wrong Password"}and return
 		end
 	end
 	def register
-		if params[:user][:email].blank? || params[:user][:password].blank?|| params[:user][:password_confirmation].blank?
+		if params[:user][:phone].blank? || params[:user][:password].blank?|| params[:user][:password_confirmation].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
 		@user=User.new(params[:user])
@@ -32,7 +32,7 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => true, :message => "Successfully registered!"}
 		else
 			
-			render :json => {:success => "#{@user.errors.full_messages}!"}
+			render :json => {:success => false, :message =>"#{@user.errors.full_messages}!"}
 		end
 		
 	end
