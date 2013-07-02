@@ -9,13 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *
-
- *= require ../bootstrap/bootstrap-datepicker.css
-  *= require ../bootstrap/bootstrap-responsive.css
-  *= require ../bootstrap/bootstrap.css
-  *= require ../bootstrap/prettify.css
- *= require ../style
- *= require ../login
+*= require ../bootstrap/bootstrap-datepicker.css
+*= require ../bootstrap/bootstrap-responsive.css
+*= require ../bootstrap/bootstrap.css
+*= require ../bootstrap/prettify.css
+*= require ../style
+*= require ../login
  */
 
 .home {
