@@ -31,5 +31,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token 
    validates :email, uniqueness: true
   validates :phone, uniqueness: true
+  validates :email,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
+  
 
 end
