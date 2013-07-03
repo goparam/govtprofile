@@ -1,4 +1,15 @@
 class Api::V1::UsersController < ApplicationController
+	def destroy
+		user=user.find(params[:id])
+		if user.destroy
+			 flash[:success] = "#{user.phone} is successfully Deleted!"
+
+		else
+			 flash[:error] = "#{user.errors.full_messages}!"
+		end
+		redirect_to "/admin/users"	
+	end
+
 	def login
 		print "----------------------params = #{params}------------------------"
 
@@ -8,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
 			user = User.find_for_database_authentication(:phone => params[:phone])
 		
 		if !user
-			render :json => {:success => false, :massage => "Wrong phone!"}and return 
+			render :json => {:success => false, :massage => "Invalid Phone no or Password"}and return 
 		end
 
 		if user.valid_password?(params[:password]) 
@@ -19,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 				render :json => {:success => false, :massage => "You have signed up successfully but your account has not been approved by your administrator yet "}and return
 			end
 		else 
-			render :json => {:success => false, :massage => "Wrong Password"}and return
+			render :json => {:success => false, :massage => "Invalid Phone no or Password"}and return
 		end
 	end
 	def register

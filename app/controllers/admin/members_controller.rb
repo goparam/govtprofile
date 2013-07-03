@@ -135,41 +135,7 @@ def users
 end
 def approve
   authenticate_admin
-  
-#   require 'rubygems'
-# require 'net/smtp'
-# require "time" # for rfc2822
 
-
-    #  msg = "Subject: Hi There!\n\nThis works, and this part is in the body."
-    # smtp = Net::SMTP.new ('smtp.gmail.com', 587)
-    # smtp.enable_starttls_auto
-    # smtp.start("gmail.com", "harikesh.kolekar@definelabs.com", "test1234!@#$", :plain) do
-    #   smtp.send_message(msg, "harikesh.kolekar@definelabs.com", "harikeshkolekar@gmail.com")
-    # end
-
-#     require 'net/smtp'  
-# require 'net/pop'  
-# require 'time'  
-  
-
-  
-# Net::POP3.start('pop.mail.yahoo.co.jp', 110, 'hary_kolekar@yahoo.co.in', 'surekha') do |pop|  
-# end  
-  
-# Net::SMTP.start('smtp.mail.yahoo.co.jp', 25, 'yahoo.co.jp', 'hary_kolekar@yahoo.co.in', 'surekha', :login) do |smtp|  
-#   smtp.send_message(msg, 'from@yahoo.co.jp', 'harikeshkolekar@gmail.com')  
-# end  
-
-
-
-
-    #                    smtp = Net::SMTP.new( 'smtp.gmail.com',587 )
-    #                    smtp.enable_starttls
-    #                    Net::SMTP.start( "gmail.com", 'harikesh.kolekar@definelabs.com','test1234!@#$', :login) do |s|
-    # s.send_message(message, 'harikesh.kolekar@definelabs.com', 
-    #                                                'harikeshkolekar@gmail.com')
-    #     end
 
     @user=User.find(params[:id])
     Sendmail.registration_confirmation(@user).deliver
@@ -195,4 +161,14 @@ def decline
       flash[:error] = "#{@user.errors.full_messages}!"
     end
 end
+def userdestroy
+    user=user.find(params[:id])
+    if user.destroy
+       flash[:success] = "#{user.phone} is successfully Deleted!"
+
+    else
+       flash[:error] = "#{user.errors.full_messages}!"
+    end
+    redirect_to "/admin/users"  
+  end
 end

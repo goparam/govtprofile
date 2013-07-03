@@ -64,8 +64,9 @@ $(document).ready(function() {
 				 			 <%  @users_not_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
-					 			 	<td><%= user.email%></td>
 					 			 	<td><%= user.phone%></td>
+					 			 	<td><%= user.email%></td>
+					 			 	
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
@@ -133,6 +134,7 @@ $(document).ready(function() {
 				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
 				 			 	<th>Status</th>
+				 			 	<th>Action</th>
 				 			 </tr>
 				 			 <%  @users.each do |user| %> 
 					 			 <tr>
@@ -145,7 +147,7 @@ $(document).ready(function() {
 					 			 		<% elsif user.approved==2%>Approved
 					 			 		<% else %> Declined<% end %>
 					 			 	</td>
-
+					 			 	<td> <%= link_to image_tag("/assets/delete.png"), "/admin/users/#{user.id}", :method => :get,  :confirm => 'Are you sure want to delete user?' %> </td>	
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>

@@ -11,6 +11,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		get 'english/new' => 'members#english'
 		get 'english/:id/edit' => 'members#englishEdit'
 		get 'users' => 'members#users'
+		get 'users/:id' => 'members#userdestroy'
 		get 'approve/:id' => 'members#approve'
 		get 'decline/:id' => 'members#decline'
 		resources :members
