@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone
   # attr_accessible :title, :body
   before_save :ensure_authentication_token 
+   validates :email, uniqueness: true
   validates :phone, uniqueness: true
 
 end

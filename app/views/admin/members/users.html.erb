@@ -57,6 +57,7 @@ $(document).ready(function() {
 	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
+				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
 				 			 	<th></th>
 				 			 </tr>
@@ -64,6 +65,7 @@ $(document).ready(function() {
 					 			 <tr>
 					 			 	<td></td>
 					 			 	<td><%= user.email%></td>
+					 			 	<td><%= user.phone%></td>
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
@@ -80,12 +82,14 @@ $(document).ready(function() {
 	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
+				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
 				 			 	<th></th>
 				 			 </tr>
 				 			 <%  @users_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
+					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.email%></td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
@@ -103,13 +107,16 @@ $(document).ready(function() {
 	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
+				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
 				 			 	<th></th>
 				 			 </tr>
 				 			 <%  @users_declined.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
+					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.email%></td>
+
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 </tr>
 				 			 <%end%>	
@@ -123,12 +130,14 @@ $(document).ready(function() {
 	     				<table class= "table">
 			 			 	<tr>
 				 			 	<th>Name</th>
+				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
 				 			 	<th>Status</th>
 				 			 </tr>
 				 			 <%  @users.each do |user| %> 
 					 			 <tr>
 					 			 	<td></td>
+					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.email%></td>
 					 			 	<td>
 					 			 		<% if user.approved==0%>Not approved
