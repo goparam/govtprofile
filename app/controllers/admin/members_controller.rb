@@ -162,7 +162,7 @@ def decline
     end
 end
 def userdestroy
-    user=user.find(params[:id])
+    user=User.find(params[:id])
     if user.destroy
        flash[:success] = "#{user.phone} is successfully Deleted!"
 
