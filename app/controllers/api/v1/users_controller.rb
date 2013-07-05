@@ -37,6 +37,7 @@ class Api::V1::UsersController < ApplicationController
 		print "----------------------params = #{params}------------------------"
 		if params[:user].blank?
 			render :json => {:success => false, :message => "User is empty"}, :status => 400 and return
+		end
 		if params[:user][:phone].blank? || params[:user][:password].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
