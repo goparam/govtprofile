@@ -25,9 +25,9 @@ DepartmentPhonebookRails::Application.routes.draw do
 			resources :members
 			
 			resources :users do
-				post 'login', :on => :collection
-				post 'register', :on => :collection
-				post 'logout', :on => :collection
+				match 'login', :on => :collection
+				match 'register', :on => :collection
+				match 'logout', :on => :collection
 			end
 		end
 	end
