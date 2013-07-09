@@ -36,10 +36,10 @@ class Api::V1::UsersController < ApplicationController
 	def register
 		print "----------------------params = #{params}------------------------"
 		if params[:user].blank?
-			render :json => {:success => false, :message => "User is empty"}, :status => 400 and return
+			render :json => {:success => false, :message => "User is empty"} and return
 		end
 		if params[:user][:phone].blank? || params[:user][:password].blank?
-			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
+			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		@user=User.new(params[:user])
 		if @user.save 
@@ -47,7 +47,7 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => true, :message => "Successfully registered!"}
 		else
 			
-			render :json => {:success => false, :message =>"#{@user.errors.full_messages}!"}
+			render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
 		end
 		
 	end
