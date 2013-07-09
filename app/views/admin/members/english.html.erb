@@ -142,7 +142,7 @@
 			
 
 			<%= c.label :home_taluka %>
-			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, {:selected => "359"}, { :class=>"height35 padding5 span5" })%>
+			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, { :include_blank => true, :prompt =>"NA"}, { :class=>"height35 padding5 span5" })%>
 			
 			
 			<br><br>
@@ -171,7 +171,7 @@
 			
 
 			<%= c.label :posting_taluka %>
-			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, {:selected => "359"}, { :class=>"height35 padding5 span5" })%>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, { :include_blank => true, :prompt =>"NA"}, { :class=>"height35 padding5 span5" })%>
 			
 			<br><br>
 
