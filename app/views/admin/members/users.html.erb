@@ -165,10 +165,10 @@ $(document).ready(function() {
  				
  				<div><%= f.label :new_password %> 
  				
-  				<%= f.password_field :password, :autocomplete => "off" %></div><br>
+  				<%= f.password_field :password, :autocomplete => "off", :style=>"width:90%;" %></div><br>
 
   				<div><%= f.label :password_confirmation %>
-  				<%= f.password_field :password_confirmation %></div><br>
+  				<%= f.password_field :password_confirmation, :style=>"width:90%;" , :autocomplete => "off" %></div><br>
   				<div><%= f.submit "Update" %></div>
 			<% end %> 
 
