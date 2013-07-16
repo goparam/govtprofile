@@ -171,4 +171,32 @@ def userdestroy
     end
     redirect_to "/admin/users"  
   end
+  def edituser
+    @user=User.find(params[:id])
+  end
+
+  def updateuser
+    authenticate_admin  
+    print "----------------------params = #{params}------------------------"
+    user = User.find_for_database_authentication(:phone => params[:user][:phone])
+    if user
+      if params[:user][:password].eql? params[:user][:password_confirmation]       
+        user.password = params[:user][:password]
+        if user.save
+           Sendmail.password_reset(user).deliver
+         flash[:success] = "#{user.phone} is successfully updated!"
+        
+        else
+          flash[:error] = "#{user.errors.full_messages}! error in updation"
+        end
+        else
+    
+        flash[:error] = "Password must be same!"
+      end
+    else
+      flash[:error] = "User not found!"
+    end
+    redirect_to "/admin/users" 
+  end
+
 end

@@ -2,7 +2,7 @@
 
 
 
-
+  
 
 <script type="text/javascript">
 
@@ -150,7 +150,40 @@ $(document).ready(function() {
 					 			 	<td> 
 					 			 		<% if user.approved!=1 %>
 					 			 			<%= link_to image_tag("/assets/delete.png"), "/admin/users/#{user.id}", :method => :get,  :confirm => 'Are you sure want to delete user?' %>
-					 			 			<% end %>
+					 			 		
+			 <div id="myModal<%= user.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="myModalLabel">Edit Password</h3>
+            </div>
+            <div class="modal-body">
+              <% @user=User.find(user.id) %>
+
+              <% phone= user.phone%>
+				<%= form_for @user, :html => { :multipart => true ,:method => :post}, :url =>"/admin/edit/" do |f|%>
+ 				<input type="hidden" value="<%= user.phone %>" name="user[phone]">
+ 				
+ 				<div><%= f.label :new_password %> 
+ 				
+  				<%= f.password_field :password, :autocomplete => "off" %></div><br>
+
+  				<div><%= f.label :password_confirmation %>
+  				<%= f.password_field :password_confirmation %></div><br>
+  				<div><%= f.submit "Update" %></div>
+			<% end %> 
+
+              
+            </div>
+            <div class="modal-footer">
+             
+            </div>
+          </div>
+          
+            <a data-toggle="modal" href="#myModal<%= user.id%>" ><img src="/assets/edit.png"></a>
+         
+					 			 		
+					 			 			
+					 			 		<% end %>
 					 			 		 </td>	
 					 			 </tr>
 				 			 <%end%>	
@@ -166,6 +199,12 @@ $(document).ready(function() {
 </div>
 
 
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    
 
-				
-		
+   
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-modal.js"></script>
+  
+   
+				 
+  

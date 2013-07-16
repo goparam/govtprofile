@@ -8,4 +8,5 @@
 //= require ../bootstrap/prettify.js
 //= require_tree ../bootstrap
 //= require ../admin/dist_tal.js
-
+//= require ../admin/bootstrap.js
+//= require ../admin/bootstrap.min.js

@@ -13,11 +13,13 @@ class Api::V1::UsersController < ApplicationController
 	def login
 		print "----------------------params = #{params}------------------------"
 
-		if params[:phone].blank? || params[:password].blank?
+		if params[:phone].blank? || params[:password].blank?|| params[:phone_devse].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
 			user = User.find_for_database_authentication(:phone => params[:phone])
-		
+		if ! params[:phone].eql? params[:phone_devse]
+			render :json => {:success => false, :message => "Devise no and phon no are not same"}, :status => 400 and return
+		end
 		if !user
 			render :json => {:success => false, :massage => "Invalid Phone no or Password"}and return 
 		end
@@ -61,6 +63,39 @@ class Api::V1::UsersController < ApplicationController
 			user.reset_authentication_token!
 			render :json => {:success => true, :message => "Successfully signout!"} and return
 		end
+	end
+
+	def resetpassword
+		print "----------------------params = #{params}------------------------"
+		if params[:phone].blank? || params[:password].blank? || params[:new_password].blank?  || params[:phone_devse].blank? 
+			render :json => {:success => false, :message => "All fild mandatory "} and return
+		end
+		if ! params[:phone].eql? params[:phone_devse]
+			render :json => {:success => false, :message => "Devise no and phon no are not same"}, :status => 400 and return
+		end
+		
+		user = User.find_for_database_authentication(:phone => params[:phone])
+		
+		if !user
+			render :json => {:success => false, :massage => "Invalid Phone no or Password"}and return 
+		end
+
+		if user.valid_password?(params[:password]) 
+			
+				
+				user.password = params[:new_password]
+				if user.save
+					user.reset_authentication_token! 
+					render :json => {:success => true, :auth_token => user.authentication_token} and return
+				else
+					render :json => {:success => false, :message =>"#{user.errors.full_messages.join(', ')}!"}
+				end
+				
+			
+		else 
+			render :json => {:success => false, :massage => "Invalid Phone no or Password"}and return
+		end
+
 	end
 end
 
