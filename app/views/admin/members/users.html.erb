@@ -65,7 +65,7 @@ $(document).ready(function() {
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
-					 			 	<td><%= user.email%></td>
+					 			 	<td><%= user.mail%></td>
 					 			 	
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
@@ -91,7 +91,7 @@ $(document).ready(function() {
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
-					 			 	<td><%= user.email%></td>
+					 			 	<td><%= user.mail%></td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
 				 			 <%end%>	
@@ -116,7 +116,7 @@ $(document).ready(function() {
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
-					 			 	<td><%= user.email%></td>
+					 			 	<td><%= user.mail%></td>
 
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 </tr>
@@ -140,7 +140,7 @@ $(document).ready(function() {
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
-					 			 	<td><%= user.email%></td>
+					 			 	<td><%= user.mail%></td>
 					 			 	<td>
 					 			 		<% if user.approved==0%>Not approved
 					 			 		<% elsif user.approved==1%>Admin

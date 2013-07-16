@@ -24,6 +24,8 @@
 #  authentication_token   :string(255)
 #  phone                  :integer
 #  name                   :string(255)
+#  mail                   :string(255)
+#  imeino                 :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -34,12 +36,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone, :name 
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone, :name ,:imeino
   # attr_accessible :title, :body
   before_save :ensure_authentication_token 
-   validates :email, uniqueness: true, :allow_blank => true
+   validates :mail, uniqueness: true, :allow_blank => true
+   validates :imeino, uniqueness: true, :allow_blank => false
   validates :phone, uniqueness: true
   validates :email,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
+  validates :mail,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
+ 
   def email_required?
   false
 end

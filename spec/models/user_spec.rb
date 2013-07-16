@@ -24,6 +24,8 @@
 #  authentication_token   :string(255)
 #  phone                  :integer
 #  name                   :string(255)
+#  mail                   :string(255)
+#  imeino                 :string(255)
 #
 
 require 'spec_helper'

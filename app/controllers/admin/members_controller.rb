@@ -140,7 +140,7 @@ def approve
     @user=User.find(params[:id])
     Sendmail.registration_confirmation(@user).deliver
   if @user.update_attributes(:approved=>2)
-      flash[:success] = "#{@user.email} is successfully approved!"
+      flash[:success] = "#{@user.phone} is successfully approved!"
       
       redirect_to "/admin/users"      
     else
@@ -154,7 +154,7 @@ def decline
   authenticate_admin
   @user=User.find(params[:id])
   if @user.update_attributes(:approved=>3)
-      flash[:success] = "#{@user.email} is added to declined list!"
+      flash[:success] = "#{@user.phone} is added to declined list!"
       
       redirect_to "/admin/users"      
     else
