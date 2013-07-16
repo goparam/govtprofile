@@ -180,6 +180,10 @@ def userdestroy
     print "----------------------params = #{params}------------------------"
     user = User.find_for_database_authentication(:phone => params[:user][:phone])
     if user
+      if params[:user][:password].length < 8
+        flash[:error] = "Password length must be at list 8 char"
+        redirect_to "/admin/users" and return 
+      end
       if params[:user][:password].eql? params[:user][:password_confirmation]       
         user.password = params[:user][:password]
         if user.save

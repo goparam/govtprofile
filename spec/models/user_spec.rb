@@ -2,20 +2,28 @@
 #
 # Table name: users
 #
-#  created_at             :datetime         not null
-#  current_sign_in_at     :datetime
-#  current_sign_in_ip     :string(255)
-#  email                  :string(255)      default(""), not null
-#  encrypted_password     :string(255)      default(""), not null
 #  id                     :integer          not null, primary key
-#  last_sign_in_at        :datetime
-#  last_sign_in_ip        :string(255)
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string(255)
+#  email                  :string(255)      default("")
+#  encrypted_password     :string(255)      default(""), not null
 #  role                   :string(255)      default("User")
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
 #  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  photo_file_name        :string(255)
+#  photo_content_type     :string(255)
+#  photo_file_size        :integer
+#  photo_updated_at       :datetime
+#  approved               :integer          default(0), not null
+#  authentication_token   :string(255)
+#  phone                  :integer
+#  name                   :string(255)
 #
 
 require 'spec_helper'

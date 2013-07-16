@@ -43,6 +43,10 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user][:phone].blank? || params[:user][:password].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
+		 if params[:user][:password].length < 8
+        
+        	render :json => {:success => false, :message => "Password length must be at list 8 char"} and return
+        end
 		@user=User.new(params[:user])
 		if @user.save 
 			
