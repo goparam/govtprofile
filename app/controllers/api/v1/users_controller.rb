@@ -49,6 +49,7 @@ class Api::V1::UsersController < ApplicationController
 		@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		@user.email="#{params[:user][:phone]}@gmail.com"
+			print "----------------------params = #{params}------------------------"
 		if @user.save 
 			
 			render :json => {:success => true, :message => "Successfully registered!"}
@@ -88,8 +89,8 @@ class Api::V1::UsersController < ApplicationController
 				
 				user.password = params[:new_password]
 				if user.save
-					user.reset_authentication_token! 
-					render :json => {:success => true, :auth_token => user.authentication_token} and return
+					
+					render :json => {:success => true, :message =>"Reset Password Successfully", :auth_token => user.authentication_token} and return
 				else
 					render :json => {:success => false, :message =>"#{user.errors.full_messages.join(', ')}!"}
 				end
