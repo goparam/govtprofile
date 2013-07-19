@@ -1,5 +1,5 @@
 class Sendmail < ActionMailer::Base
-  default from: "harikesh.kolekar@definelabs.com"
+  default from: "mahasuvidha2013@gmail.com"
   
 
   def registration_confirmation(user)

@@ -43,8 +43,8 @@ DepartmentPhonebookRails::Application.configure do
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => "gmail.com",
-  :user_name            => 'harikesh.kolekar@definelabs.com',
-  :password             => 'test1234!@#$',
+  :user_name            => 'mahasuvidha2013@gmail.com',
+  :password             => 'dydeolatur',
   :authentication       => 'login',
   :enable_starttls_auto => true  }
   
