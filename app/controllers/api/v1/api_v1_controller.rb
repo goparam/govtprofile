@@ -3,6 +3,7 @@ before_filter :valid_token
 	
 	private 
 		def valid_token
+			print"params=#{params}"
 			if params[:auth_token].blank?
 				render :json => {:status => "Error", :message => "Auth token should not be blank!" } and return
 			else
