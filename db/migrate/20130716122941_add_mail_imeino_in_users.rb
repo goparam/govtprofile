@@ -1,6 +1,6 @@
 class AddMailImeinoInUsers < ActiveRecord::Migration
    def change
-  	add_column :users, :designation, :string
-  	add_column :users, :posting_district, :string
+  	add_column :users, :mail, :string
+  	add_column :users, :imeino, :string
   end
 end
