@@ -59,14 +59,17 @@ $(document).ready(function() {
 				 			 	<th>Name</th>
 				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
-				 			 	<th></th>
+				 			 	<th>Posting District</th>
+				 			 	<th>Status</th>
+				 			 	<th>Action</th>
 				 			 </tr>
 				 			 <%  @users_not_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
-					 			 	
+					 			 	<td><%= user.designation %></td>
+					 			 	<td><%= user.posting_district %></td>
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
@@ -85,13 +88,17 @@ $(document).ready(function() {
 				 			 	<th>Name</th>
 				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
-				 			 	<th></th>
+				 			 	<th>Designation</th>
+				 			 	<th>Posting District</th>
+				 			 	<th>Action</th>
 				 			 </tr>
 				 			 <%  @users_approved.each do |user| %> 
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
+					 			 	<td><%= user.designation %></td>
+					 			 	<td><%= user.posting_district %></td>
 					 			 	<td><a href='/admin/decline/<%= user.id%>'>Decline</a> </td>
 					 			 </tr>
 				 			 <%end%>	
@@ -110,13 +117,17 @@ $(document).ready(function() {
 				 			 	<th>Name</th>
 				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
-				 			 	<th></th>
+				 			 	<th>Designation</th>
+				 			 	<th>Posting District</th>
+				 			 	<th>Action</th>
 				 			 </tr>
 				 			 <%  @users_declined.each do |user| %> 
 					 			 <tr>
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
+					 			 	<td><%= user.designation %></td>
+					 			 	<td><%= user.posting_district %></td>
 
 					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
 					 			 </tr>
@@ -133,6 +144,8 @@ $(document).ready(function() {
 				 			 	<th>Name</th>
 				 			 	<th>Phone</th>
 				 			 	<th>Email</th>
+				 			 	<th>Designation</th>
+				 			 	<th>Posting District</th>
 				 			 	<th>Status</th>
 				 			 	<th>Action</th>
 				 			 </tr>
@@ -141,6 +154,8 @@ $(document).ready(function() {
 					 			 	<td><%= user.name%></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
+					 			 	<td><%= user.designation %></td>
+					 			 	<td><%= user.posting_district %></td>
 					 			 	<td>
 					 			 		<% if user.approved==0%>Not approved
 					 			 		<% elsif user.approved==1%>Admin
