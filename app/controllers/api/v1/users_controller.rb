@@ -139,8 +139,8 @@ class Api::V1::UsersController < ApplicationController
 	end
 	def show 
 		
-		@user=Member.find[:id].user
-		if !@use.nil? || @user.blank?
+		@user=Member.find(params[:id]).user
+		if !@user.nil?
 			render :json => {:success => true, :log=>"#{@user.longitude}", :lat=>"#{@user.latitude}"} and return
 		else
 			render :json => {:success => false, :message => "User does not found"} and return
