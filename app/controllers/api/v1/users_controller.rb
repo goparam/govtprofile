@@ -123,7 +123,9 @@ class Api::V1::UsersController < ApplicationController
 	end
 	def update
 		if params[:auth_token].blank? || params[:auth_token].nil?
+
 			render :json => {:success => true, :message => "Auth token must be required!"} and return
+		end
 		user = User.find_by_authentication_token(params[:auth_token])
 
 		if user.nil?
