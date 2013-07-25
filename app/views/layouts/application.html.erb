@@ -1,3 +1,12 @@
-
+<html>
+<head>
+  <title>Department Phonebook</title>
+  
+  	<%= stylesheet_link_tag 'gmaps4rails' %>
+	<%= javascript_include_tag  "admin/admin" %>
+	<%= yield :scripts %>
+	<%= csrf_meta_tags %>
+</head>
+<body >
 <%= yield %>
 

@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone, :name ,:imeino, :designation, :posting_district
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone, :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps
   # attr_accessible :title, :body
   before_save :ensure_authentication_token 
    validates :mail, uniqueness: true, :allow_blank => true
@@ -49,4 +49,11 @@ class User < ActiveRecord::Base
   false
 end
 
+acts_as_gmappable
+
+def gmaps4rails_address
+#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+  "hellow" 
+end
+belongs_to :member
 end

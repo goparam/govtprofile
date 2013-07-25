@@ -10,3 +10,4 @@
 //= require ../admin/dist_tal.js
 //= require ../admin/bootstrap.js
 //= require ../admin/bootstrap.min.js
+//= require_tree ../gmaps4rails

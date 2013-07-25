@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723135457) do
+ActiveRecord::Schema.define(:version => 20130724155930) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -21,25 +21,17 @@ ActiveRecord::Schema.define(:version => 20130723135457) do
 
   create_table "members", :force => true do |t|
     t.date     "dob"
-    t.string   "photo"
     t.date     "joining_date"
     t.date     "curront_loction_joning_date"
     t.string   "email"
     t.string   "phones"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "is_deleted",                  :default => false
-  end
-
-  create_table "phones", :force => true do |t|
-    t.string   "phone_no"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "member_id"
+    t.integer  "is_deleted",                  :default => 0
   end
 
   create_table "profiles", :force => true do |t|
@@ -50,22 +42,11 @@ ActiveRecord::Schema.define(:version => 20130723135457) do
     t.string   "district"
     t.string   "city"
     t.string   "qualifications"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "member_id"
     t.string   "language"
-    t.string   "current_post_file_name"
-    t.string   "current_post_content_type"
-    t.integer  "current_post_file_size"
-    t.datetime "current_post_updated_at"
     t.string   "current_post"
-  end
-
-  create_table "qualifications", :force => true do |t|
-    t.string   "qualification"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "member_id"
   end
 
   create_table "talukas", :force => true do |t|
@@ -75,13 +56,8 @@ ActiveRecord::Schema.define(:version => 20130723135457) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "updates", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => ""
+    t.string   "email",                  :default => "",     :null => false
     t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "role",                   :default => "User"
     t.string   "reset_password_token"
@@ -94,16 +70,19 @@ ActiveRecord::Schema.define(:version => 20130723135457) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.integer  "approved",               :default => 0,      :null => false
     t.string   "authentication_token"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "name"
     t.string   "mail"
     t.string   "imeino"
+    t.string   "designation"
+    t.string   "posting_district"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.integer  "member_id"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

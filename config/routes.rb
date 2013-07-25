@@ -16,6 +16,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		get 'decline/:id' => 'members#decline'
 		get 'edit/:id' => 'members#edituser'
 		post 'edit' => 'members#updateuser'
+		get 'map/:id' => 'members#showmap'
 		resources :members
 
 		resources :profiles
@@ -31,6 +32,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 				post 'register', :on => :collection
 				post 'logout', :on => :collection
 				post 'resetpassword', :on => :collection 
+				post 'update', :on => :collection 
 			end
 		end
 	end

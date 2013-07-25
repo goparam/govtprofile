@@ -138,18 +138,39 @@ def approve
 
 
     @user=User.find(params[:id])
-    Sendmail.registration_confirmation(@user).deliver
-  if @user.update_attributes(:approved=>2)
-      flash[:success] = "#{@user.phone} is successfully approved!"
-      
-      redirect_to "/admin/users"      
+    if @user.member.nil?
+          @phones = []
+          @phones << @user.phone
+          @member=Member.new
+          @member.phones=@phones.to_json
+          @member.email=@user.mail
+          @member.profiles << Profile.new(:language=>"E", :name=>@user.name + " " + @user.last_name, :designation=>@user.designation, :current_workong_district=>@user.posting_district)
+          @member.profiles << Profile.new(:language=>"M")
+        
+          if @member.save && @user.update_attributes(:approved=>2, :member_id=>@member.id)
+            Sendmail.registration_confirmation(@user).deliver
+            flash[:success] = "#{@user.phone} is successfully approved!"
+            
+            redirect_to "/admin/users"      
+          else
+            flash[:error] = "#{@user.errors.full_messages}!"
+            redirect_to "/admin/users"      
+          end
     else
-      flash[:error] = "#{@user.errors.full_messages}!"
-      redirect_to "/admin/users"      
+      if @user.update_attributes(:approved=>2)
+          Sendmail.registration_confirmation(@user).deliver
+          flash[:success] = "#{@user.phone} is successfully approved!"
+          
+          redirect_to "/admin/users"      
+        else
+          flash[:error] = "#{@user.errors.full_messages}!"
+          redirect_to "/admin/users"      
+        end
     end
   
 
 end
+
 def decline
   authenticate_admin
   @user=User.find(params[:id])
@@ -203,4 +224,9 @@ def userdestroy
     redirect_to "/admin/users" 
   end
 
+
+def showmap
+    @json = User.find(params[:id]).to_gmaps4rails rescue ""
+   render :layout => "application"
+  end
 end
