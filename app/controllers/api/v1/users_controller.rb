@@ -121,7 +121,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 
 	end
-	def update
+	def change
 		if params[:auth_token].blank? || params[:auth_token].nil?
 
 			render :json => {:success => true, :message => "Auth token must be required!"} and return

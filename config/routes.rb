@@ -32,8 +32,8 @@ DepartmentPhonebookRails::Application.routes.draw do
 				post 'register', :on => :collection
 				post 'logout', :on => :collection
 				post 'resetpassword', :on => :collection 
-				post 'update', :on => :collection 
-				
+				post 'change', :on => :collection 
+
 
 			end
 		end
