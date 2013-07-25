@@ -139,8 +139,8 @@ def approve
 
     @user=User.find(params[:id])
     if @user.member.nil?
-          @phones = []
-          @phones << @user.phone
+          @phones = Hash["0",@user.phone]
+          
           @member=Member.new
           @member.phones=@phones.to_json
           @member.email=@user.mail
@@ -148,6 +148,7 @@ def approve
           @member.profiles << Profile.new(:language=>"M")
         
           if @member.save && @user.update_attributes(:approved=>2, :member_id=>@member.id)
+            expire_action :action => :index
             Sendmail.registration_confirmation(@user).deliver
             flash[:success] = "#{@user.phone} is successfully approved!"
             
