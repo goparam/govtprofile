@@ -122,6 +122,8 @@ class Api::V1::UsersController < ApplicationController
 
 	end
 	def update
+		if params[:auth_token].blank? || params[:auth_token].nil?
+			render :json => {:success => true, :message => "Auth token must be required!"} and return
 		user = User.find_by_authentication_token(params[:auth_token])
 
 		if user.nil?
@@ -132,6 +134,15 @@ class Api::V1::UsersController < ApplicationController
 		end
 
 		
+	end
+	def show 
+		
+		@user=Member.find[:id].user
+		if !@use.nil? || @user.blank?
+			render :json => {:success => true, :log=>"#{@user.longitude}", :lat=>"#{@user.latitude}"} and return
+		else
+			render :json => {:success => false, :message => "User does not found"} and return
+		end
 	end
 end
 

@@ -33,6 +33,8 @@ DepartmentPhonebookRails::Application.routes.draw do
 				post 'logout', :on => :collection
 				post 'resetpassword', :on => :collection 
 				post 'update', :on => :collection 
+				
+
 			end
 		end
 	end
