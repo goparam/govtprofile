@@ -1,0 +1,62 @@
+<div class="modal hide" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>New Notification</h3>
+  </div>
+  <div class="modal-body" style="margin-left:30px;">
+   <% @notification=Notification.new %>
+   <%= form_for @notification, :html => { :multipart => true }, :url => admin_notifications_path do |c|%>
+   <%=c.label :title %>
+   	<%= c.text_field :title, :class => "height35 padding5 span5", :style=>"width:90%" %>
+   	<br>
+   	<br>
+   	<%= c.label :description %>
+   	<%= c.text_area :description, :rows => 10, :cols => 5,:class => "height35 padding5 span5", :style=>"height:200px; width:90%;" %>
+   	<input type="hidden" value="ADMIN" name="notification[notificationType]"><br>
+	<%= c.submit "Create" %>
+   <% end %>
+  </div>
+  
+</div>
+
+<div class="row">
+			<div class="span6">
+				<h1><%= @title %></h1>
+				
+			</div>
+			<div class="span6" align="right">
+				<a class="btn" data-toggle="modal" href="#myModal" >New Notification</a>
+
+
+				
+				
+			</div>
+		</div>
+		
+
+<br>
+
+<div align="center">
+			<%= will_paginate @grs %>
+		</div>
+		<table class= "table" id="notifications_table">
+				<tr>
+					<th class="span1">Id
+						
+					<th class="span2">Title
+					<th class="span6">Description
+					<th class="span2">Type
+					
+					<th class="span2">Actions
+				</tr>	
+			<% @notifications.each do |c| %>
+				<tr style="font-size: 12px;" id="row<%= c.id %>"><td><%= c.id %>
+					<td><%= c.title rescue "error"%>
+					<td><%= c.description rescue "error"%>					
+					<td><%= c.notificationType rescue "" %>
+					<td><%= link_to image_tag("/assets/delete.png"), "/admin/notifications/#{c.id}", :method => :delete, :class =>"delete_#{c.id}", :remote => :true, :confirm => 'Are you sure?' %> &nbsp
+						
+				</tr>
+			<% end %>
+		</table>
+		<%= will_paginate @grs %>

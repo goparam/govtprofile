@@ -9,5 +9,7 @@
 //= require_tree ../bootstrap
 //= require ../admin/dist_tal.js
 //= require ../admin/bootstrap.js
-//= require ../admin/bootstrap.min.js
+//= require ../admin/bootstrap.min.js 
+//= require ../bootstrap/bootstrap-modal.js
 //= require_tree ../gmaps4rails
+//= require_tree ../bs

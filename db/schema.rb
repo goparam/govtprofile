@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724155930) do
+ActiveRecord::Schema.define(:version => 20130803131556) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20130724155930) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "is_deleted",                  :default => 0
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "notificationType"
   end
 
   create_table "profiles", :force => true do |t|

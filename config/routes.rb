@@ -18,6 +18,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		post 'edit' => 'members#updateuser'
 		get 'map/:id' => 'members#showmap'
 		resources :members
+		resources :notifications
 
 		resources :profiles
 	end
@@ -26,6 +27,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		namespace :v1 do 
 			resources :designations
 			resources :members
+			resources :notifications
 			
 			resources :users do
 				post 'login', :on => :collection

@@ -4,7 +4,6 @@
 #
 #  id                          :integer          not null, primary key
 #  dob                         :date
-#  photo                       :string(255)
 #  joining_date                :date
 #  curront_loction_joning_date :date
 #  email                       :string(255)
@@ -15,7 +14,7 @@
 #  photo_content_type          :string(255)
 #  photo_file_size             :integer
 #  photo_updated_at            :datetime
-#  is_deleted                  :boolean          default(FALSE)
+#  is_deleted                  :integer          default(0)
 #
 
 require 'spec_helper'

@@ -19,7 +19,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'newrelic_rpm'
 gem "rabl", "~> 0.8.0"
 gem "mime-types"
-gem 'will_paginate', '~> 3.0'
+
 gem "mail", " 2.4.4"
 
 group :production do
@@ -40,3 +40,4 @@ end
 
 gem 'jquery-rails'
 gem 'gmaps4rails'
+gem 'will_paginate', '~> 3.0'
