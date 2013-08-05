@@ -228,6 +228,6 @@ def userdestroy
 
 def showmap
     @json = User.find(params[:id]).to_gmaps4rails rescue ""
-   render :layout => "application"
+   #render :layout => "application"
   end
 end
