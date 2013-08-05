@@ -41,3 +41,4 @@ end
 gem 'jquery-rails'
 gem 'gmaps4rails'
 gem 'will_paginate', '~> 3.0'
+gem 'urbanairship', :git => 'https://github.com/groupon/urbanairship'
