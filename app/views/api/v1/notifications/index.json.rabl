@@ -1,2 +1,2 @@
 collection @notifications
-	attributes   :title, :description, :notificationType
+	attributes   :id, :title, :description, :notificationType
