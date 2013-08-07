@@ -225,7 +225,7 @@
 					$('#profile_E_current_working_location').html(options)
 				else
 					$('#profile_E_current_working_location').empty()
-				$('#profile_E_current_working_location option:selected').text("NA")
+				
 	</script>
 	<script type="text/coffeescript">
 		jQuery -> 
@@ -237,8 +237,8 @@
 				if options
 					$('#profile_E_city').html(options)
 				else
-					$('#profile_E_city').empty().parent().show()
-				$('#profile_E_city option:selected').text("NA")
+					$('#profile_E_city').empty()
+				
 	</script>
 	<script type="text/javascript">
 	document.getElementById("profile_E_city").disabled=true;
