@@ -132,7 +132,7 @@ $(document).ready(function() {
 					 			 	<td><%= user.designation %></td>
 					 			 	<td><%= user.posting_district %></td>
 
-					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> </td>
+					 			 	<td><a href='/admin/approve/<%= user.id%>'>Approve</a> &nbsp; <%= link_to image_tag("/assets/delete.png"), "/admin/users/#{user.id}", :method => :get,  :confirm => 'Are you sure want to delete user?' %></td>
 					 			 </tr>
 				 			 <%end%>	
 				 		</table>
@@ -167,7 +167,7 @@ $(document).ready(function() {
 					 			 	</td>
 					 			 	<td> 
 					 			 		<% if user.approved!=1 %>
-					 			 			<%= link_to image_tag("/assets/delete.png"), "/admin/users/#{user.id}", :method => :get,  :confirm => 'Are you sure want to delete user?' %>
+					 			 			
 					 			 		
 			 <div id="myModal<%= user.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
@@ -178,6 +178,7 @@ $(document).ready(function() {
               <% @user=User.find(user.id) %>
 
               <% phone= user.phone%>
+              	<b align="center">Password : <%= @user.password %></b>
 				<%= form_for @user, :html => { :multipart => true ,:method => :post}, :url =>"/admin/edit/" do |f|%>
  				<input type="hidden" value="<%= user.phone %>" name="user[phone]">
  				
