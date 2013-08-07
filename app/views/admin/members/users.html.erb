@@ -178,7 +178,6 @@ $(document).ready(function() {
               <% @user=User.find(user.id) %>
 
               <% phone= user.phone%>
-              	<b align="center">Password : <%= @user.password %></b>
 				<%= form_for @user, :html => { :multipart => true ,:method => :post}, :url =>"/admin/edit/" do |f|%>
  				<input type="hidden" value="<%= user.phone %>" name="user[phone]">
  				
