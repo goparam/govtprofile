@@ -84,9 +84,18 @@ class Admin::MembersController < Admin::AdminController
       @profile_E['qualifications']=params[:qualification_E].to_json#.inspect
       @profile_E['language']="E"
       @profile_E['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
-      @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
+      if params[:profile_E][:current_working_location].blank? 
+        @profile_E['current_working_location']="NA"
+      else 
+        @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_workong_district])).name
+      end
+      
       @profile_E['district']=(District.find(params[:profile_E][:district])).name
-      @profile_E['city']=(Taluka.find(params[:profile_E][:city])).name
+      if params[:profile_E][:city].blank? 
+        @profile_E['city']="NA"
+      else 
+        @profile_E['city']=(Taluka.find(params[:profile_E][:city])).name
+      end
       
       @member_param = params[:member]
       @member_param['phones']=params[:phone].to_json#.inspect
