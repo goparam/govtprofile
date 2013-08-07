@@ -42,7 +42,6 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		
-        end
 
 		@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
