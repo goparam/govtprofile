@@ -244,6 +244,10 @@
 	function enable( id)
 	{
 		document.getElementById(id).disabled=false;
+		$( function() {
+    	$("#id option:selected").attr("NA", "selected");
+		});
+
 	}
 	</script>
 	
