@@ -136,7 +136,7 @@
 			
 
 			<%= c.label :home_district %>
-			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {:selected => "38"}, { :class=>"height35 padding5 span5" }) %>
+			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {:selected => "38"}, { :class=>"height35 padding5 span5", :onchange =>"enable('profile_E_city')" }) %>
 			
 			<br><br>
 			
@@ -164,14 +164,14 @@
 
 			<%= c.label :posting_district %>
 			
-			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, {:selected => "38"}, { :class=>"height35 padding5 span5" }) %>
+			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, {:selected => "38"}, { :class=>"height35 padding5 span5", :onchange =>"enable('profile_E_current_working_location')" }) %>
 
 			
 			<br><br>
 			
 
 			<%= c.label :posting_taluka %>
-			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, { :include_blank => true}, { :class=>"height35 padding5 span5" })%>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, { :include_blank => true, :prompt =>"NA"}, { :class=>"height35 padding5 span5" })%>
 			
 			<br><br>
 
@@ -232,8 +232,18 @@
 			$('#profile_E_district').change ->
 				dist = $('#profile_E_district :selected').text()
 				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+				$('#profile_E_city').parent().show()
 				if options
 					$('#profile_E_city').html(options)
 				else
-					$('#profile_E_city').empty()
+					$('#profile_E_city').empty().parent().show()
 	</script>
+	<script type="text/javascript">
+	document.getElementById("profile_E_city").disabled=true;
+	document.getElementById("profile_E_current_working_location").disabled=true;
+	function enable( id)
+	{
+		document.getElementById(id).disabled=false;
+	}
+	</script>
+	
