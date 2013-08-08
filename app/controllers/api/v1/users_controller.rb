@@ -138,7 +138,7 @@ class Api::V1::UsersController < ApplicationController
 		
 		@user=Member.find(params[:id]).user
 		if !@user.nil?
-			render :json => {:success => true, :log=>"#{@user.longitude}", :lat=>"#{@user.latitude}"} and return
+			render :json => {:success => true, :log=>"#{@user.longitude}", :lat=>"#{@user.latitude}", :location_updation_time=>"#{@user.location_updation_time.strftime("%d/%m/%Y %H:%M:%S") rescue ""}"} and return
 		else
 			render :json => {:success => false, :message => "User does not found"} and return
 		end
