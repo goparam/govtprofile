@@ -233,7 +233,7 @@
 			$('#profile_E_district').change ->
 				dist = $('#profile_E_district :selected').text()
 				options = $(talukas).filter("optgroup[label='#{dist}']").html()
-				$('#profile_E_city').parent().show()
+				$('#profile_E_city').parent().show() if selected is "NA"
 				if options
 					$('#profile_E_city').html(options)
 				else

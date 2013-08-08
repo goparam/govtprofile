@@ -87,7 +87,7 @@ class Admin::MembersController < Admin::AdminController
       if params[:profile_E][:current_working_location].blank? 
         @profile_E['current_working_location']="NA"
       else 
-        @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_workong_district])).name
+        @profile_E['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
       end
       
       @profile_E['district']=(District.find(params[:profile_E][:district])).name
