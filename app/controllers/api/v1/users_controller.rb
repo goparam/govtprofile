@@ -46,18 +46,19 @@ class Api::V1::UsersController < ApplicationController
 		@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		@user.email="#{params[:user][:phone]}@gmail.com"
-			print "----------------------params = #{params}------------------------"
+			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
 		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
         search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
         search3 = []
         search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
         search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
-        
+        print "---------------hellow after serch------------------\n"
+
         @member1 = Member.joins(:profiles).where(search1).uniq
         @member2 = Member.joins(:profiles).where(search2).uniq
         @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
-    
+    	print "---------------after member find------------------\n"
         
         if 	@member1.length > 0
         	@user.member_id=@member1[0].id
