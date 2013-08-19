@@ -129,9 +129,14 @@ class Api::V1::UsersController < ApplicationController
 		if user.nil?
 			render :json => {:success => false, :message => "Invalid token!"} and return
 		else
-			user.update_attributes(params[:user])
-			render :json => {:success => true, :message => "Successfully Updated!"} and return
+			if user.update_attributes(params[:user])
+			
+			 	render :json => {:success => true, :message => "Successfully Updated!"} and return
+			else
+			 	render :json => {:success => false, :message => "#{user.errors.full_messages.join(', ')}!"} and return
+			end 
 		end
+
 
 		
 	end

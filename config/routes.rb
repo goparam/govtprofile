@@ -17,6 +17,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		get 'edit/:id' => 'members#edituser'
 		post 'edit' => 'members#updateuser'
 		get 'map/:id' => 'members#showmap'
+		get 'temp' => 'members#temp'
 		resources :members
 		resources :notifications
 
