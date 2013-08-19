@@ -237,19 +237,6 @@ def showmap
   end
 
 
-  def temp
-    @jsons=Member.all
-    @jsons.each do |json|
-
-      f=json.phones
-       f2=f.gsub!('o', '0')
-        if json.update_attributes(:phones=>f2)
-           print "------------hellow======"
-        else
-           render :json => {:success => false, :message => "You have signed up successfully but your account has not been approved by your administrator yet "}and return
-        end
-    end
-   render :json => {:success => true, :message => "You have signed up successfully but your account has not been approved by your administrator yet "}and return
-  end
+  
 end
 
