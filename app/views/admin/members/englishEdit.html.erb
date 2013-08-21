@@ -172,13 +172,13 @@
 			<br><br>
 
 			<%= c.label :home_district %>
-			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {}, { :class=>"height35 padding5 span5" }) %>
+			<%= collection_select("profile_E", :district, District.order(:name), :id, :name, {:include_blank => "NA"}, { :class=>"height35 padding5 span5" }) %>
 
 			
 			<br><br>
 
 			<%= c.label :home_taluka %>
-			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
+			<%= grouped_collection_select("profile_E", :city, District.order(:name), :talukas, :name, :id, :name, {:prompt => "NA"}, { :class=>"height35 padding5 span5" })%>
 
 			
 			<br><br>
@@ -222,11 +222,11 @@
 
 			
 			<%= c.label :Posting_Dist %>
-			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, { }, { :class=>"height35 padding5 span5" }) %>
+			<%= collection_select("profile_E", :current_workong_district, District.order(:name), :id, :name, {:include_blank => "NA" }, { :class=>"height35 padding5 span5" }) %>
 			<br><br>
 
 			<%= c.label :Posting_Taluka %>
-			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, {}, { :class=>"height35 padding5 span5" })%>
+			<%= grouped_collection_select("profile_E", :current_working_location, District.order(:name), :talukas, :name, :id, :name, {:prompt => "NA"}, { :class=>"height35 padding5 span5" })%>
 			
 
 			
@@ -284,6 +284,7 @@
 			$('#profile_E_district').change ->
 				dist = $('#profile_E_district :selected').text()
 				options = $(talukas).filter("optgroup[label='#{dist}']").html()
+				 options = options + '<option value selected="selected">NA</option>'
 				if options
 					$('#profile_E_city').html(options)
 				else
@@ -297,7 +298,7 @@
 			$('#profile_E_current_workong_district').change ->
 				dist = $('#profile_E_current_workong_district :selected').text()
 				options = $(talukas).filter("optgroup[label='#{dist}']").html()
-
+				 options = options + '<option value selected="selected">NA</option>'
 				if options
 					$('#profile_E_current_working_location').html(options)
 				else
