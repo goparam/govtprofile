@@ -1,3 +1,9 @@
-<div align="center">
-<%= gmaps4rails(@json) %>
-</div>
+<% if @json.blank? || @json.nil? %>
+	<script type="text/javascript">
+		alert("Member Location not found");
+	</script>
+<% else %> 
+	<div align="center">
+	<%= gmaps4rails(@json) %>
+	</div>
+<% end %>

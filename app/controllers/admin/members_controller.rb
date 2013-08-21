@@ -139,7 +139,7 @@ def users
    authenticate_admin
    @users=User.all
    @users_approved=User.find_all_by_approved(2)
-    @users_not_approved=User.find_all_by_approved(0)
+    @users_not_approved=User.order("created_at desc").find_all_by_approved(0)
     @users_declined=User.find_all_by_approved(3)
 end
 def approve
@@ -232,7 +232,7 @@ def userdestroy
 
 
 def showmap
-    @json = User.find(params[:id]).to_gmaps4rails rescue ""
+    @json = User.find(params[:id]).member.user.to_gmaps4rails rescue ""
    #render :layout => "application"
   end
 
