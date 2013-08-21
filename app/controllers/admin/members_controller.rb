@@ -58,10 +58,10 @@ class Admin::MembersController < Admin::AdminController
      @member_param = params[:member]
        @member_param['phones']=params[:phone].to_json#.inspect
 
-       @profile_E_param['district']=(District.find(params[:profile_E][:district])).name
-       @profile_E_param['city']=(Taluka.find(params[:profile_E][:city])).name
-       @profile_E_param['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name
-       @profile_E_param['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name
+       @profile_E_param['district']=(District.find(params[:profile_E][:district])).name rescue "NA"
+       @profile_E_param['city']=(Taluka.find(params[:profile_E][:city])).name rescue "NA"
+       @profile_E_param['current_workong_district']=(District.find(params[:profile_E][:current_workong_district])).name rescue "NA"
+       @profile_E_param['current_working_location']=(Taluka.find(params[:profile_E][:current_working_location])).name rescue "NA"
      
 
     if @member.update_attributes(@member_param) && @profile_E.update_attributes(@profile_E_param) && @profile_M.update_attributes(@profile_M_param)
