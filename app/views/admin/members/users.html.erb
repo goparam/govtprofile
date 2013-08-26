@@ -67,7 +67,7 @@ $(document).ready(function() {
 				 			 <%  @users_not_approved.each do |user| %> 
 					 			 <tr>
 					 			 	
-					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name%></a></td>
+					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name rescue ""%> <%= user.last_name rescue"" %></a></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
 					 			 	<td><%= user.designation %></td>
@@ -97,7 +97,7 @@ $(document).ready(function() {
 				 			 </tr>
 				 			 <%  @users_approved.each do |user| %> 
 					 			 <tr >
-					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name%></a></td>
+					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name rescue ""%> <%= user.last_name rescue"" %> </a></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
 					 			 	<td><%= user.designation %></td>
@@ -126,7 +126,7 @@ $(document).ready(function() {
 				 			 </tr>
 				 			 <%  @users_declined.each do |user| %> 
 					 			 <tr>
-					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name%></a></td>
+					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name rescue ""%> <%= user.last_name rescue"" %></a></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
 					 			 	<td><%= user.designation %></td>
@@ -154,7 +154,7 @@ $(document).ready(function() {
 				 			 </tr>
 				 			 <%  @users.each do |user| %> 
 					 			 <tr>
-					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name%></a></td>
+					 			 	<td><a href="/admin/map/<%= user.id%>"><%= user.name rescue ""%> <%= user.last_name rescue"" %></a></td>
 					 			 	<td><%= user.phone%></td>
 					 			 	<td><%= user.mail%></td>
 					 			 	<td><%= user.designation %></td>
