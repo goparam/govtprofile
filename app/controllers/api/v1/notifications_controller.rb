@@ -5,7 +5,7 @@ class Api::V1::NotificationsController < ApplicationController
 	def show
 		@notification = Notification.find(params[:id]) rescue ""
 		if !@notification.nil? && !@notification.blank?
-			render :json => {:title => @notification.title, :description => @notification.description, :notificationType=>@notification.notificationType}and return 
+			render :json => {:title => @notification.title, :description => @notification.description, :notificationType=>@notification.notificationType, :created_at=>@notification.created_at}and return 
 		else
 			render :json => {:success=>false, :message=>"notification does not found"}
 		end
