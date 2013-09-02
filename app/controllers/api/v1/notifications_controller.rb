@@ -1,6 +1,7 @@
 class Api::V1::NotificationsController < ApplicationController
 	def index
-		@notifications = Notification.order("created_at desc").page(params[:page]).per_page(10)
+		@notifications = Notification.order("created_at desc").page(params[:page]).per_page(10) rescue []
+		@total=@notifications.length 
 	end
 	def show
 		@notification = Notification.find(params[:id]) rescue ""
