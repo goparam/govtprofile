@@ -85,16 +85,17 @@ def register
 			render :json => {:success => false, :message => "User is empty"} and return
 		end
 		if params[:user][:phone1].blank? || params[:user][:imeino].nil?||params[:user][:imeino].blank?
+			
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		
 
 		@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
-		@user.email="#{params[:user][:phone]}@gmail.com"
+		@user.email="#{params[:user][:phone1]}@gmail.com"
 			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
-		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
+		search1 = "lower(members.phones) like '%#{params[:user][:phone1]}%'" unless params[:user][:phone1].nil? || params[:user][:phone1].blank?
         search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
         search3 = []
         search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
