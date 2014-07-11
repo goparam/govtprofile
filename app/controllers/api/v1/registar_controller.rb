@@ -2,7 +2,7 @@ class Api::V1::RegistarController <  ActionController::Base
 
 	def create
 
-		if params[:user][:email].blank? || params[:user][:password].blank?|| params[:user][:password_confirmation].blank?
+		if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
 		@user=User.new(params[:user])
