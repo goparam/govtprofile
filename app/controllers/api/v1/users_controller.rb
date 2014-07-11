@@ -34,6 +34,7 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Invalid Phone no or Password or imei no"}and return
 		end
 	end
+	
 	def register
 		print "----------------------params = #{params}------------------------"
 		if params[:user].blank?
