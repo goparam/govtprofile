@@ -84,7 +84,7 @@ def register
 		if params[:user].blank?
 			render :json => {:success => false, :message => "User is empty"} and return
 		end
-		if params[:user][:phone].blank? || params[:user][:imeino].nil?||params[:user][:imeino].blank?
+		if params[:user][:phone1].blank? || params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		
