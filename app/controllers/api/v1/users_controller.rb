@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-	# skip_before_filter :verify_authenticity_token, :only => [:register]
+	 skip_before_filter :verify_authenticity_token, :only => [:register]
 	def destroy
 		user=user.find(params[:id])
 		if user.destroy
@@ -35,7 +35,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 	end
 	
-	
+
 	# def register
 	# 		print "----------------------params = #{params}------------------------"
 	# 	if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
@@ -54,7 +54,7 @@ class Api::V1::UsersController < ApplicationController
 
 
 
-	
+
 	def register
 		print "----------------------params = #{params}------------------------"
 		if params[:user].blank?
