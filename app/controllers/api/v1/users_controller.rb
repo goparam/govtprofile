@@ -46,29 +46,29 @@ class Api::V1::UsersController < ApplicationController
 		
 
 		@user=User.new(params[:user])
-		@user.mail=params[:user][:email]
-		@user.email="#{params[:user][:phone]}@gmail.com"
-			print "----------------------params = #{params}  hello--before search----------------------\n"
+		# @user.mail=params[:user][:email]
+		# @user.email="#{params[:user][:phone]}@gmail.com"
+		# 	print "----------------------params = #{params}  hello--before search----------------------\n"
 		
-		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
-        search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
-        search3 = []
-        search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
-        search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
-        print "---------------hellow after serch------------------\n"
+		# search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
+  #       search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
+  #       search3 = []
+  #       search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
+  #       search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
+  #       print "---------------hellow after serch------------------\n"
 
-        @member1 = Member.joins(:profiles).where(search1).uniq
-        @member2 = Member.joins(:profiles).where(search2).uniq
-        @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
-    	print "---------------after member find------------------\n"
+  #       @member1 = Member.joins(:profiles).where(search1).uniq
+  #       @member2 = Member.joins(:profiles).where(search2).uniq
+  #       @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
+  #   	print "---------------after member find------------------\n"
         
-        if 	@member1.length > 0
-        	@user.member_id=@member1[0].id
-        elsif @member2.length > 0
-        	@user.member_id=@member2[0].id
-        elsif @member3.length > 0
-        	@user.member_id=@member3[0].id
-        end
+  #       if 	@member1.length > 0
+  #       	@user.member_id=@member1[0].id
+  #       elsif @member2.length > 0
+  #       	@user.member_id=@member2[0].id
+  #       elsif @member3.length > 0
+  #       	@user.member_id=@member3[0].id
+  #       end
 		
 		if @user.save 
 			
@@ -147,6 +147,7 @@ class Api::V1::UsersController < ApplicationController
 		
 		@user=Member.find(params[:id]).user
 		if !@user.nil?
+			
 			render :json => {:success => true, :log=>"#{@user.longitude}", :lat=>"#{@user.latitude}", :location_updation_time=>"#{@user.location_updation_time.strftime("%d/%m/%Y %H:%M:%S") rescue ""}"} and return
 		else
 			render :json => {:success => false, :message => "User does not found"} and return
