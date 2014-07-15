@@ -10,7 +10,7 @@ class Admin::ProfilesController < Admin::AdminController
     @qualification = Qualification.new
 	end
 	def create
-    @member = Member.new(params[:member])
+     @member = Member.new(params[:member])
     @phone = Phone.new(params[:phone])
     @qualification = Qualification.new(params[:qualification])
     @profile = Profile.new(param[:profile])
