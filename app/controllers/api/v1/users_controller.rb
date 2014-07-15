@@ -37,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
 	
 	
 	def register
-
+			print "----------------------params = #{params}------------------------"
 		if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
 		end
