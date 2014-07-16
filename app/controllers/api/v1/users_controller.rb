@@ -38,24 +38,6 @@ class Api::V1::UsersController < ApplicationController
 
 	
 
-	# def register
-
-	# 	if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
-	# 		render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
-	# 	end
-	# 	@user=User.new(params[:user])
-	# 	if @user.save 
-	# 		render :json => {:success => true}
-	# 	else
-			
-	# 		render :json => {:success => "#{@user.errors.full_messages}!"}
-	# 	end
-
-		 
-	# end
-
-	
-
 
 	def register
 		print "----------------------params = #{params}------------------------"
@@ -175,6 +157,9 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "User does not found"} and return
 		end
 	end
+
+
+
 end
 
 

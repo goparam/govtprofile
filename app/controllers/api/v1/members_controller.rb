@@ -16,4 +16,7 @@ class Api::V1::MembersController <  Api::V1::ApiV1Controller
 		render "api/v1/members/index.json"
 	end
 	
+  
+
+
 end
