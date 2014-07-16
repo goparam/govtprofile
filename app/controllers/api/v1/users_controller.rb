@@ -38,69 +38,69 @@ class Api::V1::UsersController < ApplicationController
 
 	
 
-	def register
+	# def register
 
-		if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
-			render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
-		end
-		@user=User.new(params[:user])
-		if @user.save 
-			render :json => {:success => true}
-		else
+	# 	if params[:user][:email].blank? || params[:user][:imeino].blank?|| params[:user][:imeino].blank?
+	# 		render :json => {:success => false, :message => "Missing parameters"}, :status => 400 and return
+	# 	end
+	# 	@user=User.new(params[:user])
+	# 	if @user.save 
+	# 		render :json => {:success => true}
+	# 	else
 			
-			render :json => {:success => "#{@user.errors.full_messages}!"}
-		end
+	# 		render :json => {:success => "#{@user.errors.full_messages}!"}
+	# 	end
 
 		 
-	end
+	# end
 
 	
 
 
-	# def register
-	# 	print "----------------------params = #{params}------------------------"
+	def register
+		print "----------------------params = #{params}------------------------"
 		
-	# 	if params[:user].blank?
-	# 		render :json => {:success => false, :message => "User is empty"} and return
-	# 	end
-	# 	if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
-	# 		render :json => {:success => false, :message => "Missing parameters"} and return
-	# 	end
+		if params[:user].blank?
+			render :json => {:success => false, :message => "User is empty"} and return
+		end
+		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
+			render :json => {:success => false, :message => "Missing parameters"} and return
+		end
 		
-	# @user=User.new(params[:user])
-	# 	@user.mail=params[:user][:email]
-	# 	@user.email="#{params[:user][:phone]}@gmail.com"
-	# 		print "----------------------params = #{params}  hello--before search----------------------\n"
+	@user=User.new(params[:user])
+		@user.mail=params[:user][:email]
+		@user.email="#{params[:user][:phone]}@gmail.com"
+			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
-	# 	search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
- #        search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
- #        search3 = []
- #        search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
- #        search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
- #        print "---------------hellow after serch------------------\n"
+		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
+        search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
+        search3 = []
+        search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
+        search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
+        print "---------------hellow after serch------------------\n"
 
- #        @member1 = Member.joins(:profiles).where(search1).uniq
- #        @member2 = Member.joins(:profiles).where(search2).uniq
- #        @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
- #    	print "---------------after member find------------------\n"
+        @member1 = Member.joins(:profiles).where(search1).uniq
+        @member2 = Member.joins(:profiles).where(search2).uniq
+        @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
+    	print "---------------after member find------------------\n"
         
- #        if 	@member1.length > 0
- #        	@user.member_id=@member1[0].id
- #        elsif @member2.length > 0
- #        	@user.member_id=@member2[0].id
- #        elsif @member3.length > 0
- #        	@user.member_id=@member3[0].id
- #        end
+        if 	@member1.length > 0
+        	@user.member_id=@member1[0].id
+        elsif @member2.length > 0
+        	@user.member_id=@member2[0].id
+        elsif @member3.length > 0
+        	@user.member_id=@member3[0].id
+        end
 		
-	# 	if @user.save 
+		if @user.save 
 			
-	# 		render :json => {:success => true, :message => "Successfully registered!"}
-	# 	else
+			render :json => {:success => true, :message => "Successfully registered!"}
+		else
 			
-	# 		render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
-	# 	end
+			render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
+		end
 		
-	# end
+	end
 
 
 	def logout
