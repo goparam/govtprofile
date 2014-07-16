@@ -18,6 +18,6 @@
 #
 
 class Profile < ActiveRecord::Base
-	attr_accessible :name, :designation, :current_workong_district, :current_working_location, :district, :current_post, :language,:qualifications,:city
+	attr_accessible :name, :designation, :current_workong_district, :current_working_location, :district, :current_post, :language,:qualifications,:city, :year_of_joining
 	belongs_to :member	
 end
