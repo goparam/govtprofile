@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token, :phone, :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:year_of_joining,:phone1,:phone2
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved, :authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
   # attr_accessible :title, :body
   before_save :ensure_authentication_token 
    validates :mail, uniqueness: true, :allow_blank => true
