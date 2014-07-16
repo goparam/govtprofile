@@ -29,7 +29,7 @@
 #  gmaps                  :boolean
 #  member_id              :integer
 #  last_name              :string(255)
-#
+
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -39,8 +39,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved,:phone, :authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :approved,:phone, :authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2,:photo
+ has_attached_file :photo, 
+      :storage => :dropbox,
+      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+      :styles => { :medium => "300x300>" }, 
+      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+
+
   # attr_accessible :title, :body
+
   before_save :ensure_authentication_token 
    validates :mail, uniqueness: true, :allow_blank => true
    validates :imeino, uniqueness: true, :allow_blank => false
