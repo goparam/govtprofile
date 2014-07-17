@@ -45,10 +45,7 @@ class User < ActiveRecord::Base
        :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
       :styles => { :medium => "300x300>" }, 
       :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
- # def photo_url
- #    return "/assets/photo.png"
-    
- #  end
+ 
 
   # attr_accessible :title, :body
 
