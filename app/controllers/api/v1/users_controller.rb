@@ -50,11 +50,10 @@ class Api::V1::UsersController < ApplicationController
 		end
 		
 
-		data = StringIO.new(Base64.decode64(params[:user][:photo]))
-    	
+		
     	@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
-		@user.photo=data
+		
 		@user.email="#{params[:user][:phone]}@gmail.com"
 			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
