@@ -159,7 +159,23 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 
+def update_photo
+		@user = User.find_by_phone(params[:phone])
+		if !@user
+			render :json => {:success => false, :message => "Invalid Token no or Password"}and return 
+		end
 
+		if !params[:image_base64].blank?
+		  print "image base 64 is not blank"
+          data = StringIO.new(Base64.decode64(params[:image_base64]))
+          #data.class.class_eval {attr_accessor :original_filename, :content_type}
+          #data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          #data.content_type = "image/png"
+          @user.photo = data
+          @user.save
+        end
+		render :action => 'profile'
+	end
 end
 
 

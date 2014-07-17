@@ -20,28 +20,33 @@ DepartmentPhonebookRails::Application.routes.draw do
 		
 		resources :members
 		resources :notifications
-
 		resources :profiles
+
 	end
 
 	namespace :api do 
 		namespace :v1 do 
 			resources :designations
-			resources :members
+			resources :members 
+
 			resources :notifications
-			
 			resources :users do
 				post 'login', :on => :collection
 			    post 'register', :on => :collection
 				post 'logout', :on => :collection
 				post 'resetpassword', :on => :collection 
 				post 'change', :on => :collection 
-				
+				put 'update_photo', :on => :collection
+         
+			
 			end
-
-
+			
 		end
+	      resources :members 
+	
 	end
 
-	resources :members
+
+
+
 end
