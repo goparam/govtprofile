@@ -66,7 +66,7 @@ class Api::V1::UsersController < ApplicationController
         @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
     	print "---------------after member find------------------\n"
        
-        params[:photo] = Base64.decode64(params[:photo])
+
        
         if 	@member1.length > 0
         	@user.member_id=@member1[0].id
