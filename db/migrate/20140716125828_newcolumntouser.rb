@@ -1,6 +1,6 @@
 class Newcolumntouser < ActiveRecord::Migration
   def up
-  remove_column :users, :photo
+    remove_column :users, :photo
   end
 
   def down
