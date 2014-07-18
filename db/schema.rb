@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140716074448) do
+ActiveRecord::Schema.define(:version => 20140717104249) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -55,16 +55,6 @@ ActiveRecord::Schema.define(:version => 20140716074448) do
     t.integer  "member_id"
     t.string   "language"
     t.string   "current_post"
-    t.string   "last_name"
-    t.string   "father_name"
-    t.date     "year_of_joining"
-    t.string   "phone1"
-    t.string   "phone2"
-    t.date     "year_of_posting"
-    t.string   "native_district"
-    t.string   "native_location"
-    t.string   "other_info"
-    t.date     "batch"
   end
 
   create_table "talukas", :force => true do |t|
@@ -114,7 +104,6 @@ ActiveRecord::Schema.define(:version => 20140716074448) do
     t.string   "year_of_joining"
     t.string   "phone1"
     t.string   "phone2"
-    t.string   "photo"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
