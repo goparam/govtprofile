@@ -48,22 +48,31 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
-		
-		#xml file contains photo as base64 encoded string
 
-			temp = params[:user][:photo]
-		#decode the base64 encoded string and store it in the temp file name
-		#provided in params[:root][:photo_file_name]
-			File.open(params[:user][:photo_file_name],"wb") do |file|
+		if !params[:image_base64].blank?
+		  print "image base 64 is not blank"
+          data = StringIO.new(Base64.decode64(params[:image_base64]))
+          #data.class.class_eval {attr_accessor :original_filename, :content_type}
+          #data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          #data.content_type = "image/png"
+          @user.photo = data
+         
+		end
+		# #xml file contains photo as base64 encoded string
+
+		# 	temp = params[:user][:photo]
+		# #decode the base64 encoded string and store it in the temp file name
+		# #provided in params[:root][:photo_file_name]
+		# 	File.open(params[:user][:photo_file_name],"wb") do |file|
 			
-			file.write(ActiveSupport::Base64.decode64(temp))
+		# 	file.write(ActiveSupport::Base64.decode64(temp))
 			
-			end
-		#open the temp file created and assign it to the paperclip::Attachment object - photo - of Person
-			f = File.open(params[:user][:photo_file_name])
-			@user.photo = f
-		#delete the temp file created
-          File.delete(params[:user][:photo_file_name])
+		# 	end
+		# #open the temp file created and assign it to the paperclip::Attachment object - photo - of Person
+		# 	f = File.open(params[:user][:photo_file_name])
+		# 	@user.photo = f
+		# #delete the temp file created
+  #         File.delete(params[:user][:photo_file_name])
 
 		
     	@user=User.new(params[:user])
