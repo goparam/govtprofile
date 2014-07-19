@@ -44,16 +44,21 @@ class User < ActiveRecord::Base
    # attr_accessible :title, :body
   # validates_attachment_presence :data
    
-
-  has_attached_file :photo ,
-      :storage => :dropbox,
-      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-      :styles => { :medium => "300x300>" }, 
+has_attached_file :photo, :styles => { :small => "150x150>" },
+                  :url  => "/assets/products/:id/:style/:basename.:extension",
+                  :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+# validates_attachment_presence :photo
+# validates_attachment_size :photo, :less_than => 5.megabytes
+# validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  # has_attached_file :photo ,
+  #     :storage => :dropbox,
+  #     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+  #     :styles => { :medium => "300x300>" }, 
  
-      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+  #     :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
  
-     # validates_attachment_presence :data
-     # do_not_validate_attachment_file_type :data
+  #    # validates_attachment_presence :data
+  #    # do_not_validate_attachment_file_type :data
 
   
   
