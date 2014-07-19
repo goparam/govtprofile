@@ -41,7 +41,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    # attr_accessible :title, :body
-
+  validates_attachment_presence :data
+  do_not_validate_attachment_file_type :data
+  
   has_attached_file :photo ,
       :storage => :dropbox,
       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
@@ -49,8 +51,8 @@ class User < ActiveRecord::Base
  
       :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
  # before_validation :set_image
-  validates_attachment_presence :data
-  do_not_validate_attachment_file_type :data
+  # validates_attachment_presence :data
+  # do_not_validate_attachment_file_type :data
 
   # has_attached_file :photo, styles: { thumb: "x100>" }
   # validates_attachment :photo, presence: true, content_type: { content_type: ["image/jpeg", "image/jpg"] }, size: { in: 0..10.megabytes }
