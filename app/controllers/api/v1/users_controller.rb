@@ -55,8 +55,7 @@ class Api::V1::UsersController < ApplicationController
 		@user.mail=params[:user][:email]
 		
 		@user.email="#{params[:user][:phone]}@gmail.com"
-		data = StringIO.new(Base64.decode64(params[:image_base64]))
-		@user.photo = data
+		
          
 			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
