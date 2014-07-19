@@ -57,6 +57,28 @@ class Api::V1::UsersController < ApplicationController
 		@user.email="#{params[:user][:phone]}@gmail.com"
 		
          
+
+
+		#xml file contains photo as base64 encoded string
+
+			temp = params[:user][:photo]
+		#decode the base64 encoded string and store it in the temp file name
+		#provided in params[:root][:photo_file_name]
+			File.open(params[:user][:photo_file_name],"wb") do |file|
+			
+			file.write(ActiveSupport::Base64.decode64(temp))
+			
+			end
+		#open the temp file created and assign it to the paperclip::Attachment object - photo - of Person
+			f = File.open(params[:user][:photo_file_name])
+			@user.photo = f
+		#delete the temp file created
+		# File.delete(params[:user][:photo_file_name])
+
+
+
+
+
 			print "----------------------params = #{params}  hello--before search----------------------\n"
 		
 		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?

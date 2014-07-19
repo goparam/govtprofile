@@ -42,19 +42,13 @@ class User < ActiveRecord::Base
   attr_accessible  :photo_file_name,:photo_content_type,:photo_file_size,:photo_updated_at,:email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    # attr_accessible :title, :body
 
-  # has_attached_file :photo, 
-  #     :storage => :dropbox,
-  #     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-  #     :styles => { :medium => "300x300>" }, 
-  #     :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
- 
-  attr_accessible :photo
   has_attached_file :photo, 
-  :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
-  :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :photo, 
-  :content_type => /\Aimage\/.*\Z/
-
+      :storage => :dropbox,
+      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+      :styles => { :medium => "300x300>" }, 
+      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+ 
+ 
   # before_save :decode_base64_photo   
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
