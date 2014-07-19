@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  validates_attachment_presence :data
+   do_not_validate_attachment_file_type :data
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
@@ -43,7 +45,7 @@ class User < ActiveRecord::Base
    # attr_accessible :title, :body
   # validates_attachment_presence :data
   # do_not_validate_attachment_file_type :data
-  
+
   has_attached_file :photo ,
       :storage => :dropbox,
       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
