@@ -39,17 +39,29 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible  :photo_file_name,:photo_content_type,:photo_file_size,:photo_updated_at,:email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
+  attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    # attr_accessible :title, :body
 
-  has_attached_file :photo, 
-      :storage => :dropbox,
-      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-      :styles => { :medium => "300x300>" }, 
-      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+  # has_attached_file :photo, 
+  #     :storage => :dropbox,
+  #     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+  #     :styles => { :medium => "300x300>" }, 
+  #     :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+ before_validation :set_image
+
+  has_attached_file :photo, styles: { thumb: "x100>" }
+  validates_attachment :photo, presence: true, content_type: { content_type: ["image/jpeg", "image/jpg"] }, size: { in: 0..10.megabytes }
+
+  def set_image
+    StringIO.open(Base64.decode64(photo_json)) do |data|
+      data.class.class_eval { attr_accessor :original_filename, :content_type }
+      data.original_filename = "file.jpg"
+      data.content_type = "image/jpeg"
+      self.photo = data
+    end
+  end
  
- 
-  # before_save :decode_base64_photo   
+    
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
   validates :imeino, uniqueness: true, :allow_blank => false
@@ -58,21 +70,6 @@ class User < ActiveRecord::Base
   validates :mail,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
  
 
-    # def decode_base64_photo
-    #   if photo_file_size && photo_content_type && photo_file_name
-    #     decoded_data = Base64.decode64(photo_file_size)
- 
-    #     data = StringIO.new(decoded_data)
-    #     data.class_eval do
-    #       attr_accessor :content_type, :original_filename
-    #     end
- 
-    #     data.content_type = content_type
-    #     data.original_filename = File.basename(original_filename)
- 
-    #     self.photo = data
-    #   end
-    # end
 
   def email_required?
   false
