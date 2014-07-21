@@ -39,30 +39,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
-  # Setup accessible (or protected) attributes for your model
+   #Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
-   # attr_accessible :title, :body
-  # validates_attachment_presence :data
+   #attr_accessible :title, :body
+   #validates_attachment_presence :data
    
 has_attached_file :photo, :styles => { :small => "150x150>" },
                   :url  => "/assets/products/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
-# validates_attachment_presence :photo
-# validates_attachment_size :photo, :less_than => 5.megabytes
-# validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
-  # has_attached_file :photo ,
-  #     :storage => :dropbox,
-  #     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-  #     :styles => { :medium => "300x300>" }, 
- 
-  #     :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
- 
-  #    # validates_attachment_presence :data
-  #    # do_not_validate_attachment_file_type :data
 
-  
-  
- 
     
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
@@ -74,8 +59,8 @@ has_attached_file :photo, :styles => { :small => "150x150>" },
 
 
   def email_required?
-  false
-end
+      false
+  end
 
 acts_as_gmappable
 
