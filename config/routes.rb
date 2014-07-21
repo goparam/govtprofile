@@ -17,10 +17,14 @@ DepartmentPhonebookRails::Application.routes.draw do
 		get 'edit/:id' => 'members#edituser'
 		post 'edit' => 'members#updateuser'
 		get 'map/:id' => 'members#showmap'
+		get 'new' =>'gallery_image#new'
+		post'create'=>'gallery_image#create'
 		
 		resources :members
 		resources :notifications
 		resources :profiles
+		resources :gallery_image
+
 
 	end
 
@@ -28,7 +32,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		namespace :v1 do 
 			resources :designations
 			resources :members 
-
+			resources :gallery_image
 			resources :notifications
 			resources :users do
 				post 'login', :on => :collection
@@ -37,16 +41,17 @@ DepartmentPhonebookRails::Application.routes.draw do
 				post 'resetpassword', :on => :collection 
 				post 'change', :on => :collection 
 				put 'update_photo', :on => :collection
-         
+         		
 			
 			end
-			
+		
 		end
-	      resources :members 
-	
+	      
+	      
+		  
 	end
 
-
-
+    
+	
 
 end

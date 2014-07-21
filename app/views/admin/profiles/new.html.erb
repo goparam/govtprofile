@@ -5,14 +5,14 @@
 			</div>
 		</div>
 		
-		<%= form_for @profile, :html => { :multipart => true }, :url => admin_profiles_path do |c|%>
+		<%= form_for @images, :html => { :multipart => true }, :url => admin_profiles_path do |c|%>
 
-			<%=c.label :name %>
-			<%=c.text_field :name, :autofocus => true, :class => "height35 padding5 span5" %>
+			<%=c.label :caption %>
+			<%=c.text_field :caption, :autofocus => true, :class => "height35 padding5 span5" %>
 			<br><br>
 
-			<%=c.label :resignation %>
-			<%=c.text_field :resignation, :autofocus => true, :class => "height35 padding5 span5" %>
+			<%=c.label :image_details %>
+			<%=c.text_field :image_details, :autofocus => true, :class => "height35 padding5 span5" %>
 			<br><br>
 
 			<%=c.label :district %>
