@@ -34,13 +34,14 @@
 	          </div>
  
 
-<%= form_for :gallery_image, :html => {:controller => :gallery_image, :multipart => true },:url => {:action => :create} do |c| %>
-			 		<%= c.label :caption %>
- 
+<%= form_for :images, :html => {:controller => :gallery_image, :multipart => true },:url => {:action => :create} do |c| %>
+			 		<%= c.label :caption %> 
+  
+
 				<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="caption">
 				<br><br>
 				<%= c.label :image_details %>
-				<input id="member_name" class="height35 padding5 span5" type="text" size="30" name="image_details">
+				<input id="member_name" class="height35 padding5 span5" type="text" size="30" name=":image_details">
 				<br><br>
 				
 					<%= c.label :photo %>
@@ -50,6 +51,7 @@
 
 			<br><br>
 			<%= c.submit "Upload Image" %>
+
 <%end%>
 </section>
 </div>

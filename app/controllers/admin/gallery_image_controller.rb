@@ -1,30 +1,34 @@
 class Admin::GalleryImageController < ApplicationController
 
 
-def index
+# def index
 
-     	@images=GalleryImage.new
+#      	@images=GalleryImage.new
 
-		# @notifications = Notification.order("created_at desc").page(params[:page]).per_page(10)
-		# #@notifications = Notification.all
-		#  @title="Notification"
-	end
-	# def new
+# 		# @notifications = Notification.order("created_at desc").page(params[:page]).per_page(10)
+# 		# #@notifications = Notification.all
+# 		#  @title="Notification"
+# 	end
+	def new
 		
-	# 	@images=GalleryImage.new
+	 	@images=GalleryImage.new
       
-	# end
+	end
 	def show
 
 	end
 	
 	def create
 		
-		 @images= GalleryImage.new(params[:gallery_image])
+
+		 @images= GalleryImage.new(params[:images])
+	     # @images.caption=params[:caption]
+	     # @images.image_details=params[:image_details]
+
 		if @images.save
 			
 			flash[:success] = "#{@images.id} Image is successfully Uploaded to gallery!"
-		
+		  puts params[:images]
 		else
 			flash[:error] = "is  not Uploaded to gallery!"
 	
