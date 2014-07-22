@@ -50,14 +50,14 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 
-		if !params[:image_base64].blank?
+		if !params[:photo].blank?
 		  print "image base 64 is not blank"
 
           data = StringIO.new(Base64.decode64(params[:photo]))
           @user.photo = data
          end
 
-		# # xml file contains photo as base64 encoded string
+		
 
           
 

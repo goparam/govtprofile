@@ -49,15 +49,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 			
 		
 		end
-
-		namespace :v2 do
-			
-			resources :phonebookusers do
-				post'signup', :on=>:collection
-			end
-		end
-		
-	      
+   
 	      
 		  
 	end
