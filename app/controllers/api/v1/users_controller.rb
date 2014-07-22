@@ -45,33 +45,24 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user].blank?
 			render :json => {:success => false, :message => "User is empty"} and return
 		end
+
 		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 
 		if !params[:image_base64].blank?
 		  print "image base 64 is not blank"
+
           data = StringIO.new(Base64.decode64(params[:image_base64]))
           @user.photo = data
          end
 
 		# # xml file contains photo as base64 encoded string
 
-		# 	temp = params[:user][:photo]
-		#     #decode the base64 encoded string and store it in the temp file name
-		#     #provided in params[:root][:photo_file_name]
-		# 	File.open(params[:user][:photo_file_name],"wb") do |file|
-			
-		# 	file.write(ActiveSupport::Base64.decode64(temp))
-			
-		# 	end
-		#     #open the temp file created and assign it to the paperclip::Attachment object - photo - of Person
-		# 	f = File.open(params[:user][:photo_file_name])
-		# 	@user.photo = f
-		#     #delete the temp file created
-  #         File.delete(params[:user][:photo_file_name])
+          
 
-		
+      
+
     	@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		
@@ -108,6 +99,7 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
 		end
 		
+		   
 	end
 
 
@@ -154,6 +146,7 @@ class Api::V1::UsersController < ApplicationController
 
 	end
 	def change
+		
 		if params[:auth_token].blank? || params[:auth_token].nil?
 
 			render :json => {:success => true, :message => "Auth token must be required!"} and return
