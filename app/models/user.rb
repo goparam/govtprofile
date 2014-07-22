@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
    :path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},       :unique_filename => true   
    }
   
-  validates :photo, :attachment_presence => true 
+  # validates :photo, :attachment_presence => true 
        
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
