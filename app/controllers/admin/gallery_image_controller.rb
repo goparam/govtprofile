@@ -4,9 +4,13 @@ class Admin::GalleryImageController < ApplicationController
 def index
 
      	# @images=GalleryImage.all
+<<<<<<< HEAD
 
 		
 	end
+=======
+end
+>>>>>>> 5df3c12bf33d4327996336dee019fba8dfcbbec4
 	def new
 		
 	 	@images=GalleryImage.new

@@ -42,13 +42,18 @@ class User < ActiveRecord::Base
    #Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    #attr_accessible :title, :body
-   #validates_attachment_presence :data
-   has_attached_file :photo, 
-      :storage => :dropbox,
-      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-      :styles => { :medium => "300x300>" }, 
-      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
-    
+  
+
+ has_attached_file :photo,
+   :storage => :dropbox,
+   :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+   :styles => { :medium => "300x300" , :thumb => "100x100>"},    
+   :dropbox_options => {       
+   :path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},       :unique_filename => true   
+   }
+  
+  validates :photo, :attachment_presence => true 
+       
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
   validates :imeino, uniqueness: true, :allow_blank => false
