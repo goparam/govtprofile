@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-	 skip_before_filter :verify_authenticity_token, :only => [:register]
+	 # skip_before_filter :verify_authenticity_token, :only => [:register]
 	def destroy
 		user=user.find(params[:id])
 		if user.destroy
