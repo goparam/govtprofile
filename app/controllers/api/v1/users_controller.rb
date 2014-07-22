@@ -102,6 +102,7 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
 		end
 		
+		   
 	end
 
 
