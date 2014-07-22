@@ -46,11 +46,12 @@ class User < ActiveRecord::Base
 
  has_attached_file :photo,
    :storage => :dropbox,
-   :dropbox_credentials => "#{Rails.root}/config/dropbox_config.yml",
+   :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
    :styles => { :medium => "300x300" , :thumb => "100x100>"},    
    :dropbox_options => {       
    :path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},       :unique_filename => true   
    }
+  
   validates :photo, :attachment_presence => true 
        
   before_save :ensure_authentication_token 
