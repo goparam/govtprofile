@@ -34,6 +34,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 			resources :members 
 			resources :gallery_image
 			resources :notifications
+
 			resources :users do
 				post 'login', :on => :collection
 			    post 'register', :on => :collection
@@ -43,6 +44,10 @@ DepartmentPhonebookRails::Application.routes.draw do
 				put 'update_photo', :on => :collection
          		
 			
+			end
+
+			resources :phonebookusers do
+				post'signup', :on=>:collection
 			end
 		
 		end
