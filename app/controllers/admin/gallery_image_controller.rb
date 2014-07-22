@@ -1,20 +1,18 @@
 class Admin::GalleryImageController < ApplicationController
 
 
-# def index
+def index
 
-#      	@images=GalleryImage.new
-
-# 		# @notifications = Notification.order("created_at desc").page(params[:page]).per_page(10)
-# 		# #@notifications = Notification.all
-# 		#  @title="Notification"
-# 	end
+     	# @images=GalleryImage.all
+end
 	def new
 		
 	 	@images=GalleryImage.new
       
 	end
 	def show
+
+		 # @images=GalleryImage.all
 
 	end
 	
@@ -33,7 +31,7 @@ class Admin::GalleryImageController < ApplicationController
 			flash[:error] = "is  not Uploaded to gallery!"
 	
 		end
-		 	render :action => "new"
+		 	render :action => 'new'
 	end
 	
 	# def destroy

@@ -65,7 +65,7 @@ class Api::V1::UsersController < ApplicationController
 		#     #delete the temp file created
   #         File.delete(params[:user][:photo_file_name])
 
-		
+		@user = User.new(params.require(:UploadImage).permit(:photo))
     	@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		
@@ -147,6 +147,7 @@ class Api::V1::UsersController < ApplicationController
 
 	end
 	def change
+		
 		if params[:auth_token].blank? || params[:auth_token].nil?
 
 			render :json => {:success => true, :message => "Auth token must be required!"} and return

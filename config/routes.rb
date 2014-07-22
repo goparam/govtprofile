@@ -19,7 +19,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		get 'map/:id' => 'members#showmap'
 		get 'new' =>'gallery_image#new'
 		post'create'=>'gallery_image#create'
-		
+		get 'index'=> 'gallery_image#index'
 		resources :members
 		resources :notifications
 		resources :profiles
