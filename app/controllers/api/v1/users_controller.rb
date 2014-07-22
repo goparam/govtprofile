@@ -49,6 +49,12 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 
+		if !params[:image_base64].blank?
+		  print "image base 64 is not blank"
+          data = StringIO.new(Base64.decode64(params[:image_base64]))
+          @user.photo = data
+         end
+
 		# # xml file contains photo as base64 encoded string
 
 		# 	temp = params[:user][:photo]
@@ -103,6 +109,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 		
 	end
+
 
 
 	def logout
