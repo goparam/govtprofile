@@ -63,9 +63,9 @@ class Api::V1::UsersController < ApplicationController
 		# 	f = File.open(params[:user][:photo_file_name])
 		# 	@user.photo = f
 		#     #delete the temp file created
-  #         File.delete(params[:user][:photo_file_name])
+  		#   File.delete(params[:user][:photo_file_name])
 
-		@user = User.new(params.require(:UploadImage).permit(:photo))
+		# @user = User.new(params.require(:UploadImage).permit(:photo))
     	@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		
