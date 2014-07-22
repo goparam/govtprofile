@@ -49,23 +49,12 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 
-		# # xml file contains photo as base64 encoded string
+		if !params[:image_base64].blank?
+		  print "image base 64 is not blank"
+          data = StringIO.new(Base64.decode64(params[:photo]))
+          @user.photo = data
 
-		# 	temp = params[:user][:photo]
-		#     #decode the base64 encoded string and store it in the temp file name
-		#     #provided in params[:root][:photo_file_name]
-		# 	File.open(params[:user][:photo_file_name],"wb") do |file|
-			
-		# 	file.write(ActiveSupport::Base64.decode64(temp))
-			
-		# 	end
-		#     #open the temp file created and assign it to the paperclip::Attachment object - photo - of Person
-		# 	f = File.open(params[:user][:photo_file_name])
-		# 	@user.photo = f
-		#     #delete the temp file created
-  		#   File.delete(params[:user][:photo_file_name])
 
-		# @user = User.new(params.require(:UploadImage).permit(:photo))
     	@user=User.new(params[:user])
 		@user.mail=params[:user][:email]
 		

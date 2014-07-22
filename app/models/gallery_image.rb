@@ -1,4 +1,5 @@
 class GalleryImage < ActiveRecord::Base
+	
   attr_accessible :caption, :image_details, :photo
   	has_attached_file :photo, 
    		:storage => :dropbox,
