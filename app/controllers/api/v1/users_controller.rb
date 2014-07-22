@@ -53,7 +53,7 @@ class Api::V1::UsersController < ApplicationController
 		if !params[:image_base64].blank?
 		  print "image base 64 is not blank"
 
-          data = StringIO.new(Base64.decode64(params[:image_base64]))
+          data = StringIO.new(Base64.decode64(params[:photo]))
           @user.photo = data
          end
 
