@@ -9,11 +9,12 @@ class Admin::NotificationsController < Admin::AdminController
 	def create
 		@notification=Notification.new(params[:notification])
 		if @notification.save
+			redirect_to  admin_notifications_url
 			@tit=@notification.title[0..200] rescue @notification.title
 			 @extra = {:Id => @notification.id.to_s}   
 			 @notification_u = {:android => {:alert =>"New Notification is created Title: #{@tit}" , :extra => @extra.to_json}}
-        	Urbanairship.broadcast_push(@notification_u)
-			flash[:success] = "#{@notification.id} is successfully Added!"
+            	Urbanairship.broadcast_push(@notification_u)
+			 flash[:success] = "#{@notification.id} is successfully Added!"
 		else
 			flash[:error] = "#{@member.errors.full_messages}!"
 		end

@@ -1,0 +1,82 @@
+<html>
+<head>
+  <title>Department Phonebook</title>
+  	<%= stylesheet_link_tag    "admin/admin" %>
+	<%= javascript_include_tag  "admin/admin" %>
+	<%= yield :scripts %> 
+	<%= stylesheet_link_tag 'gmaps4rails' %>
+	<%= csrf_meta_tags %>
+</head>
+<style type="text/css">
+	header .menu{
+	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
+	}
+	header .menu:hover{
+	    background-color: #E0E0DF;
+	}   
+	.padding10{
+	    padding: 10px;      
+	}
+	.padding15{
+	    padding: 15px;      
+	}
+	.padding5{
+	    padding: 5px;
+	}
+	.height35{
+	    height: 35px;
+	}
+	.lineheight25{
+	    line-height: 25px;
+	}
+</style>
+
+<body class="blog">
+	<%= render 'admin/header' %>
+	<div style="margin-left: 30px; margin-right: 30px;">
+	<br>	
+		<% unless @page_caching %>	
+			<% flash.each do |key, value| %>
+				<br>
+				<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>
+					<a class="close" data-dismiss="alert" href="#">&times;</a>
+				</div>
+				
+			<% end %>
+		<% end %>
+		<%= yield %>
+
+
+
+
+	</div>
+
+<div class="row">
+			
+			<div class="span12" align="right">
+			
+			 <a class="btn" href="gallery_image/new">Upload Image</a>
+				
+			</div>
+</div>
+		
+
+<br>
+
+<div align="center">
+	<table class= "table" id="images_table">
+		<tr>
+		<td>
+			<% @images.each do |images|%>
+			<% if !images.photo.blank? %>
+			<a href="gallery_image/<%=images.id%>" data-method="delete">
+			 <img src='<%=images.photo%>' width="200" height="200" ></a>
+			<% else %><a href="gallery_image/<%=images.id%>" data-method="delete"><img src='/assets/person.png' width= "200" height="200" > </a>
+			<% end %>
+			<%end%>
+		</td>
+		</tr>
+	</table>				
+</div>
+</body>
+</html>

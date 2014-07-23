@@ -7,58 +7,6 @@
 	<%= stylesheet_link_tag 'gmaps4rails' %>
 	<%= csrf_meta_tags %>
 </head>
-<body class="blog">
-	<%= render 'admin/header' %>
-	<div style="margin-left: 30px; margin-right: 30px;">
-	<br>	
-		<% unless @page_caching %>	
-			<% flash.each do |key, value| %>
-				<br>
-				<div class="alert alert-<%= key %>" id="alert-flash"><%= value %>
-					<a class="close" data-dismiss="alert" href="#">&times;</a>
-				</div>
-				
-			<% end %>
-		<% end %>
-		<%= yield %>
-
-
-
-
-	</div>
-
-<div class="span12">
-			<section id="wizard">
-			  <div class="page-header">
-	            <h1>Uploade Images to gallery</h1>
-	          </div>
- 
-
-<%= form_for :images, :html => {:controller => :gallery_image, :multipart => true },:url => {:action => :create} do |c| %>
-
-
-<!-- 			 		<%= c.label :caption %> 
-   -->
-
-				<!-- <input id="member_name" class="height35 padding5 span5" type="text" size="30" name="caption">
-				<br><br>
-				<%= c.label :image_details %>
-				<input id="member_name" class="height35 padding5 span5" type="text" size="30" name=":image_details">
-				<br><br> -->
-				
-					<%= c.label :photo %>
-					<%= c.file_field :photo %>
-			
-				
-
-			<br><br>
-			<%= c.submit "Upload Image" %>
-
-<%end%>
-</section>
-</div>
-	
-</body>
 <style type="text/css">
 	header .menu{
 	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
@@ -82,6 +30,33 @@
 	    line-height: 25px;
 	}
 </style>
+
+<body class="blog">
+	<%= render 'admin/header' %>
+	
+
+<div class="span12">
+			<section id="wizard">
+			  <div class="page-header">
+	            <h1>Uploade Images to gallery</h1>
+	          </div>
+ 
+
+<%= form_for :images, :html => {:controller => :gallery_image, :multipart => true , :method =>:post},:url => {:action => :create} do |c| %>
+			
+					<%= c.label :photo %>
+					<%= c.file_field :photo %>
+			
+				
+
+			<br><br>
+			<%= c.submit "Upload Image" %>
+
+<%end%>
+</section>
+</div>
+	
+</body>
 
 
 </html>
