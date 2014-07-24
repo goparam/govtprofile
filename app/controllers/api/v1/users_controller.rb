@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
 	end
 	
 
-	
+
 
 
 	def register
@@ -51,40 +51,48 @@ class Api::V1::UsersController < ApplicationController
 		end
 		@user=User.new(params[:user])
 
-		if !params[:photo].blank?
-		   print "image base 64 is not blank"
-			@user_photo.decode_cover_image_data(params[:photo])
-          # data = StringIO.new(Base64.decode64(params[:photo]))
-          # @user.photo = data
-         end
+		# if !params[:photo].blank?
+		#    print "image base 64 is not blank"
+		# 	@user_photo.decode_cover_image_data(params[:photo])
+  #         # data = StringIO.new(Base64.decode64(params[:photo]))
+  #         # @user.photo = data
+  #        end
+         if !params [:user][:photo].blank?
+         	print "image base 64 is not blank"
+    		data = StringIO.new(Base64.decode64(params[:user][:photo]))
+    		data.class.class_eval { attr_accessor :original_filename, :content_type }
+    		data.original_filename = params[:user][:photo][:filename]
+    		data.content_type = params[:user][:photo][:content_type]
+    		params[:user][:photo] = data
+  		 end
 
 		
-		# @user.mail=params[:user][:email]
+		@user.mail=params[:user][:email]
 		
-		# @user.email="#{params[:user][:phone]}@gmail.com"
+		@user.email="#{params[:user][:phone]}@gmail.com"
 		
-  #        print "----------------------params = #{params}  hello--before search----------------------\n"
+         print "----------------------params = #{params}  hello--before search----------------------\n"
 		
-		# search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
-  #       search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
-  #       search3 = []
-  #       search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
-  #       search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
-  #       print "---------------hellow after serch------------------\n"
+		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
+        search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
+        search3 = []
+        search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
+        search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
+        print "---------------hellow after serch------------------\n"
 
-  #       @member1 = Member.joins(:profiles).where(search1).uniq
-  #       @member2 = Member.joins(:profiles).where(search2).uniq
-  #       @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
-  #   	print "---------------after member find------------------\n"
+        @member1 = Member.joins(:profiles).where(search1).uniq
+        @member2 = Member.joins(:profiles).where(search2).uniq
+        @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
+    	print "---------------after member find------------------\n"
        
       
-  #       if 	@member1.length > 0
-  #       	@user.member_id=@member1[0].id
-  #       elsif @member2.length > 0
-  #       	@user.member_id=@member2[0].id
-  #       elsif @member3.length > 0
-  #       	@user.member_id=@member3[0].id
-  #       end
+        if 	@member1.length > 0
+        	@user.member_id=@member1[0].id
+        elsif @member2.length > 0
+        	@user.member_id=@member2[0].id
+        elsif @member3.length > 0
+        	@user.member_id=@member3[0].id
+        end
 		
 		if @user.save 
 			
@@ -177,12 +185,12 @@ class Api::V1::UsersController < ApplicationController
 def update_photo
 		@user = User.find_by_phone(params[:phone])
 		if !@user
-			render :json => {:success => false, :message => "Invalid Token no or Password"}and return 
+			render :json => {:success => false, :message => "Invalid Token no or Phone Number"}and return 
 		end
 
-		if !params[:image_base64].blank?
+		if !params[:photo].blank?
 		  print "image base 64 is not blank"
-          data = StringIO.new(Base64.decode64(params[:image_base64]))
+          data = StringIO.new(Base64.decode64(params[:photo]))
           #data.class.class_eval {attr_accessor :original_filename, :content_type}
           #data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
           #data.content_type = "image/png"
@@ -191,6 +199,15 @@ def update_photo
         end
 		render :action => 'profile'
 	end
+		private
+
+		# Use strong_parameters for attribute whitelisting
+		# Be sure to update your create() and update() controller methods.
+
+		def user_params
+ 		 params.require(:user).permit(:photo)
+		end
+	
 end
 
 

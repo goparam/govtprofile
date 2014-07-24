@@ -1,10 +1,13 @@
 class Api::V1::NotificationsController < ApplicationController
 	def index
+
 		@notifications = Notification.order("created_at desc").page(params[:page]).per_page(10) rescue []
 		@total=@notifications.total_pages
-		render "api/v1/notifications/index.json.rabl"
 		@total_notification=Notification.count(:all)
+		render "api/v1/notifications/index.json.rabl"
+		
 	end
+	
 	def show
 			@total_notification=Notification.count(:all)
 			@total_notification_read=params[:id]
@@ -24,11 +27,12 @@ class Api::V1::NotificationsController < ApplicationController
 		# 	render :json => {:success=>false, :message=>"notification does not found"}
 		# end
 	end
+	# def update
+		
+	# 	if params[:unit].nil? || params[:name].nil? && params[:to].nil? && params[:from].nil? && params[:unique_code].nil? && params[:unit].nil?
+	# 			@grs = Gr.order("grs.gr_date desc").paginate(:page => params[:page], :per_page => 10)
+	# end
 
- # def create
-	# 		@totalread=params[:all].count
-	# 		@total_notification=Notification.count(:all)
-	# 		render "api/v1/notifications/totalread.json.rabl"
- # end
+ 
 
 end

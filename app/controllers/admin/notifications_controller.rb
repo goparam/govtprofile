@@ -10,7 +10,7 @@ class Admin::NotificationsController < Admin::AdminController
 		@notification=Notification.new(params[:notification])
 		if @notification.save
 			redirect_to  admin_notifications_url
-			@tit=@notification.title[0..200] rescue @notification.title
+			@title=@notification.title[0..200] rescue @notification.title
 			 @extra = {:Id => @notification.id.to_s}   
 			 @notification_u = {:android => {:alert =>"New Notification is created Title: #{@tit}" , :extra => @extra.to_json}}
             	Urbanairship.broadcast_push(@notification_u)
