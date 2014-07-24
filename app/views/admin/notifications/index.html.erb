@@ -12,7 +12,7 @@
    	<br>
    	<%= c.label :description %>
    	<%= c.text_area :description, :rows => 10, :cols => 5,:class => "height35 padding5 span5", :style=>"height:150px; width:90%;" %>
-   	<%=c.label :Uploade_Document %>
+   		<%=c.label :Uploade_Document %>
    	<%= c.file_field :document %>
    	<input type="hidden" value="ADMIN" name="notification[notificationType]"><br>
 	<%= c.submit "Create" %>
@@ -36,9 +36,10 @@
 		</div>
 		
 
+
 <br>
 
-<div align="center">
+		<div align="center">
 			<%= will_paginate @grs %>
 		</div>
 		<table class= "table" id="notifications_table">
