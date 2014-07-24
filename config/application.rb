@@ -9,8 +9,17 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+DepartmentPhonebookRails::Application.configure do
+    
+   # your config settings
+ 
+   config.assets.compile = true
+ 
+   # your other config settings
+end
 module DepartmentPhonebookRails
   class Application < Rails::Application
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -54,10 +63,12 @@ module DepartmentPhonebookRails
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.serve_static_assets = true
+    
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-config.middleware.use Rack::Deflater
+    config.middleware.use Rack::Deflater
     # config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end
