@@ -20,10 +20,7 @@ class Admin::GalleryImageController < ApplicationController
 	
 	def create
 		 @images= GalleryImage.new(params[:images])
-	     # @images.caption=params[:caption]
-	     # @images.image_details=params[:image_details]
-
-		if @images.save
+	    		if @images.save
 			
 			flash[:success] = "#{@images.id} Image is successfully Uploaded to gallery!"
 		  

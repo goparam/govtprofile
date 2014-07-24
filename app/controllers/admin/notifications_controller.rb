@@ -5,20 +5,21 @@ class Admin::NotificationsController < Admin::AdminController
 		 @title="Notification"
 	end
 	def new
+		@notifications=Notification.new
 	end
 	def create
 		@notification=Notification.new(params[:notification])
+		
 		if @notification.save
-			redirect_to  admin_notifications_url
 			@title=@notification.title[0..200] rescue @notification.title
 			 @extra = {:Id => @notification.id.to_s}   
 			 @notification_u = {:android => {:alert =>"New Notification is created Title: #{@tit}" , :extra => @extra.to_json}}
-            	Urbanairship.broadcast_push(@notification_u)
+             Urbanairship.broadcast_push(@notification_u)
 			 flash[:success] = "#{@notification.id} is successfully Added!"
 		else
 			flash[:error] = "#{@member.errors.full_messages}!"
 		end
-		redirect_to  admin_notifications_url
+			redirect_to  admin_notifications_url
 	end
 	def destroy
 		@notification=Notification.find(params[:id])
