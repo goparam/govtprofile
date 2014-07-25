@@ -19,4 +19,5 @@ class Notification < ActiveRecord::Base
 	    :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{document.original_filename}" }}
 
 	validates_attachment_presence :document
+	
 end
