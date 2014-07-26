@@ -10,6 +10,9 @@ class Admin::NotificationsController < Admin::AdminController
 	def create
 		@notification=Notification.new(params[:notification])
 		
+		if params[:notification][:document].blank?
+			@notification.istextonly="text"
+		end	
 		if @notification.save
 			@title=@notification.title[0..200] rescue @notification.title
 			 @extra = {:Id => @notification.id.to_s}   

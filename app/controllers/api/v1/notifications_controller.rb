@@ -4,6 +4,7 @@ class Api::V1::NotificationsController < ApplicationController
 		@notifications = Notification.order("created_at desc").page(params[:page]).per_page(10) rescue []
 		@total=@notifications.total_pages
 		@total_notification=Notification.count(:all)
+		
 		render "api/v1/notifications/index.json.rabl"
 		
 	end

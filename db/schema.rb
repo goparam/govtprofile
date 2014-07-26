@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140725105406) do
+ActiveRecord::Schema.define(:version => 20140726105632) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20140725105406) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.string   "istextonly"
   end
 
   create_table "profiles", :force => true do |t|

@@ -11,13 +11,13 @@
 #
 
 class Notification < ActiveRecord::Base
-  attr_accessible :description, :title, :notificationType, :id, :document
+  attr_accessible :description, :title, :notificationType, :id, :document,:istextonly
    has_attached_file :document,
 	    :storage => :dropbox,
 	    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
 	    :styles => { :medium => "300x300" },
 	    :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{document.original_filename}" }}
 
-	validates_attachment_presence :document
+	# validates_attachment_presence :document
 	
 end

@@ -44,11 +44,12 @@ class User < ActiveRecord::Base
    #attr_accessible :title, :body
   
 
-# has_attached_file :photo, 
-#       :storage => :dropbox,
-#       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-#       :styles => { :medium => "300x300>" }, 
-#       :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
+has_attached_file :photo, 
+      :storage => :dropbox,
+      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+      :styles => { :medium => "300x300>" }, 
+      :content_type => ['image/jpeg', 'image/png'],
+      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
   
    # validates_attachment_content_type :photo, 
    #                                  :content_type => /^image\/(png|gif|jpeg)/,
