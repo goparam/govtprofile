@@ -25,9 +25,6 @@ class Member < ActiveRecord::Base
 	    :styles => { :medium => "300x300>" }, 
 	    :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}
 
-
-	
-
 	validates :email,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
  	has_many :profiles
     has_one :user

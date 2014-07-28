@@ -49,7 +49,7 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
-		@user=User.new(params[:user])
+		   @user=User.new(params[:user])
 
 		# if !params[:photo].blank?
 		#    print "image base 64 is not blank"
@@ -66,7 +66,7 @@ class Api::V1::UsersController < ApplicationController
     		params[:user][:photo] = data
   		 end
 
-		
+		print"......params [:user][:photo]...."
 		@user.mail=params[:user][:email]
 		
 		@user.email="#{params[:user][:phone]}@gmail.com"

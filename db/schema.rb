@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728103523) do
+ActiveRecord::Schema.define(:version => 20140728143136) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20140728103523) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "notification_id"
+    t.date     "dob"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

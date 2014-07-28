@@ -24,7 +24,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 		resources :notifications
 		resources :profiles
 		resources :gallery_image
-
+		
 
 	end
 
@@ -34,7 +34,7 @@ DepartmentPhonebookRails::Application.routes.draw do
 			resources :members 
 			resources :gallery_image
 			resources :notifications
-
+			
 			resources :users do
 				post 'login', :on => :collection
 			    post 'register', :on => :collection

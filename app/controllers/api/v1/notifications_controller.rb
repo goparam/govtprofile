@@ -6,9 +6,9 @@ class Api::V1::NotificationsController < ApplicationController
 			@total=@notifications.total_pages
 		    @total_notification=@notifications.count()
 		    if !@notifications.nil? && !@notifications.blank?
-			render "api/v1/notifications/index.json.rabl"
+				render "api/v1/notifications/index.json.rabl"
 			else
-			render :json => {:success=>false, :message=>"notification does not found"}
+				render :json => {:success=>false, :message=>"notification does not found"}
 			end
 			# @notifications =Notification.order("created_at desc").page(params[:page]).per_page(10) rescue []
 		
