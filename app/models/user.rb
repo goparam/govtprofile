@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
    #Setup accessible (or protected) attributes for your model
-  attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
+  attr_accessible  :email, :password, :password_confirmation, :photo,:remember_me, :approved,:notification_id,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    #attr_accessible :title, :body
   
 
@@ -62,6 +62,9 @@ has_attached_file :photo,
   validates :email,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
   validates :mail,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
  
+ # Paperclip.io_adapters.register Paperclip::HashieMashUploadedFileAdapter do |target|
+ #  target.is_a? Hashie::Mash
+ #  end
 
 
   def email_required?
