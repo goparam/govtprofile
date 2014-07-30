@@ -77,8 +77,8 @@ DepartmentPhonebookRails::Application.configure do
 
   # config.assets.compress = true
 
-  Paperclip.options[:command_path] = "/usr/local/bin/"
 
+Paperclip.options[:command_path] = "/usr/local/bin/"
 
 
 end

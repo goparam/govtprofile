@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728143136) do
+ActiveRecord::Schema.define(:version => 20140730070336) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20140728143136) do
     t.date     "batch"
     t.string   "imeino"
     t.string   "education"
+    t.date     "dob"
   end
 
   create_table "talukas", :force => true do |t|
@@ -132,10 +133,6 @@ ActiveRecord::Schema.define(:version => 20140728143136) do
     t.string   "year_of_joining"
     t.string   "phone1"
     t.string   "phone2"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.integer  "notification_id"
     t.date     "dob"
   end

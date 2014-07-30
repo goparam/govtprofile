@@ -37,13 +37,12 @@ DepartmentPhonebookRails::Application.routes.draw do
 			
 			resources :users do
 				post 'login', :on => :collection
-			    post 'register', :on => :collection
+			    post 'register',:on => :collection
 				post 'logout', :on => :collection
 				post 'resetpassword', :on => :collection 
 				post 'change', :on => :collection 
 				put 'update_photo', :on => :collection
-         		
-			
+         				
 			end
 
 			

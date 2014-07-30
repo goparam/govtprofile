@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-	 skip_before_filter :verify_authenticity_token, :only => [:register]
+	 # skip_before_filter :verify_authenticity_token, :only => [:register]
 	def destroy
 		user=user.find(params[:id])
 		if user.destroy
@@ -50,21 +50,28 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		   @user=User.new(params[:user])
+	if !params[:photo].blank?
+		   print "image base 64 is not blank"
+			
+    		# data = StringIO.new(Base64.decode64(params[:photo]))
+    		# data.class.class_eval { attr_accessor :original_filename, :content_type }
+    		# data.original_filename = params[:photo][:filename]
+    		# data.content_type = params[:photo][:content_type]
+    		# @user.photo=data
 
-		# if !params[:photo].blank?
-		#    print "image base 64 is not blank"
+    	end
 		# 	@user_photo.decode_cover_image_data(params[:photo])
-  #         # data = StringIO.new(Base64.decode64(params[:photo]))
-  #         # @user.photo = data
-  #        end
-         if !params [:user][:photo].blank?
-         	print "image base 64 is not blank"
-    		data = StringIO.new(Base64.decode64(params[:user][:photo]))
-    		data.class.class_eval { attr_accessor :original_filename, :content_type }
-    		data.original_filename = params[:user][:photo][:filename]
-    		data.content_type = params[:user][:photo][:content_type]
-    		params[:user][:photo] = data
-  		 end
+          # data = StringIO.new(Base64.decode64(params[:photo]))
+           # @user.photo = data
+         
+  	  	#   if !params [:user][:photo].blank?
+     	# 	print "image base 64 is not blank"
+    	# 	data = StringIO.new(Base64.decode64(params[:user][:photo]))
+    	# 	data.class.class_eval { attr_accessor :original_filename, :content_type }
+    	# 	data.original_filename = params[:user][:photo][:filename]
+    	# 	data.content_type = params[:user][:photo][:content_type]
+    	# 	params[:user][:photo] = data
+  		 # end
 
 		print"......params [:user][:photo]...."
 		@user.mail=params[:user][:email]
@@ -118,7 +125,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 	end
 
-	def resetpassword
+def resetpassword
 		print "----------------------params = #{params}------------------------"
 		if params[:phone].blank? || params[:password].blank? || params[:new_password].blank?  || params[:imeino].blank? 
 			render :json => {:success => false, :message => "All fild mandatory "} and return
@@ -148,6 +155,7 @@ class Api::V1::UsersController < ApplicationController
 		end
 
 	end
+
 	def change
 		
 		if params[:auth_token].blank? || params[:auth_token].nil?
@@ -165,11 +173,9 @@ class Api::V1::UsersController < ApplicationController
 			else
 			 	render :json => {:success => false, :message => "#{user.errors.full_messages.join(', ')}!"} and return
 			end 
-		end
-
-
-		
+		end		
 	end
+
 	def show 
 		
 		@user=Member.find(params[:id]).user
@@ -198,16 +204,12 @@ def update_photo
           @user.save
         end
 		render :action => 'profile'
-	end
+end
 		private
 
-		# Use strong_parameters for attribute whitelisting
-		# Be sure to update your create() and update() controller methods.
-
-		def user_params
- 		 params.require(:user).permit(:photo)
-		end
-	
+def user_params
+  params.require(:user).permit( :email,:dob,:phone,:name ,:imeino, :designation, :posting_district,  :last_name,:native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone2, :photos_attributes [:photo])
 end
 
-
+	
+end
