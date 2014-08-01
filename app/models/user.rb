@@ -40,27 +40,21 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
    #Setup accessible (or protected) attributes for your model
-  attr_accessible  :email,:dob,:password, :password_confirmation,:remember_me, :approved,:notification_id,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
+  attr_accessible  :email,:dob,:password,:image, :password_confirmation,:remember_me, :approved,:notification_id,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :present_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    #attr_accessible :title, :body
   
+ has_attached_file :image, 
+      :storage => :dropbox,
+      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+      :styles => { :medium => "300x300>" }, 
+      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{image.original_filename}" }}
 
-# has_attached_file :photo, 
-#       :storage => :dropbox,
-#       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-#       :styles => { :medium => "300x300>" }, 
-#       :content_type => ['image/jpeg', 'image/png'],
-#       :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}" }}       
-     
-  # validates_attachment_content_type :photo,
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
   validates :imeino, uniqueness: true, :allow_blank => false
   validates :phone, uniqueness: true
   validates :email,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
   validates :mail,  :format => { :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i }
- 
-  
-
 
   def email_required?
       false

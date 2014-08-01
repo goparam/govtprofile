@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-	 # skip_before_filter :verify_authenticity_token, :only => [:register]
+	  skip_before_filter :verify_authenticity_token, :only => [:register]
 	def destroy
 		user=user.find(params[:id])
 		if user.destroy
@@ -40,7 +40,9 @@ class Api::V1::UsersController < ApplicationController
 
 
 	def register
-		print "----------------------params = #{params}------------------------"
+
+
+		# print "----------------------params = #{params[:user]}------------------------"
 		
 		if params[:user].blank?
 			render :json => {:success => false, :message => "User is empty"} and return
@@ -49,48 +51,40 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
-		   @user=User.new(params[:user])
-	if !params[:photo].blank?
-		   print "image base 64 is not blank"
-			
-    		# data = StringIO.new(Base64.decode64(params[:photo]))
-    		# data.class.class_eval { attr_accessor :original_filename, :content_type }
-    		# data.original_filename = params[:photo][:filename]
-    		# data.content_type = params[:photo][:content_type]
-    		# @user.photo=data
-
-    	end
-		# 	@user_photo.decode_cover_image_data(params[:photo])
-          # data = StringIO.new(Base64.decode64(params[:photo]))
-           # @user.photo = data
-         
-  	  	#   if !params [:user][:photo].blank?
-     	# 	print "image base 64 is not blank"
-    	# 	data = StringIO.new(Base64.decode64(params[:user][:photo]))
-    	# 	data.class.class_eval { attr_accessor :original_filename, :content_type }
-    	# 	data.original_filename = params[:user][:photo][:filename]
-    	# 	data.content_type = params[:user][:photo][:content_type]
-    	# 	params[:user][:photo] = data
-  		 # end
-
-		print"......params [:user][:photo]...."
-		@user.mail=params[:user][:email]
+		  
 		
+		@user=User.new(params[:user])
+
+ 		# @user=User.new(params[:user])
+		# if !params[:user][:image].blank?
+		  # print "image base 64 is not blank"
+          data = StringIO.new(Base64.decode64(params[:user][:image]))
+          # data.class.class_eval {attr_accessor :original_filename, :content_type}
+          # data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          # data.content_type = "image/png"
+          # params[:user][:image]=data
+
+          @user.image = data
+        #  # @user.save
+        #   logger.info "sssssssssssssssssssssssssssssssss#{data}"
+        # # end
+		
+  	  	@user.mail=params[:user][:email]		
 		@user.email="#{params[:user][:phone]}@gmail.com"
 		
-         print "----------------------params = #{params}  hello--before search----------------------\n"
+  # print "----------------------params = #{params}  hello--before search----------------------\n"
 		
 		search1 = "lower(members.phones) like '%#{params[:user][:phone]}%'" unless params[:user][:phone].nil? || params[:user][:phone].blank?
         search2 = "(members.email) like '%#{params[:user][:email]}%'" unless params[:user][:email].nil? || params[:user][:email].blank?
         search3 = []
         search3 << "lower(profiles.name) like '%#{params[:user][:name].downcase}%'" unless params[:user][:name].nil? || params[:user][:name].blank?
         search3 << "lower(profiles.name) like '%#{params[:user][:last_name].downcase}%'" unless params[:user][:last_name].nil? || params[:user][:last_name].blank?
-        print "---------------hellow after serch------------------\n"
+       # print "---------------hellow after serch------------------\n"
 
         @member1 = Member.joins(:profiles).where(search1).uniq
         @member2 = Member.joins(:profiles).where(search2).uniq
         @member3 = Member.joins(:profiles).where(search3.join(" AND ").to_s).uniq
-    	print "---------------after member find------------------\n"
+    	#print "---------------after member find------------------\n"
        
       
         if 	@member1.length > 0
@@ -102,16 +96,13 @@ class Api::V1::UsersController < ApplicationController
         end
 		
 		if @user.save 
-			
 			render :json => {:success => true, :message => "Successfully registered!"}
 		else
-			
 			render :json => {:success => false, :message =>"#{@user.errors.full_messages.join(', ')}!"}
 		end
 		
 		   
 	end
-
 
 
 	def logout
@@ -197,18 +188,18 @@ def update_photo
 		if !params[:photo].blank?
 		  print "image base 64 is not blank"
           data = StringIO.new(Base64.decode64(params[:photo]))
-          #data.class.class_eval {attr_accessor :original_filename, :content_type}
-          #data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
-          #data.content_type = "image/png"
+          # data.class.class_eval {attr_accessor :original_filename, :content_type}
+          # data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          # data.content_type = "image/png"
           @user.photo = data
-          @user.save
+          # @user.save
         end
 		render :action => 'profile'
 end
 		private
 
 def user_params
-  params.require(:user).permit( :email,:dob,:phone,:name ,:imeino, :designation, :posting_district,  :last_name,:native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone2, :photos_attributes [:photo])
+  params.require(:user).permit( :email,:dob,:phone,:name ,:imeino, :designation, :posting_district,  :last_name,:native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone2, :image_attributes [:image])
 end
 
 	
