@@ -61,14 +61,14 @@ class Api::V1::UsersController < ApplicationController
 		  params[:user][:icard]=idata
           @user=User.new(params[:user])
           data.class.class_eval {attr_accessor :original_filename, :content_type}
-          # data.original_filename = @user.id.to_s +"pic"+ ".png"
+         data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
           data.content_type = "image/png"
           @user.image = data
 
 
-          data.class.class_eval {attr_accessor :original_filename, :content_type}
-          # data.original_filename = @user.id.to_s+"ic"+".png"
-          data.content_type = "image/png"
+          idata.class.class_eval {attr_accessor :original_filename, :content_type}
+          idata.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          idata.content_type = "image/png"
           @user.icard = idata
          
      # @user.save
