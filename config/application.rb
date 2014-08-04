@@ -62,5 +62,6 @@ module DepartmentPhonebookRails
     config.assets.version = '1.0'
     config.middleware.use Rack::Deflater
     # config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    Paperclip.options[:command_path] = "/usr/local/bin/identify"
   end
 end

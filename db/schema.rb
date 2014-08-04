@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140730073133) do
+ActiveRecord::Schema.define(:version => 20140804110057) do
 
   create_table "districts", :force => true do |t|
     t.string   "name"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20140730073133) do
     t.string   "present_post"
     t.string   "other_info"
     t.string   "education"
-    t.string   "fathername"
+    t.string   "father_name"
     t.string   "native_location"
     t.string   "year_of_joining"
     t.string   "phone1"
@@ -139,6 +139,10 @@ ActiveRecord::Schema.define(:version => 20140730073133) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "icard_file_name"
+    t.string   "icard_content_type"
+    t.integer  "icard_file_size"
+    t.datetime "icard_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

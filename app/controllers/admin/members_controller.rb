@@ -153,11 +153,13 @@ def approve
           @member=Member.new
           @member.phones=@phones.to_json
           @member.email=@user.email
+          @member.photo=@user.image
+          
           # @member.update_attributes(:dob=>@user.dob)
           @member.profiles << Profile.new(:language=>"E", :name=>@user.name + " " + @user.last_name, :designation=>@user.designation , :current_workong_district=>@user.posting_district, :district=>@user.native_district,:current_post=>@user.present_post, :education=>@user.education, :year_of_joining=>@user.year_of_joining, :last_name=>@user.last_name, :father_name=>@user.father_name,:year_of_posting=>@user.year_of_posting,:native_district=>@user.native_district, :native_location=>@user.native_location, :other_info=>@user.other_info,:batch=>@user.batch, :current_working_location=>@user.posting_district,:dob=>@user.dob)
           @member.profiles << Profile.new(:language=>"M", :name=>@user.name + " " + @user.last_name, :designation=>@user.designation , :current_workong_district=>@user.posting_district, :district=>@user.native_district,:current_post=>@user.present_post, :education=>@user.education, :year_of_joining=>@user.year_of_joining, :last_name=>@user.last_name, :father_name=>@user.father_name,:year_of_posting=>@user.year_of_posting,:native_district=>@user.native_district, :native_location=>@user.native_location, :other_info=>@user.other_info,:batch=>@user.batch, :current_working_location=>@user.posting_district,:dob=>@user.dob )
       
-          if @member.save && @user.update_attributes(:approved=>2, :member_id=>@member.id)
+          if @member.save && @user.update_attributes(:approved=>2, :member_id=> @member.id)
             expire_action :action => :index
             Sendmail.registration_confirmation(@user).deliver
             flash[:success] = "#{@user.phone} is successfully approved!"
