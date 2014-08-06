@@ -51,17 +51,16 @@ class Api::V1::UsersController < ApplicationController
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
 		  
-		 # @user=User.new(params[:user])
-		# if !params[:user][:image].blank?
-		  # print "image base 64 is not blank"
-         data = StringIO.new(Base64.decode64(params[:user][:image]))
+		
+          data = StringIO.new(Base64.decode64(params[:user][:image]))
 		  params[:user][:image]=data
 		 
-		 idata = StringIO.new(Base64.decode64(params[:user][:icard]))
+		  idata = StringIO.new(Base64.decode64(params[:user][:icard]))
 		  params[:user][:icard]=idata
           @user=User.new(params[:user])
+          
           data.class.class_eval {attr_accessor :original_filename, :content_type}
-         data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
           data.content_type = "image/png"
           @user.image = data
 
@@ -71,9 +70,7 @@ class Api::V1::UsersController < ApplicationController
           idata.content_type = "image/png"
           @user.icard = idata
          
-     # @user.save
-       
-        # # end
+     
 		
   	  	@user.mail=params[:user][:email]		
 		@user.email="#{params[:user][:phone]}@gmail.com"
