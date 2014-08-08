@@ -1,43 +1,5 @@
-<html>
+ <html>
 <head>
-  <title>Department Phonebook</title>
-  	<%= stylesheet_link_tag    "admin/admin" %>
-	<%= javascript_include_tag  "admin/admin" %>
-	<%= yield :scripts %> 
-	<%= stylesheet_link_tag 'gmaps4rails' %>
-	<%= csrf_meta_tags %>
-</head>
-
-
-<body class="blog">
-	<%= render 'admin/header' %>
-	
-
-<div class="span12">
-			<section id="wizard">
-			  <div class="page-header">
-	            <h1>Uploade Images to gallery</h1>
-	          </div>
- 
-
-<%= form_for :images, :html => {:controller => :gallery_image, :multipart => true , :method =>:post},:url => {:action => :create} do |c| %>
-			
-					<%= c.label :photo %>
-					<%= c.file_field :photo %>
-			
-				
-
-			<br><br>
-			<%= c.submit "Upload Image" %>
-
-<%end%>
-</section>
-</div>
-	
-</body>
-
-
-</html>
 <style type="text/css">
 	header .menu{
 	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
@@ -63,7 +25,38 @@
 </style>
 
 
+  <title>Department Phonebook</title>
+  	<%= stylesheet_link_tag    "admin/admin" %>
+	<%= javascript_include_tag  "admin/admin" %>
+	<%= yield :scripts %> 
+	<%= stylesheet_link_tag 'gmaps4rails' %>
+	<%= csrf_meta_tags %>
+</head>
 
 
+<body class="blog">
+	<%= render 'admin/header' %>
+	
 
+<div class="span12">
+			<section id="wizard">
+			  <div class="page-header">
+	            <h1>Uploade Images to gallery</h1>
+	          </div>
+ 
+
+<%= form_for :images, :html => {:controller => :gallery_image, :multipart => true , :method =>:post},:url => {:action => :create} do |c| %>
 			
+					<%= c.label :photo, :required => true %>
+					<%= c.file_field :photo, :required => true %>
+			
+				<br><br>
+			<%= c.submit "Upload Image" %>
+
+<%end%>
+</section>
+</div>
+</body>
+</html>
+
+

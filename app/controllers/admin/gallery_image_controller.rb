@@ -3,7 +3,8 @@ class Admin::GalleryImageController < ApplicationController
 
 		def index
  			@images=GalleryImage.all
-
+ 			
+			
  		end
 
 

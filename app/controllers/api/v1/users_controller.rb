@@ -60,13 +60,12 @@ class Api::V1::UsersController < ApplicationController
           @user=User.new(params[:user])
           
           data.class.class_eval {attr_accessor :original_filename, :content_type}
-          data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          data.original_filename = "#{@user.id.to_s}/Image/"+ Time.now.to_i.to_s + ".png"
           data.content_type = "image/png"
           @user.image = data
 
-
           idata.class.class_eval {attr_accessor :original_filename, :content_type}
-          idata.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          idata.original_filename = "#{@user.id.to_s}/Icard/"+ Time.now.to_i.to_s + ".png"
           idata.content_type = "image/png"
           @user.icard = idata
          
@@ -183,7 +182,7 @@ def resetpassword
 
 
 def update_photo
-		@user = User.find_by_phone(params[:phone])
+		@user = User.find_by_phone(params[:imeino])
 		if !@user
 			render :json => {:success => false, :message => "Invalid Token no or Phone Number"}and return 
 		end
@@ -191,11 +190,11 @@ def update_photo
 		if !params[:image].blank?
 		  print "image base 64 is not blank"
           data = StringIO.new(Base64.decode64(params[:image]))
-          # data.class.class_eval {attr_accessor :original_filename, :content_type}
-          # data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
-          # data.content_type = "image/png"
+          data.class.class_eval {attr_accessor :original_filename, :content_type}
+          data.original_filename = @user.id.to_s + Time.now.to_i.to_s + ".png"
+          data.content_type = "image/png"
           @user.image = data
-          # @user.save
+          @user.save
         end
 		render :action => 'profile'
 end
@@ -203,7 +202,7 @@ end
 private
 
 def user_params
-  params.require(:user).permit( :email,:dob,:phone,:name ,:imeino, :designation, :posting_district,  :last_name,:native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone2, :image_attributes [:image])
+  params.require(:user).permit( :email,:dob,:phone,:name ,:imeino, :designation, :posting_district,  :last_name,:native_district, :posting_location, :batch, :year_of_posting, :persent_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone2, :image_attributes [:image],:icard_attributes [:icard])
 end
 
 	

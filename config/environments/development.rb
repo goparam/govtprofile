@@ -57,6 +57,8 @@ DepartmentPhonebookRails::Application.configure do
 
   
 Paperclip.options[:command_path] = "/usr/local/bin/"
+Paperclip::Attachment.default_options[:use_timestamp] = false
+
   # config.after_initialize do
   #   ActiveMerchant::Billing::Base.mode = :t
 

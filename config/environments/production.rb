@@ -41,6 +41,7 @@ DepartmentPhonebookRails::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.serve_static_assets  = true
   
   config.assets.precompile << Proc.new { |path|
     if path =~ /\.(css|js)\z/

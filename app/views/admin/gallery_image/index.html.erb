@@ -1,5 +1,29 @@
-<html>
+ <html>
 <head>
+<style type="text/css">
+	header .menu{
+	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
+	}
+	header .menu:hover{
+	    background-color: #E0E0DF;
+	}   
+	.padding10{
+	    padding: 10px;      
+	}
+	.padding15{
+	    padding: 15px;      
+	}
+	.padding5{
+	    padding: 5px;
+	}
+	.height35{
+	    height: 35px;
+	}
+	.lineheight25{
+	    line-height: 25px;
+	}
+</style>
+
   <title>Department Phonebook</title>
   	<%= stylesheet_link_tag    "admin/admin" %>
 	<%= javascript_include_tag  "admin/admin" %>
@@ -23,11 +47,7 @@
 			<% end %>
 		<% end %>
 		<%= yield %>
-
-
-
-
-	</div>
+</div>
 
 <div class="row">
 			
@@ -58,26 +78,4 @@
 </div>
 </body>
 </html>
-<style type="text/css">
-	header .menu{
-	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
-	}
-	header .menu:hover{
-	    background-color: #E0E0DF;
-	}   
-	.padding10{
-	    padding: 10px;      
-	}
-	.padding15{
-	    padding: 15px;      
-	}
-	.padding5{
-	    padding: 5px;
-	}
-	.height35{
-	    height: 35px;
-	}
-	.lineheight25{
-	    line-height: 25px;
-	}
-</style>
+ 

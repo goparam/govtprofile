@@ -39,19 +39,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,:token_authenticatable
 
+  
    #Setup accessible (or protected) attributes for your model
   attr_accessible  :email,:dob,:icard,:password,:image, :password_confirmation,:remember_me, :approved,:notification_id,:phone,:authentication_token,  :name ,:imeino, :designation, :posting_district, :member_id, :last_name, :latitude, :longitude, :gmaps, :location_updation_time, :native_district, :posting_location, :batch, :year_of_posting, :present_post, :other_info, :education, :father_name, :year_of_joining, :native_district, :present_post,:native_location,:phone1,:phone2
    #attr_accessible :title, :body
-  
- has_attached_file :image
- has_attached_file :icard,
+
+  has_attached_file :icard,
       :storage => :dropbox,
       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
       :style=> { :thumb=> '120x120', :large=> '300x400' },
       :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'],
-      :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{image.original_filename}" }},
-       :dropbox_options =>{:path => proc { |style| "#{style}/#{id}_#{icard.original_filename}"}}
-
+      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_/icard/#{icard.original_filename}" }}
+      # :path => proc{|style| "#{style}/#{id}_#{icard.original_filename}" } }
+      has_attached_file :image ,
+      :storage => :dropbox,
+      :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+      :style=> { :thumb=> '120x120', :large=> '300x400' },
+      :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'],
+      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_/image/#{image.original_filename}" }}
+    
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true
   validates :imeino, uniqueness: true, :allow_blank => false
