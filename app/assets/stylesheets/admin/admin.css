@@ -14,6 +14,7 @@
 *= require ./../bootstrap/bootstrap.css
 *= require ./../bootstrap/prettify.css
 *= require ./../style
+*= require ./../bootstrap/gallery.css
 *= require ./../login
  */
 

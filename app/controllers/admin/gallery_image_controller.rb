@@ -2,23 +2,15 @@ class Admin::GalleryImageController < ApplicationController
 
 
 		def index
- 			@images=GalleryImage.all
  			
-			
+ 			 @images = GalleryImage.where('id > ?', 0).paginate(:page => params[:page], :per_page => 6)
  		end
-
-
-
 		def new
 			 	@images=GalleryImage.new
       
 		end
 
-		def show
-		 
 		
-		end
-	
 	def create
 		 @images= GalleryImage.new(params[:images])
 	    		if @images.save

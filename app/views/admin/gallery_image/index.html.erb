@@ -1,28 +1,4 @@
- <html>
-<head>
-<style type="text/css">
-	header .menu{
-	    line-height: 40px; background-color: #EEEEEE; text-align: center; margin: 5px; border-radius: 3px 3px 3px 3px; font-weight: bold;
-	}
-	header .menu:hover{
-	    background-color: #E0E0DF;
-	}   
-	.padding10{
-	    padding: 10px;      
-	}
-	.padding15{
-	    padding: 15px;      
-	}
-	.padding5{
-	    padding: 5px;
-	}
-	.height35{
-	    height: 35px;
-	}
-	.lineheight25{
-	    line-height: 25px;
-	}
-</style>
+<html>
 
   <title>Department Phonebook</title>
   	<%= stylesheet_link_tag    "admin/admin" %>
@@ -30,11 +6,10 @@
 	<%= yield :scripts %> 
 	<%= stylesheet_link_tag 'gmaps4rails' %>
 	<%= csrf_meta_tags %>
+	
 </head>
-
-
 <body class="blog">
-	<%= render 'admin/header' %>
+	<%= render 'admin/header' %> 
 	<div style="margin-left: 30px; margin-right: 30px;">
 	<br>	
 		<% unless @page_caching %>	
@@ -49,33 +24,62 @@
 		<%= yield %>
 </div>
 
-<div class="row">
+<div style="margin-left: 30px; margin-right: 30px;">
 			
-			<div class="span12" align="right">
-			
-			 <a class="btn" href="gallery_image/new">Upload Image</a>
-				
+			<div class="row">
+			<div class="span6" >
+			 <h1>Your Photo Gallery</h1>
+			</div>	
+			<div class="span6" style="text-align:right">
+			<!--  <a class="btn" href="gallery_image/new">Upload Image</a> -->
+			<a class="btn" data-toggle="modal" href="#myModal" >Upload Image</a>
+			</div>	
 			</div>
-</div>
-		
 
-<br>
-
-<div align="center">
-	<table class= "table" id="images_table">
-		<tr>
-		<td>
-			<% @images.each do |images|%>
-			<% if !images.photo.blank? %>
-			<a href="gallery_image/<%=images.id%>" data-method="delete">
-			 <img src='<%=images.photo%>' width="200" height="200" ></a>
-			<% else %><a href="gallery_image/<%=images.id%>" data-method="delete"><img src='/assets/person.png' width= "200" height="200" > </a>
-			<% end %>
-			<%end%>
-		</td>
-		</tr>
-	</table>				
+<%= will_paginate @images %>
+<ul class="photo-grid">
+ <% @images.each do |images|%>
+ <% if !images.photo.blank? %>
+	<li>
+		<a href="gallery_image/<%=images.id%>" data-method="delete">
+			<figure>
+				<img src='<%=images.photo%>' height="180" width="320" alt="Arc de Triomphe">
+				<figcaption><p>Click to Delete Image</p></figcaption>
+			</figure>
+		</a>
+	</li>
+	<% end %>
+	<%end%>
+	</ul>
 </div>
+
 </body>
 </html>
- 
+
+
+
+
+<div class="modal hide" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Upload Image</h3>
+  </div>
+  <div class="modal-body" style="margin-left:30px;">
+   <% @images=GalleryImage.new %>
+   <%= form_for :images, :html => {:controller => :gallery_image, :multipart => true , :method =>:post},:url => {:action => :create} do |c| %>
+    <table>
+			<tr>
+				<td style="padding:5px"><%= c.label :photo, :required => true %></td>
+				<td></td>
+					<td style="padding:5px"><%= c.file_field :photo, :required => true %></td>
+			
+				</tr>
+				<tr>
+					<td style="padding:5px" colspan="3"><%= c.submit "Upload Image" %></td>
+				</tr>
+			
+	</table>
+   <% end %>
+  </div>
+  
+</div>

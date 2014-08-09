@@ -37,7 +37,7 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
   gem 'execjs'
 end
-
+gem 'thin'
 gem 'jquery-rails'
 gem 'gmaps4rails'
 gem 'will_paginate', '~> 3.0'
