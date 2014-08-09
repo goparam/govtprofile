@@ -5,11 +5,7 @@ class Admin::GalleryImageController < ApplicationController
  			
  			 @images = GalleryImage.where('id > ?', 0).paginate(:page => params[:page], :per_page => 6)
  		end
-		def new
-			 	@images=GalleryImage.new
-      
-		end
-
+		
 		
 	def create
 		 @images= GalleryImage.new(params[:images])
@@ -28,9 +24,9 @@ class Admin::GalleryImageController < ApplicationController
 	def destroy
 		@images=GalleryImage.find(params[:id])
 		if @images.destroy
-			@alert = "#{@images.id} is successfully Deleted!"
+			flash[:success] = "#{@images.id} is successfully Deleted!"
 		else
-			@alert = "#{@images.errors.full_messages}!"
+			flash[:error] = "#{@images.errors.full_messages}!"
 		end
 		redirect_to action: "index"
 	end

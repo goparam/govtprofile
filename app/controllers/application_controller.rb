@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 	before_filter :debug_params
 	#approved
-				#1=>admin   2=>approved 	0=>not_approved 	
+				#1=>admin   2=>approved 	0=>not_approved  3=>declined	
 
 	
 
