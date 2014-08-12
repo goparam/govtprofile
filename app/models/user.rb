@@ -49,14 +49,14 @@ class User < ActiveRecord::Base
       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
       :style=> { :thumb=> '120x120', :large=> '300x400' },
       :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'],
-      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_/icard/#{icard.original_filename}" }}
-      # :path => proc{|style| "#{style}/#{id}_#{icard.original_filename}" } }
-      has_attached_file :image ,
+      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_#{icard.original_filename}" }}
+    
+   has_attached_file :image ,
       :storage => :dropbox,
       :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
       :style=> { :thumb=> '120x120', :large=> '300x400' },
       :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'],
-      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_/image/#{image.original_filename}" }}
+      :dropbox_options =>{:path => proc{|style| "#{style}/#{id}_#{image.original_filename}" }}
     
   before_save :ensure_authentication_token 
   validates :mail, uniqueness: true, :allow_blank => true

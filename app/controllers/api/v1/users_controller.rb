@@ -50,27 +50,45 @@ class Api::V1::UsersController < ApplicationController
 		if params[:user][:phone].blank? ||params[:user][:imeino].nil?||params[:user][:imeino].blank?
 			render :json => {:success => false, :message => "Missing parameters"} and return
 		end
-		  
-		
-          data = StringIO.new(Base64.decode64(params[:user][:image]))
-		  params[:user][:image]=data
-		 
-		  idata = StringIO.new(Base64.decode64(params[:user][:icard]))
-		  params[:user][:icard]=idata
-          @user=User.new(params[:user])
-          
-          data.class.class_eval {attr_accessor :original_filename, :content_type}
-          data.original_filename = "#{@user.id.to_s}/Image/"+ Time.now.to_i.to_s + ".png"
-          data.content_type = "image/png"
-          @user.image = data
+	
+	
+if params[:user][:icard]
+			 tempfile = Tempfile.new("fileupload")
+			 tempfile.binmode
+			 tempfile.write(Base64.decode64(params[:user][:icard]))
+			 tempfile.rewind()
+ 			original_filename=Time.now.to_i.to_s+'icard'+'.jpg'
+    mime_type = Mime::Type.lookup_by_extension(File.extname(original_filename)[1..-1]).to_s
+    #create a new uploaded file
+    uploaded_file = ActionDispatch::Http::UploadedFile.new(
+      :tempfile => tempfile,
+      :filename => Time.now.to_i.to_s+'icard'+'.jpg',
+      :type => mime_type) 
 
-          idata.class.class_eval {attr_accessor :original_filename, :content_type}
-          idata.original_filename = "#{@user.id.to_s}/Icard/"+ Time.now.to_i.to_s + ".png"
-          idata.content_type = "image/png"
-          @user.icard = idata
-         
-     
-		
+    #replace picture_path with the new uploaded file
+    params[:user][:icard] =  uploaded_file
+  end
+
+if params[:user][:image]
+			 tempfile = Tempfile.new("fileupload")
+			 tempfile.binmode
+			 tempfile.write(Base64.decode64(params[:user][:image]))
+			 tempfile.rewind()
+ 			original_filename=Time.now.to_i.to_s+'image'+'.jpg'
+    mime_type = Mime::Type.lookup_by_extension(File.extname(original_filename)[1..-1]).to_s
+    #create a new uploaded file
+    uploaded_file = ActionDispatch::Http::UploadedFile.new(
+      :tempfile => tempfile,
+      :filename => Time.now.to_i.to_s+'image'+'.jpg',
+      :type => mime_type) 
+
+    #replace picture_path with the new uploaded file
+    params[:user][:image] =  uploaded_file
+  end
+  
+ @user=User.new(params[:user])	
+
+
   	  	@user.mail=params[:user][:email]		
 		@user.email="#{params[:user][:phone]}@gmail.com"
 		
