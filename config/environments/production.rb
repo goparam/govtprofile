@@ -59,7 +59,7 @@ DepartmentPhonebookRails::Application.configure do
     end
   }
 
-  config.action_mailer.default_url_options = { :host => 'http://departmentphonebook.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://govtprofile.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -71,8 +71,8 @@ DepartmentPhonebookRails::Application.configure do
   :authentication       => 'login',
   :enable_starttls_auto => true  }
   
-  config.action_controller.asset_host = "http://departmentphonebook.herokuapp.com"
-  config.action_mailer.asset_host = "departmentphonebook.herokuapp.com"
+  config.action_controller.asset_host = "http://govtprofile.herokuapp.com"
+  config.action_mailer.asset_host = "govtprofile.herokuapp.com"
 
   config.default_content_type = "text/html"
 
